@@ -1,0 +1,22 @@
+{
+    "version": "version",
+    "owner": "Owner",
+    "lphan": "Loc Phan Phuc",
+    "name": "Name",
+    "telephone": "Phone",
+    "homePage": {
+        "title": "Todo app demo",
+        "description": {
+            "title": "Description",
+            "text": "This is a small web signal page built by framework angular version 10.0.1"
+        },
+        "features":{
+            "title" : "Features",
+            "internationalization": "Application can change language (default language is English)",
+            "CRUD": "Provide basic features add, delete, edit",
+            "filter": "Features filtering data using Observables & Rxjs",
+            "stateManagement": "Using akita to manage State management",
+            "reactiveForm": "Implement reactive form, create abstract form for 2 both of cases (creation, edition)"
+        }
+    }
+}

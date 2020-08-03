@@ -1,0 +1,22 @@
+{
+    "version": "Phiên bản",
+    "owner": "Người tạo",
+    "lphan": "Phan Phúc Lộc",
+    "name": "Tên",
+    "telephone": "Số điện thoại",
+    "homePage": {
+        "title": "Todo app demo",
+        "description": {
+            "title": "Mô tả",
+            "text": "Đây là một trang web signal page đơn giản được xây dựng bởi framework angular phiên bản 10.0.1"
+        },
+        "features":{
+            "title": "Tính năng",
+            "internationalization": "Ứng dụng có thể thay đổi ngôn ngữ( ngôn ngữ mặc định là tiếng Anh)",
+            "CRUD": "Cung cấp các tính năng cơ bản như: Thêm, Xoá, Sửa, Đọc",
+            "filter": "Có tính năng lọc dữ liệu sử dụng Observables & Rxjs",
+            "stateManagement": "Sử dụng akita để quản lí State management",
+            "reactiveForm": "Sử dụng reactive form"
+        }
+    }
+}
