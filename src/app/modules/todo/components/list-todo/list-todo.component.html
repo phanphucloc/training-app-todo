@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-12 col-md-6">
+        <label>Title</label>
+        <input class="form-control search" [(ngModel)]="currentTodo.title" placeholder="Title ...">
+    </div>
+    <div class="col-12 col-md-6">
+        <label>Content</label>
+        <input class="form-control search" [(ngModel)]="currentTodo.content" placeholder="Content ...">
+    </div>
+    <div class="col-12 col-md-6">
+        <label>Creator</label>
+        <input class="form-control search" [(ngModel)]="currentTodo.creator" placeholder="Creator ...">
+    </div>
+    <div class="col-12 col-md-6">
+        <label>Completed</label>
+        <input class="form-control search" type="checkbox" [(ngModel)]="currentTodo.completed">
+    </div>
+</div>
+
+
+
+<button (click)="addTodo()">add</button>
+<button (click)="submit()">submit</button>
+
+<div class="content-block-default">
+    <div class="title">
+        List Vehicle
+    </div>
+    <div class="body-block">
+        <form novalidate  [formGroup]="searchFrom" class="row justify-content-md-center">
+            <div class="col-12 col-md-6">
+                <input class="form-control search" formControlName="title" placeholder="Title ...">
+            </div>
+            <div class="col-12 col-md-6">
+                <input class="form-control search" formControlName="content" placeholder="Content ...">
+            </div>
+            <div class="col-12 col-md-6">
+                <input class="form-control search" formControlName="creator" placeholder="Creator ...">
+            </div>
+            <div class="col-12 col-md-6">
+                <input class="form-control search" formControlName="completed" type="checkbox">
+            </div>
+            <button type="submit">search</button>
+        </form>
+        <div class="table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>content</th>
+                        <th>creator</th>
+                        <th>completed</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let itemTodo of listTodo$ | async ; trackBy: trackByFn">
+                        <tr>
+                            <td>{{itemTodo.title}}</td>
+                            <td>{{itemTodo.content}}</td>
+                            <td>{{itemTodo.creator}}</td>
+                            <td>
+                                <i *ngIf="itemTodo.completed" class="fa fa-check" aria-hidden="true"></i>
+                            </td>
+                            <td class="text-center">
+                                <div class="item-action" title="Detail" (click)=getInfoTodo(itemTodo.id)>
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                                <div class="item-action" title="Detail" (click)=deleteTodo(itemTodo.id)>
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

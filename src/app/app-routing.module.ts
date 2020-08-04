@@ -11,10 +11,10 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      // {
-      //   path: 'todo',
-      //   loadChildren: () => import("./modules/vehicle/vehicle.module").then(m => m.VehicleModule)
-      // },
+      {
+        path: 'todo',
+        loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule)
+      },
       {
         path: 'page',
         loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule)
@@ -22,8 +22,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: "**",
-    redirectTo: 'page/home', 
+    path: '**',
+    redirectTo: 'page/home',
   }
 ];
 
