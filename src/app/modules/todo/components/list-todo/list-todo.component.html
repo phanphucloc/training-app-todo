@@ -5,7 +5,7 @@
     <form novalidate [formGroup]="todoForm" (ngSubmit)="submit()" class="row justify-content-md-center">
         <div class="col-12 col-md-6 mt-2">
             <label class="label"> {{ 'todoPage.block.formTodo.labelTitle' | translate }}</label>
-            <input class="form-control search" formControlName="title"
+            <input #eleIputTitle class="form-control search" formControlName="title"
                 placeholder="{{ 'todoPage.block.formTodo.placeTitle' | translate }}">
             <div class="col alert alert-danger mt-1" role="alert"
                 *ngIf="todoForm.get('title')?.errors?.required && todoForm.get('title')?.touched">
@@ -96,7 +96,7 @@
                             </td>
                             <td class="text-center">
                                 <div title="{{ 'todoPage.block.table.tooltipEdit' | translate }}" class="item-action"
-                                    title="Detail" (click)=getInfoTodo(itemTodo.id)>
+                                    title="Detail" (click)="eleIputTitle.focus(); getInfoTodo(itemTodo.id)">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </div>
                                 <div title="{{ 'todoPage.block.table.tooltipDelete' | translate }}" class="item-action"
