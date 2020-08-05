@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoRoutingModule } from './todo-routing.module';
 import { ListTodoComponent } from './components/list-todo/list-todo.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { ParamsTranslatePipe } from '../../common/pipe/params-translate.pipe';
 
 
 @NgModule({
-  declarations: [ListTodoComponent],
+  declarations: [
+    ParamsTranslatePipe,
+    ListTodoComponent
+  ],
   imports: [
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
-    TodoRoutingModule
+    TodoRoutingModule,
+    TranslateModule
   ]
 })
 export class TodoModule { }

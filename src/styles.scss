@@ -97,7 +97,19 @@ a {
     }
 }
 
+//-------FORM-----------//@
+form{
+    color: $balckGreyColor;
 
+    .label{
+        font-size: 15px
+    }
+    input[type=checkbox], input[type=radio]{
+        display: block;
+        width: 35px !important;
+        height: 35px;
+    }
+}
 
 //--------Table---------//
 .table {

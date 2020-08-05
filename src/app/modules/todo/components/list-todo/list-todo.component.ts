@@ -5,6 +5,7 @@ import { TodosService } from '../../../../state-management/todos.service';
 import { TodosQuery } from '../../../../state-management/todos.query';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 
 
@@ -15,18 +16,24 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class ListTodoComponent implements OnInit {
 
-  public currentAction: string = ACTION.ADD;
   public listTodo$: Observable<Todo[]>;
-  public currentTodo: Todo;
+  public currentLang = this.translateService.currentLang;
 
-  // value search
-  public searchFrom: FormGroup;
+  // Add  - Edit
+  public todoForm: FormGroup;
+  public currentTodo: Todo;
+  public currentAction: string = ACTION.ADD;
+  // --------
+
+  // Value search
+  public searchForm: FormGroup;
   public searchObject: SearchObject;
   // --------
 
   constructor(
     private todoService: TodosService,
     private todosQuery: TodosQuery,
+    private translateService: TranslateService
   ) {
     this.currentTodo = new Todo();
     this.searchObject = new SearchObject();
@@ -34,25 +41,20 @@ export class ListTodoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // Get data list todo
-    this.listTodo$ = this.todosQuery.selectVisibleTodos$;
-    // ---------
+    // Get data
+    this.getData();
+    // -------
 
-    // init search from
-    this.searchFrom = new FormGroup({
-      title: new FormControl('', Validators.required),
-      content: new FormControl(),
-      creator: new FormControl(),
-      completed: new FormControl()
-    });
-    // ---------
+    // Create form data( add / edit todo)
+    this.createForm();
+    // -------
 
     // event search
     this.changeValueSearch();
     // -------
 
     // create value for fromGroup
-    this.searchFrom.patchValue({
+    this.searchForm.patchValue({
       title: '',
       content: '',
       creator: '',
@@ -63,32 +65,96 @@ export class ListTodoComponent implements OnInit {
   }
 
 
+
+
+
+  // ------- SETUP DATA
+
+  getData(): void {
+    // Get name language using
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.currentLang = event.lang;
+    });
+    // ---------
+
+    // Get data list todo
+    this.listTodo$ = this.todosQuery.selectVisibleTodos$;
+    // ---------
+  }
+
+  createForm(): void {
+
+    // init search from
+    this.searchForm = new FormGroup({
+      title: new FormControl(),
+      content: new FormControl(),
+      creator: new FormControl(),
+      completed: new FormControl()
+    });
+    // ---------
+
+    // init todo from
+    this.todoForm = new FormGroup({
+      id: new FormControl(''),
+      title: new FormControl('', [Validators.required, Validators.maxLength(20)],
+        [this.todoService.validateTitle(this.getInfo.bind(this))]),
+      content: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      creator: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      completed: new FormControl(false)
+    });
+    // ---------
+  }
+
+
+
+  getInfo(): any {
+    return {
+      currentAction: this.currentAction,
+      currenttodo: this.todoForm?.value
+    };
+  }
+
   // ------- FEATUER: ADD - EDIT - DELETE
 
   addTodo(): void {
     this.currentAction = ACTION.ADD;
-    this.currentTodo = new Todo();
+    this.resetForm();
   }
 
   getInfoTodo(id$: string): void {
     this.currentAction = ACTION.EDIT;
-    this.todosQuery.getTodoById(id$).subscribe((res) => {
+    this.todosQuery.getTodoById(id$).subscribe((res: Todo) => {
       console.log(res);
       this.currentTodo = res;
+      this.todoForm.setValue({
+        id: res.id,
+        title: res.title,
+        content: res.content,
+        creator: res.creator,
+        completed: res.completed
+      });
     });
   }
 
   submit(): void {
+    console.log(this.todoForm.value);
     switch (this.currentAction) {
       case ACTION.ADD:
-        this.todoService.add(this.currentTodo);
-        this.currentTodo = new Todo();
+        this.todoService.add(this.todoForm.value);
+        this.resetForm();
         break;
       default:
-        this.todoService.updateTodo(this.currentTodo);
+        this.currentAction = ACTION.ADD;
+        this.todoService.updateTodo(this.todoForm.value);
+        this.resetForm();
         console.log('edit');
         break;
     }
+  }
+
+  resetForm(): void {
+    this.todoForm.reset();
+    this.todoForm.patchValue({ completed: false });
   }
 
   deleteTodo(id: string): void {
@@ -97,14 +163,16 @@ export class ListTodoComponent implements OnInit {
 
 
 
+
+
   // ------- FEATUER: FILTER
 
   changeValueSearch(): void {
     combineLatest([
-      this.searchFrom.controls.title.valueChanges,
-      this.searchFrom.controls.content.valueChanges,
-      this.searchFrom.controls.creator.valueChanges,
-      this.searchFrom.controls.completed.valueChanges,
+      this.searchForm.controls.title.valueChanges,
+      this.searchForm.controls.content.valueChanges,
+      this.searchForm.controls.creator.valueChanges,
+      this.searchForm.controls.completed.valueChanges,
     ])
       .pipe(
         debounceTime(500),

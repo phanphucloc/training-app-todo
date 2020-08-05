@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TodosState, TodosStore } from './todos.store';
 import { QueryEntity } from '@datorama/akita';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { Todo, SearchObject } from './todo.model';
 
 @Injectable({
@@ -25,6 +25,16 @@ export class TodosQuery extends QueryEntity<TodosState> {
             filterBy: ({ id }) => id === id$
         }).pipe(
             map(x => x.shift()),
+            take(1)
+        );
+    }
+
+    getTodoByTitle = (title$: string) => {
+        return this.selectAll({
+            filterBy: ({ title }) => title === title$
+        }).pipe(
+            map(x => x.shift()),
+            take(1)
         );
     }
 

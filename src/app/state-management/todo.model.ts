@@ -5,7 +5,7 @@ import { guid } from '@datorama/akita';
 // ----------------ACTION
 export enum ACTION {
   EDIT = 'EDIT',
-  ADD = 'Add',
+  ADD = 'ADD',
 }
 
 
