@@ -1,4 +1,9 @@
 {
+    "language": "Ngôn ngữ",
+    "english": "Tiếng Anh",
+    "vienamese": "Tiếng Việt",
+    "filter": "Lọc",
+    "cancel": "Đóng",
     "add": "Thêm",
     "edit": "Sửa",
     "submit": "Gởi",

@@ -1,4 +1,9 @@
 {
+    "language": "Language",
+    "english": "English",
+    "vienamese": "Vienamese",
+    "filter": "Filter",
+    "cancel": "Cancel",
     "add": "Add",
     "edit": "Edit",
     "submit": "Submit",

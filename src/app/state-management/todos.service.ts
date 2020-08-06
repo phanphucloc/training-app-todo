@@ -20,7 +20,7 @@ export class TodosService {
 
     // ------- FEATUER: ADD - EDIT - DELETE
     add(todo$: Todo): void {
-        const todo: Todo = createTodo(todo$.title, todo$.content, todo$.creator, todo$.completed);
+        const todo: Todo = createTodo(todo$.title, todo$.content, todo$.creator);
         this.todosStore.add(todo);
     }
     updateTodo(todo$: Todo): void {
@@ -48,7 +48,7 @@ export class TodosService {
         return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
             if (control.value) {
                 return this.todosQuery.getTodoByTitle(control.value).pipe(
-                    delay(500),
+                    delay(100),
                     distinctUntilChanged(),
                     map((res: Todo) => {
                         const infoCurrent = getTypeFormAndcurrentTodo();

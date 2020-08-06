@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
-import { Todo, ACTION, SearchObject } from '../../../../state-management/todo.model';
+import { Todo, ACTION, SearchObject, initCompletedFilters, DataFormTodo, ACTIONMODAL } from '../../../../state-management/todo.model';
 import { TodosService } from '../../../../state-management/todos.service';
 import { TodosQuery } from '../../../../state-management/todos.query';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormTodoComponent } from '../form-todo/form-todo.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
   styleUrls: ['./list-todo.component.scss']
 })
 export class ListTodoComponent implements OnInit {
-
+  public displayedColumns: string[] = ['title', 'content', 'creator', 'completed', 'action'];
   public listTodo$: Observable<Todo[]>;
   public currentLang = this.translateService.currentLang;
 
@@ -28,14 +29,15 @@ export class ListTodoComponent implements OnInit {
   // Value search
   public searchForm: FormGroup;
   public searchObject: SearchObject;
+  public completedFilters = initCompletedFilters;
   // --------
 
   constructor(
     private todoService: TodosService,
     private todosQuery: TodosQuery,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    public dialog: MatDialog
   ) {
-    this.currentTodo = new Todo();
     this.searchObject = new SearchObject();
   }
 
@@ -52,15 +54,6 @@ export class ListTodoComponent implements OnInit {
     // event search
     this.changeValueSearch();
     // -------
-
-    // create value for fromGroup
-    this.searchForm.patchValue({
-      title: '',
-      content: '',
-      creator: '',
-      completed: null,
-    });
-    // ---------
 
   }
 
@@ -84,7 +77,7 @@ export class ListTodoComponent implements OnInit {
 
   createForm(): void {
 
-    // init search from
+    // Init search form
     this.searchForm = new FormGroup({
       title: new FormControl(),
       content: new FormControl(),
@@ -93,39 +86,32 @@ export class ListTodoComponent implements OnInit {
     });
     // ---------
 
-    // init todo from
+    // Init todo form
     this.todoForm = new FormGroup({
-      id: new FormControl(''),
       title: new FormControl('', [Validators.required, Validators.maxLength(20)],
-        [this.todoService.validateTitle(this.getInfo.bind(this))]),
+        [this.todoService.validateTitle(this.getInfoCurrent.bind(this))]),
       content: new FormControl('', [Validators.required, Validators.maxLength(20)]),
       creator: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      completed: new FormControl(false)
     });
     // ---------
+
   }
 
 
 
-  getInfo(): any {
-    return {
-      currentAction: this.currentAction,
-      currenttodo: this.todoForm?.value
-    };
-  }
+
 
   // ------- FEATUER: ADD - EDIT - DELETE
 
   addTodo(): void {
     this.currentAction = ACTION.ADD;
-    this.resetForm();
+    this.openDialogTodo();
   }
 
   getInfoTodo(id$: string): void {
     this.currentAction = ACTION.EDIT;
+    this.resetFormTodo(this.currentAction);
     this.todosQuery.getTodoById(id$).subscribe((res: Todo) => {
-      console.log(res);
-      this.currentTodo = res;
       this.todoForm.setValue({
         id: res.id,
         title: res.title,
@@ -133,32 +119,57 @@ export class ListTodoComponent implements OnInit {
         creator: res.creator,
         completed: res.completed
       });
+      this.openDialogTodo();
+    });
+  }
+
+  openDialogTodo(): void {
+    const dialogRef = this.dialog.open(FormTodoComponent, {
+      width: '550px',
+      data: { currentAction: this.currentAction, todoForm: this.todoForm }
+    });
+    dialogRef.afterClosed().subscribe((result: string) => {
+      console.log('The dialog was closed', result);
+      console.log(this.todoForm.value);
+      if (result === ACTIONMODAL.SUBMIT) {
+        this.submit();
+      }
+      else {
+        this.resetFormTodo(this.currentAction);
+      }
     });
   }
 
   submit(): void {
-    console.log(this.todoForm.value);
     switch (this.currentAction) {
       case ACTION.ADD:
         this.todoService.add(this.todoForm.value);
-        this.resetForm();
+        this.resetFormTodo(this.currentAction);
         break;
       default:
         this.currentAction = ACTION.ADD;
         this.todoService.updateTodo(this.todoForm.value);
-        this.resetForm();
-        console.log('edit');
+        this.resetFormTodo(this.currentAction);
         break;
     }
   }
 
-  resetForm(): void {
+  resetFormTodo(typeAction: string): void {
     this.todoForm.reset();
-    this.todoForm.patchValue({ completed: false });
+    switch (typeAction) {
+      case ACTION.ADD:
+        this.todoForm.removeControl('id');
+        this.todoForm.removeControl('completed');
+        break;
+      default:
+        this.todoForm.addControl('id', new FormControl(''));
+        this.todoForm.addControl('completed', new FormControl(false));
+        break;
+    }
   }
 
   deleteTodo(id: string): void {
-    this.todoService.delete(this.currentTodo.id);
+    this.todoService.delete(id);
   }
 
 
@@ -168,6 +179,8 @@ export class ListTodoComponent implements OnInit {
   // ------- FEATUER: FILTER
 
   changeValueSearch(): void {
+
+    // Combine
     combineLatest([
       this.searchForm.controls.title.valueChanges,
       this.searchForm.controls.content.valueChanges,
@@ -179,15 +192,30 @@ export class ListTodoComponent implements OnInit {
         distinctUntilChanged(),
       )
       .subscribe(([title, content, creator, completed]) => {
-        console.log(title, content, creator, completed);
         const searchData = new SearchObject();
         searchData.title = title;
         searchData.content = content;
         searchData.creator = creator;
         searchData.completed = completed;
-        console.log('filter:', searchData);
         this.todoService.updateFilter(searchData);
       });
+    // ---------
+
+    // Create value for formGroup
+    this.searchForm.patchValue({
+      title: '',
+      content: '',
+      creator: '',
+      completed: null,
+    });
+    // ---------
+  }
+
+  getInfoCurrent(): any {
+    return {
+      currentAction: this.currentAction,
+      currenttodo: this.todoForm?.value
+    };
   }
 
   trackByFn(index: number, item: any): number {

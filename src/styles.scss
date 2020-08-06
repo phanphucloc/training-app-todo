@@ -6,6 +6,11 @@
 
 
 //--------Custom Header---------//
+.header{
+    background-color: $bluePurpleColor;
+    color: white;
+    font-size: 14px;
+}
 .navbar {
     background-color: $bluePurpleColor;
     
@@ -48,8 +53,12 @@ a {
     background-color: $greyColor;
     min-height: calc(100vh - 76px);
 }
-
-
+.float-right{
+    float: right;
+}
+.space-between{
+    justify-content: space-between;
+}
 
 
 
@@ -70,7 +79,7 @@ a {
 
 
 //--------Block Golobal---------//
-.content-block-default {
+.content-block-default,mat-card {
     margin-top: 30px;
     background-color: $whileColor;
     border-radius: 5px;
@@ -87,7 +96,7 @@ a {
     .body-block {
         padding: 15px;
 
-        input.search {
+        input.search, select.search {
             width: 320px;
             max-width: 100%;
             margin: 10px 0px;
@@ -100,7 +109,20 @@ a {
 //-------FORM-----------//@
 form{
     color: $balckGreyColor;
+    &.pading{
+        padding: 0px 15px;
+    }
 
+    .example-full-width{
+        width: 100%;
+    }
+    .input-small{
+        width: 300px;
+        max-width: 100%;
+    }
+    .input-big{
+        width: 80%;
+    }
     .label{
         font-size: 15px
     }
@@ -112,6 +134,24 @@ form{
 }
 
 //--------Table---------//
+table[mat-table]{
+    width: 100%;
+    box-shadow: 0 1px 7px 1px #e2e2e2;
+
+    .item-action {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .2s transform, 0.5s color ;
+
+        &:hover{
+            transform: scale(1.1);
+            color: #dc3545;
+        }
+    }
+}
 .table {
     color: $balckGreyColor;
 
@@ -127,19 +167,7 @@ form{
         th{
             font-size: 14px;
         }
-        .item-action {
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: .2s transform, 0.5s color ;
-
-            &:hover{
-                transform: scale(1.1);
-                color: #dc3545;
-            }
-        }
+       
     }
 
     .page-redirect {
@@ -185,3 +213,6 @@ form{
         opacity: 1;
     }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

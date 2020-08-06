@@ -1,31 +1,25 @@
-<section class="header">
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" [routerLink]="['/']">
-      <img class="logo" src="../assets/img/icon-angular.png">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon fa fa-bars" aria-hidden="true"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <!-- [ngClass]="{'active' : infoModuleActive?.title == 'Manager Vehicle'}" -->
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['todo/list']">Todo <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <div class="my-2 my-lg-0">
-        <i class="icon-language fa fa-globe" aria-hidden="true"></i>
-        <select class="form-control mr-sm-2" (change)="switchLanguage($event.target.value)" type="search" placeholder="Search"
-          aria-label="Search">
-          <option value="en">Tiếng Anh</option>
-          <option value="vi">Tiếng Việt</option>
-        </select>
-      </div>
+<mat-toolbar class="header">
+  <mat-toolbar-row class="space-between">
+    <div>
+      <a [routerLink]="['/']"><img src="../assets/img/icon-angular.png" style="width:50px;"></a>
+      <a mat-button [routerLink]="['todo/list']">Todo</a>
     </div>
-  </nav>
-</section>
+    <div class="float-right">
+      <mat-form-field class="input-big" appearance="fill">
+        <mat-label> <i class="icon-language fa fa-globe" aria-hidden="true"></i> {{ 'language' | translate }}</mat-label>
+        <mat-select  [(ngModel)]="languageCurrent"  (selectionChange)="switchLanguage($event)">
+          <mat-option [value]="'en'">
+            {{ 'english' | translate }}
+          </mat-option>
+          <mat-option [value]="'vi'">
+            {{ 'vienamese' | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <section class="body">
   <div class="container">
     <div class="row">

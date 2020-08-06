@@ -1,113 +1,117 @@
-<div class="content-block-default">
-    <div class="title">
-        {{ 'todoPage.block.formTodo.title' | translate: ({ typeForm: currentAction === "ADD" ? 'add' : 'edit', dumbTrigger: currentLang } | ParamsTranslate) }}
-    </div>
-    <form novalidate [formGroup]="todoForm" (ngSubmit)="submit()" class="row justify-content-md-center">
-        <div class="col-12 col-md-6 mt-2">
-            <label class="label"> {{ 'todoPage.block.formTodo.labelTitle' | translate }}</label>
-            <input #eleIputTitle class="form-control search" formControlName="title"
-                placeholder="{{ 'todoPage.block.formTodo.placeTitle' | translate }}">
-            <div class="col alert alert-danger mt-1" role="alert"
-                *ngIf="todoForm.get('title')?.errors?.required && todoForm.get('title')?.touched">
-                {{ 'todoPage.block.formTodo.messErrorRequiredTitle' | translate }}
-            </div>
-            <div class="col alert alert-danger mt-1" role="alert"
-                *ngIf="todoForm.get('title')?.hasError('titleExist') && todoForm.get('title')?.touched">
-                {{ 'todoPage.block.formTodo.messErrorExistTitle' | translate }}
-            </div>
-        </div>
-        <div class="col-12 col-md-6 mt-2">
-            <label class="label">{{ 'todoPage.block.formTodo.labelContent' | translate }}</label>
-            <input class="form-control search" formControlName="content"
-                placeholder="{{ 'todoPage.block.formTodo.placeContent' | translate }}">
-            <div class="col alert alert-danger mt-1" role="alert"
-                *ngIf="todoForm.get('content')?.errors?.required && todoForm.get('content')?.touched">
-                {{ 'todoPage.block.formTodo.messErrorRequiredContent' | translate }}
-            </div>
-        </div>
-        <div class="col-12 col-md-6 mt-2">
-            <label class="label">{{ 'todoPage.block.formTodo.labelCreator' | translate }}</label>
-            <input class="form-control search" formControlName="creator"
-                placeholder="{{ 'todoPage.block.formTodo.placeCreator' | translate }}">
-            <div class="col alert alert-danger mt-1" role="alert"
-                *ngIf="todoForm.get('creator')?.errors?.required && todoForm.get('creator')?.touched">
-                {{ 'todoPage.block.formTodo.messErrorRequiredCreator' | translate }}
-            </div>
-        </div>
-        <div class="col-12 col-md-6 mt-2">
-            <label class="label">{{ 'todoPage.block.formTodo.labelCompleted' | translate }}</label>
-            <input class="form-control search" formControlName="completed" type="checkbox">
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <button class="btn btn-primary mr-1" type="button" (click)="addTodo()">{{ 'add' | translate }}</button>
-                <button [disabled]="todoForm.invalid || todoForm.pending" class="btn btn-success ml-1"
-                    type="submit">{{ 'submit' | translate }}</button>
-            </div>
-        </div>
+<mat-card>
+    <h2 class="title" matDialogTitle>
+        <i class="fa fa-filter" aria-hidden="true"></i>
+        {{ 'filter' | translate }}
+    </h2>
+    <form class="pading" [formGroup]="searchForm" (ngSubmit)="submit()">
+        <mat-grid-list cols="2" rowHeight = "70px">
+            <mat-grid-tile>
+                <mat-form-field class="input-big">
+                    <mat-label>{{ 'todoPage.block.formTodo.labelTitle' | translate }}</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="input-big">
+                    <mat-label>{{ 'todoPage.block.formTodo.labelCreator' | translate }}</mat-label>
+                    <input matInput formControlName="creator">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="input-big">
+                    <mat-label>{{ 'todoPage.block.formTodo.labelContent' | translate }}</mat-label>
+                    <input matInput formControlName="content">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="input-big" appearance="fill">
+                    <mat-label>{{ 'todoPage.block.formTodo.labelCompleted' | translate }}</mat-label>
+                    <mat-select formControlName="completed">
+                        <mat-option *ngFor="let itemFilter of completedFilters" [value]="itemFilter.value">
+                            {{itemFilter.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        </table>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+        </table>
     </form>
-</div>
+</mat-card>
 
-
-<div class="content-block-default">
-    <div class="title">
+<mat-card>
+    <h2 class="title" matDialogTitle>
+        <i class="fa fa-table" aria-hidden="true"></i>
         {{ 'todoPage.block.table.title' | translate }}
-    </div>
-    <div class="body-block">
-        <form novalidate [formGroup]="searchForm" class="row justify-content-md-center">
-            <div class="col-12 col-md-6">
-                <input class="form-control search" formControlName="title"
-                    placeholder="{{ 'todoPage.block.formTodo.placeTitle' | translate }}">
-            </div>
-            <div class="col-12 col-md-6">
-                <input class="form-control search" formControlName="content"
-                    placeholder="{{ 'todoPage.block.formTodo.placeContent' | translate }}">
-            </div>
-            <div class="col-12 col-md-6">
-                <input class="form-control search" formControlName="creator"
-                    placeholder="{{ 'todoPage.block.formTodo.placeCreator' | translate }}">
-            </div>
-            <div class="col-12 col-md-6">
-                <input class="form-control search" formControlName="completed" type="checkbox">
-            </div>
-        </form>
-        <div class="table">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>{{ 'todoPage.block.table.rowTitle' | translate }}</th>
-                        <th>{{ 'todoPage.block.table.rowlContent' | translate }} </th>
-                        <th>{{ 'todoPage.block.table.rowlCreator' | translate }}</th>
-                        <th>{{ 'todoPage.block.table.rowlCompleted' | translate }} </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let itemTodo of listTodo$ | async ; trackBy: trackByFn">
-                        <tr>
-                            <td>
-                                {{itemTodo.title}}
-                                <i *ngIf="itemTodo.id === this.todoForm?.value.id" class="fa fa-spinner fa-spin fa-fw margin-bottom"></i>
-                            </td>
-                            <td>{{itemTodo.content}}</td>
-                            <td>{{itemTodo.creator}}</td>
-                            <td>
-                                <i *ngIf="itemTodo.completed" class="fa fa-check" aria-hidden="true"></i>
-                            </td>
-                            <td class="text-center">
-                                <div title="{{ 'todoPage.block.table.tooltipEdit' | translate }}" class="item-action"
-                                    title="Detail" (click)="eleIputTitle.focus(); getInfoTodo(itemTodo.id)">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </div>
-                                <div title="{{ 'todoPage.block.table.tooltipDelete' | translate }}" class="item-action"
-                                    title="Detail" (click)=deleteTodo(itemTodo.id)>
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </div>
-                            </td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+    </h2>
+    <p>
+        <button mat-button type="submit" (click)="addTodo()" color="primary">
+            <i class="fa fa-plus" aria-hidden="true"></i> 
+            {{ 'add' | translate }}
+        </button>
+    </p>
+    <table mat-table [dataSource]="listTodo$ | async " class="mat-elevation-z8">
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> {{ 'todoPage.block.table.rowTitle' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+
+        <!-- Content Column -->
+        <ng-container matColumnDef="content">
+            <th mat-header-cell *matHeaderCellDef> {{ 'todoPage.block.table.rowlContent' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.content}} </td>
+        </ng-container>
+
+        <!-- Creator Column -->
+        <ng-container matColumnDef="creator">
+            <th mat-header-cell *matHeaderCellDef> {{ 'todoPage.block.table.rowlCreator' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.creator}} </td>
+        </ng-container>
+
+        <!-- Completed Column -->
+        <ng-container matColumnDef="completed">
+            <th mat-header-cell *matHeaderCellDef> {{ 'todoPage.block.table.rowlCompleted' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                <i *ngIf="element.completed" class="fa fa-check" aria-hidden="true"></i>
+            </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell class="text-center" *matCellDef="let element">
+                <div title="{{ 'todoPage.block.table.tooltipEdit' | translate }}" class="item-action" title="Detail"
+                    (click)="getInfoTodo(element.id)">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+                <div title="{{ 'todoPage.block.table.tooltipDelete' | translate }}" class="item-action" title="Detail"
+                    (click)=deleteTodo(element.id)>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-card>

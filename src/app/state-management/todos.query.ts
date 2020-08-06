@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TodosState, TodosStore } from './todos.store';
 import { QueryEntity } from '@datorama/akita';
 import { map, switchMap, take } from 'rxjs/operators';
-import { Todo, SearchObject } from './todo.model';
+import { Todo, SearchObject, COMPLETED_FILTER } from './todo.model';
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +31,7 @@ export class TodosQuery extends QueryEntity<TodosState> {
 
     getTodoByTitle = (title$: string) => {
         return this.selectAll({
-            filterBy: ({ title }) => title === title$
+            filterBy: ({ title }) => title === title$,
         }).pipe(
             map(x => x.shift()),
             take(1)
@@ -58,7 +58,18 @@ export class TodosQuery extends QueryEntity<TodosState> {
         }
         // ------ Search completed
         if (filter$.completed !== null) {
-            todos = todos.filter(t => t.completed === filter$.completed);
+            switch (filter$.completed) {
+                case COMPLETED_FILTER.SHOW_COMPLETED:
+                    console.log('1', todos.filter(t => t.completed));
+                    todos = todos.filter(t => t.completed);
+                    break;
+                case COMPLETED_FILTER.INCOMPLETED:
+                    console.log('2', todos.filter(t => !t.completed));
+                    todos = todos.filter(t => !t.completed);
+                    break;
+                default:
+                    return todos;
+            }
         }
         return todos;
     }
