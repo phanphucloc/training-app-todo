@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
-import { Todo, ACTION, SearchObject, initCompletedFilters, DataFormTodo, ACTIONMODAL } from '../../../../state-management/todo.model';
+import { Todo, ACTION, SearchObject, initCompletedFilters, ACTIONMODAL, ACTIONCOMFIRM } from '../../../../state-management/todo.model';
 import { TodosService } from '../../../../state-management/todos.service';
 import { TodosQuery } from '../../../../state-management/todos.query';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { FormTodoComponent } from '../form-todo/form-todo.component';
+import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -18,11 +18,9 @@ import { FormTodoComponent } from '../form-todo/form-todo.component';
 export class ListTodoComponent implements OnInit {
   public displayedColumns: string[] = ['title', 'content', 'creator', 'completed', 'action'];
   public listTodo$: Observable<Todo[]>;
-  public currentLang = this.translateService.currentLang;
 
   // Add  - Edit
   public todoForm: FormGroup;
-  public currentTodo: Todo;
   public currentAction: string = ACTION.ADD;
   // --------
 
@@ -35,7 +33,6 @@ export class ListTodoComponent implements OnInit {
   constructor(
     private todoService: TodosService,
     private todosQuery: TodosQuery,
-    private translateService: TranslateService,
     public dialog: MatDialog
   ) {
     this.searchObject = new SearchObject();
@@ -64,12 +61,6 @@ export class ListTodoComponent implements OnInit {
   // ------- SETUP DATA
 
   getData(): void {
-    // Get name language using
-    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.currentLang = event.lang;
-    });
-    // ---------
-
     // Get data list todo
     this.listTodo$ = this.todosQuery.selectVisibleTodos$;
     // ---------
@@ -129,8 +120,6 @@ export class ListTodoComponent implements OnInit {
       data: { currentAction: this.currentAction, todoForm: this.todoForm }
     });
     dialogRef.afterClosed().subscribe((result: string) => {
-      console.log('The dialog was closed', result);
-      console.log(this.todoForm.value);
       if (result === ACTIONMODAL.SUBMIT) {
         this.submit();
       }
@@ -169,7 +158,15 @@ export class ListTodoComponent implements OnInit {
   }
 
   deleteTodo(id: string): void {
-    this.todoService.delete(id);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '550px',
+    });
+    dialogRef.componentInstance.keyLanguageMessage  = 'alertDelete';
+    dialogRef.afterClosed().subscribe((result: string) => {
+      if (result === ACTIONCOMFIRM.AGREE) {
+        this.todoService.delete(id);
+      }
+    });
   }
 
 

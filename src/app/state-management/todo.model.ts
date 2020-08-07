@@ -12,6 +12,10 @@ export enum ACTIONMODAL {
   CANCEL = 'EDIT',
   SUBMIT = 'ADD',
 }
+export enum ACTIONCOMFIRM {
+  AGREE = 'AGREE',
+  DISAGREE = 'DISAGREE',
+}
 
 
 
@@ -34,11 +38,14 @@ export class CompletedFilter {
   label: string;
   value: COMPLETED_FILTER;
 }
+
 export const initCompletedFilters: CompletedFilter[] = [
   { label: 'All', value: COMPLETED_FILTER.SHOW_ALL },
   { label: 'Completed', value: COMPLETED_FILTER.SHOW_COMPLETED },
   { label: 'Incompleted', value: COMPLETED_FILTER.INCOMPLETED }
 ];
+
+
 
 
 // ---------------- TODO

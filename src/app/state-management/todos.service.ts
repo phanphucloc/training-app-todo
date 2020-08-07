@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { TodosStore } from './todos.store';
 import { createTodo, Todo, SearchObject, ACTION } from './todo.model';
 import { TodosQuery } from './todos.query';
-import { timer, Observable } from 'rxjs';
-import { switchMap, map, distinctUntilChanged, debounceTime, delay } from 'rxjs/operators';
-import { ValidationErrors, AbstractControl, AsyncValidatorFn, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, distinctUntilChanged, delay } from 'rxjs/operators';
+import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Action } from 'rxjs/internal/scheduler/Action';
-const URL = 'https://jsonplaceholder.typicode.com';
+
+// const URL = 'https://jsonplaceholder.typicode.com';
+
 @Injectable({ providedIn: 'root' })
 export class TodosService {
     constructor(
@@ -74,23 +75,23 @@ export class TodosService {
 
 
     // ------- USING WITH API
-    searchUser(text): Observable<any> {
-        // debounce
-        return this.http.get<any>(`${URL}/users?username=${text}`);
-    }
+    // searchUser(text): Observable<any> {
+    //     // debounce
+    //     return this.http.get<any>(`${URL}/users?username=${text}`);
+    // }
 
-    userValidator(): AsyncValidatorFn {
-        return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
-            return this.searchUser(control.value)
-                .pipe(
-                    map((res: any) => {
-                        // if username is already taken
-                        if (res) {
-                            // return error
-                            return { titleExist: true };
-                        }
-                    })
-                );
-        };
-    }
+    // userValidator(): AsyncValidatorFn {
+    //     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
+    //         return this.searchUser(control.value)
+    //             .pipe(
+    //                 map((res: any) => {
+    //                     // if username is already taken
+    //                     if (res) {
+    //                         // return error
+    //                         return { titleExist: true };
+    //                     }
+    //                 })
+    //             );
+    //     };
+    // }
 }

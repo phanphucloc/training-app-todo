@@ -1,4 +1,8 @@
 {
+    "alertDelete": "Are you sure you want to delete?",
+    "agree": "Agree",
+    "disagree": "Disagree",
+    "notification": "Notification",
     "language": "Language",
     "english": "English",
     "vienamese": "Vienamese",

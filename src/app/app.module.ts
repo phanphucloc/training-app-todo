@@ -16,6 +16,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './common/components/confirm-dialog/confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 export function translateHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -24,9 +26,11 @@ export function translateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
 @NgModule({
   declarations: [
     AppComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     FormsModule,
+    MatIconModule,
     MatCardModule,
     MatTableModule,
     MatCheckboxModule,

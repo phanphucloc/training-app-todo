@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { TodosService } from 'src/app/state-management/todos.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DataFormTodo, ACTION, ACTIONMODAL } from 'src/app/state-management/todo.model';
+import { DataFormTodo, ACTIONMODAL } from 'src/app/state-management/todo.model';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
@@ -28,7 +27,6 @@ export class FormTodoComponent implements OnInit {
     });
     // ---------
   }
-
 
   submit(): void {
     this.dialogRef.close(ACTIONMODAL.SUBMIT);

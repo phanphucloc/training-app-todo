@@ -45,6 +45,13 @@
 
 
 //--------Congfig Element Global---------//
+html, body { 
+    height: 100%;
+ }
+body { 
+    margin: 0;
+     font-family:Roboto, "Helvetica Neue", sans-serif;
+ }
 a {
     text-decoration: none;
 }
@@ -53,6 +60,9 @@ a {
     background-color: $greyColor;
     min-height: calc(100vh - 76px);
 }
+.text-center{
+    text-align: center;
+}
 .float-right{
     float: right;
 }
@@ -60,21 +70,6 @@ a {
     justify-content: space-between;
 }
 
-
-
-//--------Custom modal bootstrap---------//
-.modal-content {
-    border-radius: 0.5rem;
-
-    .modal-header {
-        color: $whileColor;
-
-        button.close {
-            outline: 0;
-            color: $whileColor;
-        }
-    }
-}
 
 
 
@@ -106,7 +101,10 @@ a {
     }
 }
 
-//-------FORM-----------//@
+
+
+
+//-------FORM-----------//
 form{
     color: $balckGreyColor;
     &.pading{
@@ -133,6 +131,10 @@ form{
     }
 }
 
+
+
+
+
 //--------Table---------//
 table[mat-table]{
     width: 100%;
@@ -152,55 +154,6 @@ table[mat-table]{
         }
     }
 }
-.table {
-    color: $balckGreyColor;
-
-    thead{
-        th{
-            font-size: 14px;
-        }
-    }
-    tbody tr {
-        &:nth-child(2n) {
-            background-color: #fff6f7;
-        }
-        th{
-            font-size: 14px;
-        }
-       
-    }
-
-    .page-redirect {
-        display: table;
-        margin: 0 auto;
-        padding: 5px 0px;
-
-        .item {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            line-height: 30px;
-            text-align: center;
-            color: $dangerColor;
-            margin: 0px 5px;
-            cursor: pointer;
-            transition: background-color 1s;
-
-            &.active,
-            &:hover {
-                background-color: $dangerColor;
-                color: $whileColor;
-                font-weight: bold;
-            }
-            &.disable {
-                background-color: rgba(240, 248, 255, 0);
-                color: $greyColor;
-                cursor: auto;
-            }
-        }
-    }
-}
 
 
 //--------Animate Global---------//
@@ -214,5 +167,39 @@ table[mat-table]{
     }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+//--------Responsive---------//
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px){
+    .container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px){
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px){
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
+}
+
+
+
+

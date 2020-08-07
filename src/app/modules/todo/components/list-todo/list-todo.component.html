@@ -1,10 +1,10 @@
 <mat-card>
     <h2 class="title" matDialogTitle>
-        <i class="fa fa-filter" aria-hidden="true"></i>
+        <span class="material-icons">filter_alt</span>
         {{ 'filter' | translate }}
     </h2>
     <form class="pading" [formGroup]="searchForm" (ngSubmit)="submit()">
-        <mat-grid-list cols="2" rowHeight = "70px">
+        <mat-grid-list cols="2" rowHeight="70px">
             <mat-grid-tile>
                 <mat-form-field class="input-big">
                     <mat-label>{{ 'todoPage.block.formTodo.labelTitle' | translate }}</mat-label>
@@ -33,24 +33,24 @@
                     </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
-          </mat-grid-list>
+        </mat-grid-list>
         <table class="example-full-width" cellspacing="0">
             <tr>
                 <td>
-                    
+
                 </td>
                 <td>
-                    
+
                 </td>
             </tr>
         </table>
         <table class="example-full-width" cellspacing="0">
             <tr>
                 <td>
-                    
+
                 </td>
                 <td>
-                   
+
                 </td>
             </tr>
         </table>
@@ -59,12 +59,12 @@
 
 <mat-card>
     <h2 class="title" matDialogTitle>
-        <i class="fa fa-table" aria-hidden="true"></i>
+        <span class="material-icons">table_chart</span>
         {{ 'todoPage.block.table.title' | translate }}
     </h2>
     <p>
         <button mat-button type="submit" (click)="addTodo()" color="primary">
-            <i class="fa fa-plus" aria-hidden="true"></i> 
+            <span class="material-icons">add</span>
             {{ 'add' | translate }}
         </button>
     </p>
@@ -90,24 +90,30 @@
 
         <!-- Completed Column -->
         <ng-container matColumnDef="completed">
-            <th mat-header-cell *matHeaderCellDef> {{ 'todoPage.block.table.rowlCompleted' | translate }} </th>
-            <td mat-cell *matCellDef="let element">
-                <i *ngIf="element.completed" class="fa fa-check" aria-hidden="true"></i>
+            <th style="width: 70px;" mat-header-cell *matHeaderCellDef>
+                {{ 'todoPage.block.table.rowlCompleted' | translate }} </th>
+            <td class="text-center" mat-cell *matCellDef="let element">
+                <span *ngIf="element.completed" class="material-icons">done</span>
             </td>
         </ng-container>
 
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> </th>
+            <th style="width: 150px;" mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell class="text-center" *matCellDef="let element">
-                <div title="{{ 'todoPage.block.table.tooltipEdit' | translate }}" class="item-action" title="Detail"
-                    (click)="getInfoTodo(element.id)">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </div>
-                <div title="{{ 'todoPage.block.table.tooltipDelete' | translate }}" class="item-action" title="Detail"
-                    (click)=deleteTodo(element.id)>
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </div>
+                <button mat-button (click)="getInfoTodo(element.id)" color="primary">
+                    <mat-icon mat-button class="item-action"
+                        title="{{ 'todoPage.block.table.tooltipDelete' | translate }}" class="example-icon"
+                        aria-hidden="false" aria-label="Edit icon">
+                        edit
+                    </mat-icon>
+                </button>
+                <button mat-button (click)=deleteTodo(element.id)>
+                    <mat-icon class="item-action" title="{{ 'todoPage.block.table.tooltipEdit' | translate }}"
+                        class="example-icon" aria-hidden="false" aria-label="Delete icon">
+                        delete
+                    </mat-icon>
+                </button>
             </td>
         </ng-container>
 

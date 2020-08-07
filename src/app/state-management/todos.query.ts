@@ -43,7 +43,6 @@ export class TodosQuery extends QueryEntity<TodosState> {
     }
 
     private getVisibleTodos(filter$: SearchObject, todos: Todo[]): Todo[] {
-        console.log('filter:', filter$);
         // ------ Search title
         if (filter$.title != null && filter$.title.trim() !== '') {
             todos = todos.filter(t => t.title.toLowerCase().includes(filter$.title));
@@ -60,11 +59,9 @@ export class TodosQuery extends QueryEntity<TodosState> {
         if (filter$.completed !== null) {
             switch (filter$.completed) {
                 case COMPLETED_FILTER.SHOW_COMPLETED:
-                    console.log('1', todos.filter(t => t.completed));
                     todos = todos.filter(t => t.completed);
                     break;
                 case COMPLETED_FILTER.INCOMPLETED:
-                    console.log('2', todos.filter(t => !t.completed));
                     todos = todos.filter(t => !t.completed);
                     break;
                 default:
