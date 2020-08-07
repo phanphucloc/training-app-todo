@@ -5,7 +5,7 @@
       <a mat-button [routerLink]="['todo/list']">Todo</a>
     </mat-toolbar-row>
     <mat-form-field class="input-big" appearance="fill">
-      <mat-label> <span style="font-size: 14px" class="material-icons">language</span>{{ 'language' | translate }}</mat-label>
+      <mat-label> <span class="material-icons">language</span>{{ 'language' | translate }}</mat-label>
       <mat-select  [(ngModel)]="languageCurrent"  (selectionChange)="switchLanguage($event)">
         <mat-option [value]="'en'">
           {{ 'english' | translate }}
