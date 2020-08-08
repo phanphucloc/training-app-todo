@@ -1,7 +1,7 @@
 <mat-card>
     <h2 class="title" matDialogTitle>
         <span class="material-icons">filter_alt</span>
-        {{ 'filter' | translate }}
+        <span class="text-icons-middle"> {{ 'filter' | translate }}</span>
     </h2>
     <form class="pading" [formGroup]="searchForm" (ngSubmit)="submit()">
         <mat-grid-list cols="2" rowHeight="70px">
@@ -34,38 +34,18 @@
                 </mat-form-field>
             </mat-grid-tile>
         </mat-grid-list>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        </table>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        </table>
     </form>
 </mat-card>
 
 <mat-card>
     <h2 class="title" matDialogTitle>
         <span class="material-icons">table_chart</span>
-        {{ 'todoPage.block.table.title' | translate }}
+        <span class="text-icons-middle"> {{ 'todoPage.block.table.title' | translate }}</span>
     </h2>
     <p>
         <button mat-button type="submit" (click)="addTodo()" color="primary">
             <span class="material-icons">add</span>
-            {{ 'add' | translate }}
+            <span class="text-icons-middle">{{ 'add' | translate }}</span>
         </button>
     </p>
     <table mat-table [dataSource]="listTodo$ | async " class="mat-elevation-z8">
