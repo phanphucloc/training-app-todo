@@ -83,13 +83,13 @@
             <td mat-cell class="text-center" *matCellDef="let element">
                 <button mat-button (click)="getInfoTodo(element.id)" color="primary">
                     <mat-icon mat-button class="item-action"
-                        title="{{ 'todoPage.block.table.tooltipDelete' | translate }}" class="example-icon"
+                        title="{{ 'todoPage.block.table.tooltipEdit' | translate }}" class="example-icon"
                         aria-hidden="false" aria-label="Edit icon">
                         edit
                     </mat-icon>
                 </button>
                 <button mat-button (click)=deleteTodo(element.id)>
-                    <mat-icon class="item-action" title="{{ 'todoPage.block.table.tooltipEdit' | translate }}"
+                    <mat-icon class="item-action" title="{{ 'todoPage.block.table.tooltipDelete' | translate }}"
                         class="example-icon" aria-hidden="false" aria-label="Delete icon">
                         delete
                     </mat-icon>
