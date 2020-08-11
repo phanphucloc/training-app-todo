@@ -45,7 +45,8 @@
                 "labelCreator": "Creator",
                 "placeCreator": "Creator ...",
                 "messErrorRequiredCreator": "Creator is required",
-                "labelCompleted": "Completed"
+                "labelCompleted": "Completed",
+                "messErrorMaxlength": "Max length is: "
             },
             "table":{
                 "title": "List Todo",

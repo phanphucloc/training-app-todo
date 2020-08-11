@@ -2,53 +2,46 @@
     <h2 matDialogTitle>
         {{ 'todoPage.block.formTodo.title' | translate: ({ typeForm: data.currentAction === "ADD" ? 'add' : 'edit', dumbTrigger: currentLang } | ParamsTranslate) }}
     </h2>
-
-    <table class="example-full-width" cellspacing="0">
-        <tr>
-            <td>
-                <mat-form-field class="example-full-width">
-                    <mat-label>{{ 'todoPage.block.formTodo.labelTitle' | translate }}</mat-label>
-                    <input matInput cdkFocusInitial formControlName="title">
-                    <mat-error
-                        *ngIf="data.todoForm.get('title')?.errors?.required && data.todoForm.get('title')?.touched">
-                        {{ 'todoPage.block.formTodo.messErrorRequiredTitle' | translate }}
-                    </mat-error>
-                    <mat-error
-                        *ngIf="data.todoForm.get('title')?.hasError('titleExist') && data.todoForm.get('title')?.touched">
-                        {{ 'todoPage.block.formTodo.messErrorExistTitle' | translate }}.
-                    </mat-error>
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field class="example-full-width">
-                    <mat-label>{{ 'todoPage.block.formTodo.labelCreator' | translate }}</mat-label>
-                    <input matInput formControlName="creator">
-                    <mat-error
-                        *ngIf="data.todoForm.get('creator')?.errors?.required && data.todoForm.get('creator')?.touched">
-                        {{ 'todoPage.block.formTodo.messErrorRequiredCreator' | translate }}
-                    </mat-error>
-                </mat-form-field>
-            </td>
-        </tr>
-    </table>
-
-    <p>
-        <mat-form-field class="example-full-width">
-            <mat-label>{{ 'todoPage.block.formTodo.labelContent' | translate }}</mat-label>
-            <textarea matInput formControlName="content"></textarea>
-            <mat-error *ngIf="data.todoForm.get('content')?.errors?.required && data.todoForm.get('content')?.touched">
-                {{ 'todoPage.block.formTodo.messErrorRequiredContent' | translate }}
-            </mat-error>
-        </mat-form-field>
-        <mat-checkbox *ngIf="data.todoForm.get('completed')" formControlName="completed" class="example-margin">
-            {{ 'todoPage.block.formTodo.labelCompleted' | translate }}
-        </mat-checkbox>
-    </p>
-
+    <mat-form-field class="example-full-width">
+        <mat-label>{{ 'todoPage.block.formTodo.labelTitle' | translate }}</mat-label>
+        <input matInput cdkFocusInitial formControlName="title">
+        <mat-error *ngIf="data.todoForm.get('title')?.errors?.required && data.todoForm.get('title')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorRequiredTitle' | translate }}
+        </mat-error>
+        <mat-error *ngIf="data.todoForm.get('title')?.hasError('titleExist') && data.todoForm.get('title')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorExistTitle' | translate }}
+        </mat-error>
+        <mat-error *ngIf="data.todoForm.get('title')?.hasError('maxlength') && data.todoForm.get('title')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorMaxlength' | translate }} {{data.todoForm.get('title')?.errors.maxlength.requiredLength}} 
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>{{ 'todoPage.block.formTodo.labelCreator' | translate }}</mat-label>
+        <input matInput formControlName="creator">
+        <mat-error *ngIf="data.todoForm.get('creator')?.errors?.required && data.todoForm.get('creator')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorRequiredCreator' | translate }}
+        </mat-error>
+        <mat-error *ngIf="data.todoForm.get('creator')?.hasError('maxlength') && data.todoForm.get('creator')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorMaxlength' | translate }} {{data.todoForm.get('creator')?.errors.maxlength.requiredLength}} 
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>{{ 'todoPage.block.formTodo.labelContent' | translate }}</mat-label>
+        <textarea matInput formControlName="content"></textarea>
+        <mat-error *ngIf="data.todoForm.get('content')?.errors?.required && data.todoForm.get('content')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorRequiredContent' | translate }}
+        </mat-error>
+        <mat-error *ngIf="data.todoForm.get('content')?.hasError('maxlength') && data.todoForm.get('content')?.touched">
+            {{ 'todoPage.block.formTodo.messErrorMaxlength' | translate }} {{data.todoForm.get('content')?.errors.maxlength.requiredLength}} 
+        </mat-error>
+    </mat-form-field>
+    <mat-checkbox *ngIf="data.todoForm.get('completed')" formControlName="completed" class="example-margin">
+        {{ 'todoPage.block.formTodo.labelCompleted' | translate }}
+    </mat-checkbox>
     <mat-dialog-actions align="end">
         <button mat-button type="button" (click)="cancel()">{{ 'cancel' | translate }}</button>
-        <button mat-button type="submit" color="primary"> 
-            <span class="material-icons">done</span> 
+        <button mat-button type="submit" color="primary" [disabled]="data.todoForm.invalid || data.todoForm.pending">
+            <span class="material-icons">done</span>
             <span class="text-icons-middle"> {{ 'submit' | translate }} </span>
         </button>
     </mat-dialog-actions>

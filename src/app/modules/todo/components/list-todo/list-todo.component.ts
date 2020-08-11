@@ -4,8 +4,8 @@ import { Todo, ACTION, SearchObject, initCompletedFilters, ACTIONMODAL, ACTIONCO
 import { TodosService } from '../../../../state-management/todos.service';
 import { TodosQuery } from '../../../../state-management/todos.query';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { MatDialog} from '@angular/material/dialog';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
 import { FormTodoComponent } from '../form-todo/form-todo.component';
 import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog/confirm-dialog.component';
 
@@ -116,7 +116,7 @@ export class ListTodoComponent implements OnInit {
 
   openDialogTodo(): void {
     const dialogRef = this.dialog.open(FormTodoComponent, {
-      width: '550px',
+      width: '450px',
       data: { currentAction: this.currentAction, todoForm: this.todoForm }
     });
     dialogRef.afterClosed().subscribe((result: string) => {
@@ -161,7 +161,7 @@ export class ListTodoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '550px',
     });
-    dialogRef.componentInstance.keyLanguageMessage  = 'alertDelete';
+    dialogRef.componentInstance.keyLanguageMessage = 'alertDelete';
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result === ACTIONCOMFIRM.AGREE) {
         this.todoService.delete(id);
@@ -176,13 +176,12 @@ export class ListTodoComponent implements OnInit {
   // ------- FEATUER: FILTER
 
   changeValueSearch(): void {
-
     // Combine
     combineLatest([
-      this.searchForm.controls.title.valueChanges,
-      this.searchForm.controls.content.valueChanges,
-      this.searchForm.controls.creator.valueChanges,
-      this.searchForm.controls.completed.valueChanges,
+      this.searchForm.controls.title.valueChanges.pipe(startWith('')),
+      this.searchForm.controls.content.valueChanges.pipe(startWith('')),
+      this.searchForm.controls.creator.valueChanges.pipe(startWith('')),
+      this.searchForm.controls.completed.valueChanges.pipe(startWith(false)),
     ])
       .pipe(
         debounceTime(500),
@@ -196,15 +195,6 @@ export class ListTodoComponent implements OnInit {
         searchData.completed = completed;
         this.todoService.updateFilter(searchData);
       });
-    // ---------
-
-    // Create value for formGroup
-    this.searchForm.patchValue({
-      title: '',
-      content: '',
-      creator: '',
-      completed: null,
-    });
     // ---------
   }
 

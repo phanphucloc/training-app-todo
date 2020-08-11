@@ -45,7 +45,8 @@
                 "labelCreator": "Người tạo",
                 "placeCreator": "Người tạo ...",
                 "messErrorRequiredCreator": "Vui lòng nhập người tạo",
-                "labelCompleted": "Hoàn thành"
+                "labelCompleted": "Hoàn thành",
+                "messErrorMaxlength": "Số kí tự tối đa là: "
             },
             "table":{
                 "title": "Danh sách Todo",
