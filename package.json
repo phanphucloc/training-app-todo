@@ -2,7 +2,7 @@
   "name": "app-todo",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod && build-locale",
+    "heroku-postbuild": "ng build --prod && npm run build-locale",
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
