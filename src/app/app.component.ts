@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentChecked, ChangeDetectorRef, LOCALE_ID, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { publish } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,10 @@ export class AppComponent implements OnInit, AfterContentChecked {
   public languageCurrent;
   constructor(
     private cdref: ChangeDetectorRef,
-    private translateService: TranslateService,
-    @Inject(LOCALE_ID) protected localeId: string) {
+    public translateService: TranslateService,
+    @Inject(LOCALE_ID) public localeId: string) {
   }
+
   ngOnInit(): void {
     this.translateService.setDefaultLang('en');
     this.translateService.use('en');
