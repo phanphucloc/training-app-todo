@@ -23,5 +23,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
   switchLanguage(event: any): void {
     console.log(event);
     this.translateService.use(event.value);
+    window.location.href = '/' + event.value + window.location.pathname;
   }
 }
