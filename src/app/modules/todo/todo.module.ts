@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoRoutingModule } from './todo-routing.module';
@@ -37,6 +37,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatTableModule,
     MatCardModule,
     MatIconModule
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class TodoModule { }

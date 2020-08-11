@@ -5,16 +5,16 @@
       <a mat-button [routerLink]="['todo/list']">Todo</a>
     </mat-toolbar-row>
     <mat-form-field class="input-big" appearance="fill">
-      <mat-label> 
+      <mat-label>
         <span style="font-size: 14px" class="material-icons">language</span>
-        <span class="text-icons-middle"> {{ 'language' | translate }} </span>
+        <span class="text-icons-middle" i18n="@@language"> Language </span>
       </mat-label>
-      <mat-select  [(ngModel)]="languageCurrent"  (selectionChange)="switchLanguage($event)">
+      <mat-select [(ngModel)]="languageCurrent" (selectionChange)="switchLanguage($event)">
         <mat-option [value]="'en'">
-          {{ 'english' | translate }}
+          <span i18n="@@english">English</span>
         </mat-option>
         <mat-option [value]="'vi'">
-          {{ 'vienamese' | translate }}
+          <span i18n="@@vienamese">Vienamese</span>
         </mat-option>
       </mat-select>
     </mat-form-field>

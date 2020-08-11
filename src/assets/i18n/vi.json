@@ -34,7 +34,7 @@
     "todoPage":{
         "block" :{
             "formTodo":{
-                "title": "Mẫu {{typeForm}} Todo",
+                "title": "Todo",
                 "labelTitle": "Tiêu đề",
                 "placeTitle": "Tiêu đề ...",
                 "messErrorRequiredTitle": "Vui lòng nhập tiêu đề",

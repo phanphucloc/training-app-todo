@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="language" datatype="html">
+        <source> Language </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="english" datatype="html">
+        <source>English</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vienamese" datatype="html">
+        <source>Vienamese</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notification-title" datatype="html">
+        <source>
+    Notification
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/common/components/confirm-dialog/confirm-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notification-alertDelete" datatype="html">
+        <source>Are you sure you want to delete?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/common/components/confirm-dialog/confirm-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notification-disagree" datatype="html">
+        <source>Agree</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/common/components/confirm-dialog/confirm-dialog.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notification-agree" datatype="html">
+        <source>Disagree</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/common/components/confirm-dialog/confirm-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelTitle" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorRequiredTitle" datatype="html">
+        <source>
+            Title is required
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorExistTitle" datatype="html">
+        <source>
+            The title already exists
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorMaxlength" datatype="html">
+        <source>Max length is: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelCreator" datatype="html">
+        <source>Creator</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorRequiredContent" datatype="html">
+        <source>
+            Content is required
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelContent" datatype="html">
+        <source>Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-cancel" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-submit" datatype="html">
+        <source> Submit </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filter" datatype="html">
+        <source> Filter </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form-todo-labelTitle" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form-todo-label-creator" datatype="html">
+        <source>
+                            Creator
+                        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form-todo-label-content" datatype="html">
+        <source>
+                            Content
+                        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block.table.title" datatype="html">
+        <source> List Todo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="button.add" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-table-row-title" datatype="html">
+        <source> Title </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-table-row-content" datatype="html">
+        <source> Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-table-row-creator" datatype="html">
+        <source> Creator </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-table-row-completed" datatype="html">
+        <source>
+                Completed </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="description-title" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="description-text" datatype="html">
+        <source>This is a small web signal page built by framework angular version 10.0.1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Features" datatype="html">
+        <source>Features</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="internationalization" datatype="html">
+        <source> Application can change language (default language is English)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CRUD" datatype="html">
+        <source> Provide basic features add, delete, edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stateManagement" datatype="html">
+        <source> Using akita to manage State management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reactiveForm" datatype="html">
+        <source> Implement reactive form, create abstract form for 2 both of cases (creation, edition)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="version" datatype="html">
+        <source> version </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="owner" datatype="html">
+        <source>Owner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="lphan" datatype="html">
+        <source>Loc Phan Phuc</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="telephone" datatype="html">
+        <source>Phone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/components/home/home.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

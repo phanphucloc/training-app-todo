@@ -1,13 +1,13 @@
-<h2 matDialogTitle>
-    {{ 'notification' | translate }}
+<h2 matDialogTitle i18n="@@notification-title">
+    Notification
 </h2>
-<div md-dialog-content>{{keyLanguageMessage | translate}}</div>
+<div md-dialog-content i18n="@@notification-alertDelete">Are you sure you want to delete?</div>
 <mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="cancel()">{{ 'disagree' | translate }}</button>
+    <button mat-button type="button" (click)="cancel()" i18n="@@notification-disagree">Agree</button>
     <button mat-button type="button" (click)="agree()" color="primary">
         <span class="material-icons">
             done
         </span>
-        {{ 'agree' | translate }}
+        <span i18n="@@notification-agree">Disagree</span>
     </button>
 </mat-dialog-actions>

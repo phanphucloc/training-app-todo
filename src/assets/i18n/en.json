@@ -34,7 +34,7 @@
     "todoPage":{
         "block" :{
             "formTodo":{
-                "title": "Form {{typeForm}} Todo",
+                "title": "Todo",
                 "labelTitle": "Title",
                 "placeTitle": "Title ...",
                 "messErrorRequiredTitle": "Title is required",

@@ -2,13 +2,17 @@
   "name": "app-todo",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "build-locale",
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-locale:en": "ng build --prod --i18n-locale en --i18n-format xlf --i18n-file src/locale/messages.en.xlf --output-path=dist/en --baseHref /en/",
+    "build-locale:vi": "ng build --prod --i18n-locale vi --i18n-format xlf --i18n-file src/locale/messages.vi.xlf --output-path=dist/vi --baseHref /vi/",
+    "build-locale": "npm run build-locale:en && npm run build-locale:vi",
+    "int:extract": "ng xi18n --output-path src/locale"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +24,7 @@
     "@angular/compiler-cli": "^10.0.7",
     "@angular/core": "~10.0.2",
     "@angular/forms": "~10.0.2",
+    "@angular/localize": "^10.0.8",
     "@angular/material": "^10.1.2",
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
