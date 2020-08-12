@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './common/components/confirm-dialog/confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { TemplateDefaultComponent } from './common/template/template-default/template-default.component';
 
 export function translateHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -26,6 +27,7 @@ export function translateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
   declarations: [
     AppComponent,
     ConfirmDialogComponent,
+    TemplateDefaultComponent,
   ],
   imports: [
     FormsModule,

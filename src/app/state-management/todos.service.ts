@@ -19,7 +19,7 @@ export class TodosService {
 
     // ------- FEATUER: ADD - EDIT - DELETE
     add(todo$: Todo): void {
-        const todo: Todo = createTodo(todo$.title, todo$.content, todo$.creator);
+        const todo: Todo = createTodo(todo$.title, todo$.content, todo$.creator, todo$.deadLine);
         this.todosStore.add(todo);
     }
     updateTodo(todo$: Todo): void {

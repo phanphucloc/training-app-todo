@@ -62,6 +62,12 @@
             {{data.todoForm.get('content')?.errors.maxlength.requiredLength}}
         </mat-error>
     </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>
+            <span i18n="@@block-formTodo-deadline">Deadline</span> 
+        </mat-label>
+        <input matInput cdkFocusInitial formControlName="deadLine">
+    </mat-form-field>
     <mat-checkbox *ngIf="data.todoForm?.get('completed')" formControlName="completed" class="example-margin">
         <span i18n="@@block-formTodo-labelCompleted">
             Completed

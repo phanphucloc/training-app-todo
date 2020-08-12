@@ -1,0 +1,35 @@
+<mat-toolbar class="header">
+    <mat-toolbar-row class="space-between">
+      <mat-toolbar-row>
+        <a [routerLink]="['/']"><img src="../assets/img/icon-angular.png" style="width:50px;"></a>
+        <a mat-button [routerLink]="['/todo/list']">Todo</a>
+      </mat-toolbar-row>
+      <mat-form-field class="input-big" appearance="fill">
+        <mat-label>
+          <span style="font-size: 14px" class="material-icons">language</span>
+          <span class="text-icons-middle" i18n="@@language"> Language </span>
+        </mat-label>
+        <mat-select [(value)]="localeId" (selectionChange)="switchLanguage($event)">
+          <mat-option [value]="'en'">
+            <span>English</span>
+          </mat-option>
+          <mat-option [value]="'vi'">
+            <span>Tiếng Việt</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <section class="body">
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-12">
+          <app-navigation [infoModuleActive]="infoModuleActive"></app-navigation>
+        </div> -->
+        <div class="col-12">
+            <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,16 @@
+@import "~src/app/shares/scss/variables";
+
+.body{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: $bluePurpleColor;
+
+    .form-login{
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}

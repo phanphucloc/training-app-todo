@@ -64,13 +64,11 @@
     </p>
     <table mat-table [dataSource]="listTodo$ | async " class="mat-elevation-z8">
 
-        <!-- Title Column -->
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef i18n="@@block-table-row-title"> Title </th>
             <td mat-cell *matCellDef="let element"> {{element.title}} </td>
         </ng-container>
 
-        <!-- Content Column -->
         <ng-container matColumnDef="content">
             <th mat-header-cell *matHeaderCellDef i18n="@@block-table-row-content"> Content</th>
             <td mat-cell *matCellDef="let element">
@@ -78,22 +76,33 @@
             </td>
         </ng-container>
 
-        <!-- Creator Column -->
         <ng-container matColumnDef="creator">
             <th mat-header-cell *matHeaderCellDef i18n="@@block-table-row-creator"> Creator </th>
             <td mat-cell *matCellDef="let element"> {{element.creator}} </td>
         </ng-container>
 
-        <!-- Completed Column -->
         <ng-container matColumnDef="completed">
-            <th style="width: 70px;" mat-header-cell *matHeaderCellDef i18n="@@block-table-row-completed">Completed </th>
+            <th class="text-center" style="width: 70px;" mat-header-cell *matHeaderCellDef i18n="@@block-table-row-completed">Completed </th>
             <td class="text-center" mat-cell *matCellDef="let element">
                 <mat-checkbox [checked]="element.completed" (change)="updateCompletedStatus($event.checked,element)" class="example-margin" >
                 </mat-checkbox>
             </td>
         </ng-container>
 
-        <!-- Action Column -->
+        <ng-container matColumnDef="createdDate">
+            <th class="text-center" style="width: 100px;" mat-header-cell *matHeaderCellDef i18n="@@block-table-row-createdDate">CreatedDate </th>
+            <td class="text-center" mat-cell *matCellDef="let element">
+                {{element.createdDate | date : 'MM/dd/yyyy'}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="deadline">
+            <th class="text-center" style="width: 100px;" mat-header-cell *matHeaderCellDef i18n="@@block-table-row-deadline">Deadline </th>
+            <td class="text-center" mat-cell *matCellDef="let element">
+                {{element.deadLine | date : 'MM/dd/yyyy'}}
+            </td>
+        </ng-container>
+
         <ng-container matColumnDef="action">
             <th style="width: 150px;" mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell class="text-center" *matCellDef="let element">

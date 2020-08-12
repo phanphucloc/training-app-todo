@@ -106,27 +106,34 @@
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="block-formTodo-deadline" datatype="html">
+        <source>Deadline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="block-formTodo-labelCompleted" datatype="html">
         <source>
             Completed
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-cancel" datatype="html">
         <source>Cancel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-submit" datatype="html">
         <source> Submit </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="filter" datatype="html">
@@ -192,28 +199,42 @@
         <source> Title </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-content" datatype="html">
         <source> Content</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-creator" datatype="html">
         <source> Creator </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-completed" datatype="html">
         <source>Completed </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-table-row-createdDate" datatype="html">
+        <source>CreatedDate </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-table-row-deadline" datatype="html">
+        <source>Deadline </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="description-title" datatype="html">

@@ -18,7 +18,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 export class ListTodoComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  public displayedColumns: string[] = ['title', 'content', 'creator', 'completed', 'action'];
+  public displayedColumns: string[] = ['title', 'content', 'creator', 'createdDate', 'deadline', 'completed', 'action'];
 
   public listTodo$: Observable<Todo[]>;
 
@@ -62,6 +62,7 @@ export class ListTodoComponent implements OnInit {
         [this.todoService.validateTitle(this.getInfoCurrent.bind(this))]),
       content: new FormControl('', [Validators.required, Validators.maxLength(500)]),
       creator: new FormControl('', [Validators.required, Validators.maxLength(25)]),
+      deadLine: new FormControl(null),
     });
   }
 
@@ -82,7 +83,8 @@ export class ListTodoComponent implements OnInit {
         title: res.title,
         content: res.content,
         creator: res.creator,
-        completed: res.completed
+        completed: res.completed,
+        deadLine: res.deadLine,
       });
       this.openDialogTodo();
     });

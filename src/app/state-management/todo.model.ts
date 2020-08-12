@@ -47,6 +47,8 @@ export class Todo {
   content: string;
   creator: string;
   completed: boolean;
+  createdDate: Date;
+  deadLine: Date;
   constructor(){
   }
 }
@@ -55,12 +57,14 @@ export class DataFormTodo {
   currentAction: string;
 }
 
-export function createTodo(title: string, content: string, creator: string): Todo {
+export function createTodo(title: string, content: string, creator: string, deadLine: Date): Todo {
   return {
     id: guid(),
     title,
     content,
     creator,
-    completed: false
+    completed: false,
+    createdDate: new Date(),
+    deadLine : new Date(deadLine)
   } as Todo;
 }

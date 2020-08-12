@@ -1,23 +1,14 @@
-import { Component, OnInit, AfterContentChecked, ChangeDetectorRef, LOCALE_ID, Inject } from '@angular/core';
-
+import { Component, OnInit, AfterContentChecked} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterContentChecked {
-  public languageCurrent;
+export class AppComponent implements OnInit{
   constructor(
-    private cdref: ChangeDetectorRef,
-    @Inject(LOCALE_ID) public localeId: string) {
+    ) {
   }
   ngOnInit(): void {
-  }
-  ngAfterContentChecked(): void {
-    this.cdref.detectChanges();
-  }
-  switchLanguage(event: any): void {
-    window.location.href = '/' + event.value;
   }
 }

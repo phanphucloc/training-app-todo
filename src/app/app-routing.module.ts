@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TemplateDefaultComponent } from './common/template/template-default/template-default.component';
 
 
 const routes: Routes = [
@@ -10,11 +11,17 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: TemplateDefaultComponent,
     children: [
       {
         path: 'todo',
-        loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule),
+        loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule)
       },
+    ]
+  },
+  {
+    path: '',
+    children: [
       {
         path: 'page',
         loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule)

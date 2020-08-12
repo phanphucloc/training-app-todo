@@ -58,7 +58,8 @@ a {
     color: $dangerColor;
 }
 .text-center{
-    text-align: center;
+    text-align: center !important;
+    padding: 0px !important;
 }
 .float-right{
     float: right;
