@@ -4,16 +4,16 @@ import { Todo, SearchObject } from './todo.model';
 
 export interface TodosState extends EntityState<Todo, string> {
   ui: {
-    filter: SearchObject
+    filter: SearchObject;
   };
 }
 
 const initialState = {
-  ui: { filter: new SearchObject() }
+  ui: { filter: new SearchObject() },
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 @StoreConfig({ name: 'todos' })
 export class TodosStore extends EntityStore<TodosState> {

@@ -1,7 +1,6 @@
 import { guid } from '@datorama/akita';
 import { FormGroup } from '@angular/forms';
 
-// ----------------ACTION
 export enum ACTION {
   EDIT = 'EDIT',
   ADD = 'ADD',
@@ -15,8 +14,7 @@ export enum ACTIONCOMFIRM {
   DISAGREE = 'DISAGREE',
 }
 
-// ---------------- FILTER
-export class SearchObject{
+export class SearchObject {
   title: string;
   content: string;
   creator: string;
@@ -26,7 +24,7 @@ export class SearchObject{
 export enum COMPLETED_FILTER {
   SHOW_COMPLETED = 'SHOW_COMPLETED',
   INCOMPLETED = 'SHOW_ACTIVE',
-  SHOW_ALL = 'SHOW_ALL'
+  SHOW_ALL = 'SHOW_ALL',
 }
 
 export class CompletedFilter {
@@ -37,30 +35,32 @@ export class CompletedFilter {
 export const initCompletedFilters: CompletedFilter[] = [
   { label: 'All', value: COMPLETED_FILTER.SHOW_ALL },
   { label: 'Completed', value: COMPLETED_FILTER.SHOW_COMPLETED },
-  { label: 'Incompleted', value: COMPLETED_FILTER.INCOMPLETED }
+  { label: 'Incompleted', value: COMPLETED_FILTER.INCOMPLETED },
 ];
 
-// ---------------- TODO
 export class Todo {
   id: string;
   title: string;
   content: string;
   creator: string;
   completed: boolean;
-  constructor(){
-  }
+  constructor() {}
 }
 export class DataFormTodo {
   todoForm: FormGroup;
   currentAction: string;
 }
 
-export function createTodo(title: string, content: string, creator: string): Todo {
+export function createTodo(
+  title: string,
+  content: string,
+  creator: string
+): Todo {
   return {
     id: guid(),
     title,
     content,
     creator,
-    completed: false
+    completed: false,
   } as Todo;
 }

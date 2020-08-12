@@ -2,15 +2,15 @@
 @import "~src/app/shares/scss/variables";
 
 .content {
-    padding: 30px 0px;
-    background-image: url("../.././../../../assets/img/icon-angular.png");
-    min-height: calc(100vh - 140px);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    color: $balckGreyColor;
-    
-    .detail {
-        padding: 0px 15px;
-    }
+  padding: 30px 0px;
+  background-image: url("../.././../../../assets/img/icon-angular.png");
+  min-height: calc(100vh - 140px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: $balckGreyColor;
+
+  .detail {
+    padding: 0px 15px;
+  }
 }

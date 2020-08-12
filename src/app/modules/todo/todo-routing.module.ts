@@ -6,17 +6,17 @@ import { FormTodoComponent } from './components/form-todo/form-todo.component';
 const routes: Routes = [
   {
     path: 'list',
-    component: ListTodoComponent
+    component: ListTodoComponent,
   },
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'list',
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TodoRoutingModule { }
+export class TodoRoutingModule {}

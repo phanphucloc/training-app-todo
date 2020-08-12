@@ -6,14 +6,8 @@ import { HomeComponent } from './components/home/home.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
 @NgModule({
   declarations: [HomeComponent],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    TranslateModule,
-    MatDialogModule,
-  ]
+  imports: [CommonModule, PagesRoutingModule, TranslateModule, MatDialogModule],
 })
-export class PagesModule { }
+export class PagesModule {}

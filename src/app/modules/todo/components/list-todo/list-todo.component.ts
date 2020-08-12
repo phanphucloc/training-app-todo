@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
-import { Todo, ACTION, SearchObject, initCompletedFilters, ACTIONMODAL, ACTIONCOMFIRM, COMPLETED_FILTER } from '../../../../state-management/todo.model';
+import {
+  Todo,
+  ACTION,
+  SearchObject,
+  initCompletedFilters,
+  ACTIONMODAL,
+  ACTIONCOMFIRM,
+  COMPLETED_FILTER,
+} from '../../../../state-management/todo.model';
 import { TodosService } from '../../../../state-management/todos.service';
 import { TodosQuery } from '../../../../state-management/todos.query';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,17 +16,27 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { FormTodoComponent } from '../form-todo/form-todo.component';
 import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog/confirm-dialog.component';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-todo',
   templateUrl: './list-todo.component.html',
-  styleUrls: ['./list-todo.component.scss']
+  styleUrls: ['./list-todo.component.scss'],
 })
 export class ListTodoComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  public displayedColumns: string[] = ['title', 'content', 'creator', 'completed', 'action'];
+  public displayedColumns: string[] = [
+    'title',
+    'content',
+    'creator',
+    'completed',
+    'action',
+  ];
 
   public listTodo$: Observable<Todo[]>;
 
@@ -44,8 +62,6 @@ export class ListTodoComponent implements OnInit {
     this.changeValueSearch();
   }
 
-  // ------- SETUP DATA
-
   getData(): void {
     this.listTodo$ = this.todosQuery.selectVisibleTodos$;
   }
@@ -55,17 +71,25 @@ export class ListTodoComponent implements OnInit {
       title: new FormControl(''),
       content: new FormControl(''),
       creator: new FormControl(''),
-      completed: new FormControl(COMPLETED_FILTER.INCOMPLETED)
+      completed: new FormControl(COMPLETED_FILTER.INCOMPLETED),
     });
+
     this.todoForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(40)],
-        [this.todoService.validateTitle(this.getInfoCurrent.bind(this))]),
-      content: new FormControl('', [Validators.required, Validators.maxLength(500)]),
-      creator: new FormControl('', [Validators.required, Validators.maxLength(25)]),
+      title: new FormControl(
+        '',
+        [Validators.required, Validators.maxLength(40)],
+        [this.todoService.validateTitle(this.getInfoCurrent.bind(this))]
+      ),
+      content: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(500),
+      ]),
+      creator: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(25),
+      ]),
     });
   }
-
-  // ------- FEATUER: ADD - EDIT - DELETE
 
   addTodo(): void {
     this.currentAction = ACTION.ADD;
@@ -82,7 +106,7 @@ export class ListTodoComponent implements OnInit {
         title: res.title,
         content: res.content,
         creator: res.creator,
-        completed: res.completed
+        completed: res.completed,
       });
       this.openDialogTodo();
     });
@@ -91,41 +115,45 @@ export class ListTodoComponent implements OnInit {
   openDialogTodo(): void {
     const dialogRef = this.dialog.open(FormTodoComponent, {
       width: '450px',
-      data: { currentAction: this.currentAction, todoForm: this.todoForm }
+      data: { currentAction: this.currentAction, todoForm: this.todoForm },
     });
+
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result === ACTIONMODAL.SUBMIT) {
         this.submit();
-      }
-      else {
+      } else {
         this.resetFormTodo(this.currentAction);
       }
     });
   }
 
   submit(): void {
-    let alertText;
+    let alertText: string;
     switch (this.currentAction) {
       case ACTION.ADD:
         this.todoService.add(this.todoForm.value);
         this.resetFormTodo(this.currentAction);
+
         alertText = $localize`:@@alert-add-success:You have successfully added`;
         this.snackBar.open(alertText, null, {
           duration: 2000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
+
         break;
       default:
         this.currentAction = ACTION.ADD;
         this.todoService.updateTodo(this.todoForm.value);
         this.resetFormTodo(this.currentAction);
+
         alertText = $localize`:@@alert-update-success:You have successfully updated`;
         this.snackBar.open(alertText, null, {
           duration: 2000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
+
         break;
     }
   }
@@ -158,9 +186,11 @@ export class ListTodoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '550px',
     });
+
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result === ACTIONCOMFIRM.AGREE) {
         this.todoService.delete(id);
+
         const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
         this.snackBar.open(alertText, null, {
           duration: 2000,
@@ -171,19 +201,16 @@ export class ListTodoComponent implements OnInit {
     });
   }
 
-  // ------- FEATURE: FILTER
-
   changeValueSearch(): void {
     combineLatest([
       this.searchForm.controls.title.valueChanges.pipe(startWith('')),
       this.searchForm.controls.content.valueChanges.pipe(startWith('')),
       this.searchForm.controls.creator.valueChanges.pipe(startWith('')),
-      this.searchForm.controls.completed.valueChanges.pipe(startWith(COMPLETED_FILTER.INCOMPLETED)),
+      this.searchForm.controls.completed.valueChanges.pipe(
+        startWith(COMPLETED_FILTER.INCOMPLETED)
+      ),
     ])
-      .pipe(
-        debounceTime(500),
-        distinctUntilChanged(),
-      )
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe(([title, content, creator, completed]) => {
         const searchData = new SearchObject();
         searchData.title = title;
@@ -197,7 +224,7 @@ export class ListTodoComponent implements OnInit {
   getInfoCurrent(): any {
     return {
       currentAction: this.currentAction,
-      currenttodo: this.todoForm?.value
+      currenttodo: this.todoForm?.value,
     };
   }
 

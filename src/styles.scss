@@ -3,224 +3,207 @@
 @import "~src/app/shares/scss/variables";
 
 //-------- Custom Header ---------//
-.header{
-    background-color: $bluePurpleColor;
-    color: $whileColor;
-    font-size: 14px;
+.header {
+  background-color: $bluePurpleColor;
+  color: $whileColor;
+  font-size: 14px;
 }
 .navbar {
-    background-color: $bluePurpleColor;
-    
-    .active {
-        font-weight: bold;
-    }
-    a {
-        color: $whileColor;
+  background-color: $bluePurpleColor;
 
-        &.nav-link {
-            color: $whileColor;
-        }
+  .active {
+    font-weight: bold;
+  }
+  a {
+    color: $whileColor;
+
+    &.nav-link {
+      color: $whileColor;
     }
-    .logo{
-       width: 50px;
-    }
-    .icon-language{
-        font-size: 30px;
-        color: $whileColor;
-        float: left;
-        margin: 5px 10px;
-    }
-    .form-control{
-        width: auto;
-    }
+  }
+  .logo {
+    width: 50px;
+  }
+  .icon-language {
+    font-size: 30px;
+    color: $whileColor;
+    float: left;
+    margin: 5px 10px;
+  }
+  .form-control {
+    width: auto;
+  }
 }
-
-
-
 
 //-------- Element Global ---------//
-html, body { 
-    height: 100%;
- }
-body { 
-    margin: 0;
-     font-family:Roboto, "Helvetica Neue", sans-serif;
- }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 .body {
-    padding: 30px 0px;
-    background-color: $greyColor;
-    min-height: calc(100vh - 76px);
+  padding: 30px 0px;
+  background-color: $greyColor;
+  min-height: calc(100vh - 76px);
 }
-.red-color{
-    color: $dangerColor;
+.red-color {
+  color: $dangerColor;
 }
-.text-center{
-    text-align: center;
+.text-center {
+  text-align: center;
 }
-.float-right{
-    float: right;
+.float-right {
+  float: right;
 }
-.space-between{
-    justify-content: space-between;
+.space-between {
+  justify-content: space-between;
 }
-.material-icons{
-    vertical-align: middle;
+.material-icons {
+  vertical-align: middle;
 }
-.text-icons-middle{
-    vertical-align: middle;
+.text-icons-middle {
+  vertical-align: middle;
 }
-.line-text{
-    text-decoration: line-through;
+.line-text {
+  text-decoration: line-through;
 }
-
 
 //-------- Block Global ---------//
-.content-block-default,mat-card {
-    margin-top: 30px;
-    background-color: $whileColor;
-    border-radius: 5px;
+.content-block-default,
+mat-card {
+  margin-top: 30px;
+  background-color: $whileColor;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 1px 7px 1px $greyColor;
+
+  .title {
+    padding: 5px 0px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $dangerColor;
+  }
+
+  .body-block {
     padding: 15px;
-    box-shadow: 0 1px 7px 1px $greyColor;
 
-    .title {
-        padding: 5px 0px;
-        font-size: 20px;
-        font-weight: bold;
-        color: $dangerColor;
+    input.search,
+    select.search {
+      width: 320px;
+      max-width: 100%;
+      margin: 10px 0px;
     }
-
-    .body-block {
-        padding: 15px;
-
-        input.search, select.search {
-            width: 320px;
-            max-width: 100%;
-            margin: 10px 0px;
-        }
-
-      
-    }
+  }
 }
-
-
-
 
 //---------- FORM -----------//
-form{
-    color: $balckGreyColor;
-    &.pading{
-        padding: 0px 15px;
-    }
+form {
+  color: $balckGreyColor;
+  &.pading {
+    padding: 0px 15px;
+  }
 
-    .example-full-width{
-        width: 100%;
-    }
-    .input-small{
-        width: 300px;
-        max-width: 100%;
-    }
-    .input-big{
-        width: 80%;
-    }
-    .label{
-        font-size: 15px
-    }
-    input[type=checkbox], input[type=radio]{
-        display: block;
-        width: 35px !important;
-        height: 35px;
-    }
+  .example-full-width {
+    width: 100%;
+  }
+  .input-small {
+    width: 300px;
+    max-width: 100%;
+  }
+  .input-big {
+    width: 80%;
+  }
+  .label {
+    font-size: 15px;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: block;
+    width: 35px !important;
+    height: 35px;
+  }
 }
-
-
-
-
 
 //-------- Table ---------//
-table[mat-table]{
-    table-layout: fixed;
-    width: 100%;
-    box-shadow: 0 1px 7px 1px $greyColor;
+table[mat-table] {
+  table-layout: fixed;
+  width: 100%;
+  box-shadow: 0 1px 7px 1px $greyColor;
 
-    td{
-        word-break: break-word;
-        padding: 10px 10px 10px 0px;
+  td {
+    word-break: break-word;
+    padding: 10px 10px 10px 0px;
 
-        .line-limit{
-            display: -webkit-box;
-            max-height: 60px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-clamp: 3;
-            -o-line-clamp: 3;
-            -ms-line-clamp: 3;
-            -webkit-line-clamp: 3;
-            -moz-line-clamp: 3;
-            box-orient: vertical;
-            -o-box-orient: vertical;
-            -ms-box-orient: vertical;
-            -webkit-box-orient: vertical;
-            -moz-box-orient: vertical;
-        }
-        .item-action {
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: .2s transform, 0.5s color ;
-        }
+    .line-limit {
+      display: -webkit-box;
+      max-height: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-clamp: 3;
+      -o-line-clamp: 3;
+      -ms-line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -moz-line-clamp: 3;
+      box-orient: vertical;
+      -o-box-orient: vertical;
+      -ms-box-orient: vertical;
+      -webkit-box-orient: vertical;
+      -moz-box-orient: vertical;
     }
+    .item-action {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s transform, 0.5s color;
+    }
+  }
 }
-
 
 //-------- Animation Global- --------//
 @keyframes FadeIn {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
-
-
-
 
 //--------Responsive---------//
 .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-@media (min-width: 576px){
-    .container {
-        max-width: 540px;
-    }
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
 }
-@media (min-width: 768px){
-    .container {
-        max-width: 720px;
-    }
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
 }
-@media (min-width: 992px){
-    .container {
-        max-width: 960px;
-    }
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
 }
-@media (min-width: 1200px){
-    .container {
-        max-width: 1140px;
-    }
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 }
-
-
-
-
