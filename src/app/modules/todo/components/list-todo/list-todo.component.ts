@@ -37,12 +37,9 @@ export class ListTodoComponent implements OnInit {
     'completed',
     'action',
   ];
-
   public listTodo$: Observable<Todo[]>;
-
   public todoForm: FormGroup;
   public currentAction: string = ACTION.ADD;
-
   public searchForm: FormGroup;
   public searchObject: SearchObject;
   public completedFilters = initCompletedFilters;
