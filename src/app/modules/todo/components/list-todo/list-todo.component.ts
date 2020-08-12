@@ -58,10 +58,10 @@ export class ListTodoComponent implements OnInit {
       completed: new FormControl(COMPLETED_FILTER.INCOMPLETED)
     });
     this.todoForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(20)],
+      title: new FormControl('', [Validators.required, Validators.maxLength(40)],
         [this.todoService.validateTitle(this.getInfoCurrent.bind(this))]),
       content: new FormControl('', [Validators.required, Validators.maxLength(500)]),
-      creator: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      creator: new FormControl('', [Validators.required, Validators.maxLength(25)]),
     });
   }
 
