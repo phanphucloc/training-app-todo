@@ -54,6 +54,9 @@ a {
     background-color: $greyColor;
     min-height: calc(100vh - 76px);
 }
+.red-color{
+    color: $dangerColor;
+}
 .text-center{
     text-align: center;
 }

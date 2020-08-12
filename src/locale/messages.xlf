@@ -9,20 +9,6 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="english" datatype="html">
-        <source>English</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="vienamese" datatype="html">
-        <source>Vienamese</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="notification-title" datatype="html">
         <source>
     Notification
@@ -40,14 +26,14 @@
         </context-group>
       </trans-unit>
       <trans-unit id="notification-disagree" datatype="html">
-        <source>Agree</source>
+        <source>Disagree</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/common/components/confirm-dialog/confirm-dialog.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="notification-agree" datatype="html">
-        <source>Disagree</source>
+        <source>Agree</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/common/components/confirm-dialog/confirm-dialog.component.html</context>
           <context context-type="linenumber">11</context>
@@ -57,7 +43,7 @@
         <source>Title</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-messErrorRequiredTitle" datatype="html">
@@ -66,7 +52,7 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-messErrorExistTitle" datatype="html">
@@ -75,29 +61,29 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-messErrorMaxlength" datatype="html">
         <source>Max length is: </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-labelCreator" datatype="html">
         <source>Creator</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-messErrorRequiredContent" datatype="html">
@@ -106,18 +92,18 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-labelContent" datatype="html">
         <source>Content</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-labelCompleted" datatype="html">
@@ -126,21 +112,21 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-cancel" datatype="html">
         <source>Cancel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-formTodo-submit" datatype="html">
         <source> Submit </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/form-todo/form-todo.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="filter" datatype="html">
@@ -189,7 +175,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="block.table.title" datatype="html">
-        <source> List Todo</source>
+        <source>List Todo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
           <context context-type="linenumber">57</context>
@@ -220,15 +206,14 @@
         <source> Creator </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-completed" datatype="html">
-        <source>
-                Completed </source>
+        <source>Completed </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="description-title" datatype="html">

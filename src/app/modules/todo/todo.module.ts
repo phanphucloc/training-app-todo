@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
     FormTodoComponent
   ],
   imports: [
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

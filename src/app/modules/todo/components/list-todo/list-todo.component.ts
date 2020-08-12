@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { FormTodoComponent } from '../form-todo/form-todo.component';
 import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog/confirm-dialog.component';
-
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-todo',
@@ -16,7 +16,10 @@ import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog
   styleUrls: ['./list-todo.component.scss']
 })
 export class ListTodoComponent implements OnInit {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   public displayedColumns: string[] = ['title', 'content', 'creator', 'completed', 'action'];
+
   public listTodo$: Observable<Todo[]>;
 
   public todoForm: FormGroup;
@@ -29,7 +32,8 @@ export class ListTodoComponent implements OnInit {
   constructor(
     private todoService: TodosService,
     private todosQuery: TodosQuery,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.searchObject = new SearchObject();
   }
@@ -100,21 +104,40 @@ export class ListTodoComponent implements OnInit {
   }
 
   submit(): void {
+    let alertText;
     switch (this.currentAction) {
       case ACTION.ADD:
         this.todoService.add(this.todoForm.value);
         this.resetFormTodo(this.currentAction);
+        alertText = $localize`:@@alert-add-success:You have successfully added`;
+        this.snackBar.open(alertText, null, {
+          duration: 2000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
         break;
       default:
         this.currentAction = ACTION.ADD;
         this.todoService.updateTodo(this.todoForm.value);
         this.resetFormTodo(this.currentAction);
+        alertText = $localize`:@@alert-update-success:You have successfully updated`;
+        this.snackBar.open(alertText, null, {
+          duration: 2000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
         break;
     }
   }
 
-  updateCompletedStatus(value: boolean, todo: Todo): void{
-    this.todoService.updateTodoComplete({...todo, completed : value});
+  updateCompletedStatus(value: boolean, todo: Todo): void {
+    this.todoService.updateTodoComplete({ ...todo, completed: value });
+    const alertText = $localize`:@@alert-update-success:You have successfully updated`;
+    this.snackBar.open(alertText, null, {
+      duration: 2000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 
   resetFormTodo(typeAction: string): void {
@@ -138,6 +161,12 @@ export class ListTodoComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result === ACTIONCOMFIRM.AGREE) {
         this.todoService.delete(id);
+        const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
+        this.snackBar.open(alertText, null, {
+          duration: 2000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
       }
     });
   }

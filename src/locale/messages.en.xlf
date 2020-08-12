@@ -2,6 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en-US" datatype="plaintext" original="ng2.template">
 		<body>
+			<trans-unit id="alert-delete-success" datatype="html">
+				<source>
+					You have successfully deleted
+				</source>
+				<target>
+					You have successfully deleted
+				</target>
+			</trans-unit>
+			<trans-unit id="alert-add-success" datatype="html">
+				<source>
+					You have successfully added
+				</source>
+				<target>
+					You have successfully added
+				</target>
+			</trans-unit>
+			<trans-unit id="alert-update-success" datatype="html">
+				<source>
+					You have successfully updated
+				</source>
+				<target>
+					You have successfully updated
+				</target>
+			</trans-unit>
 			<trans-unit id="language" datatype="html">
 				<source>
 					Language
