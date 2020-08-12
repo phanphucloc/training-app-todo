@@ -13,11 +13,12 @@ const routes: Routes = [
     children: [
       {
         path: 'todo',
-        loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule)
+        loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule),
       },
       {
         path: 'page',
         loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule)
+        
       }
     ]
   },

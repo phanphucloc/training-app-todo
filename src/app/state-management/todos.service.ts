@@ -17,8 +17,6 @@ export class TodosService {
         private http: HttpClient
     ) { }
 
-
-
     // ------- FEATUER: ADD - EDIT - DELETE
     add(todo$: Todo): void {
         const todo: Todo = createTodo(todo$.title, todo$.content, todo$.creator);
@@ -27,11 +25,12 @@ export class TodosService {
     updateTodo(todo$: Todo): void {
         this.todosStore.update(todo$.id, todo$);
     }
+    updateTodoComplete({ id, completed }: Todo): void {
+        this.todosStore.update(id, { completed });
+    }
     delete(id: string): void {
         this.todosStore.remove(id);
     }
-
-
 
     // ------- FEATUER: FILTER
     updateFilter(filter: SearchObject): void {
@@ -41,8 +40,6 @@ export class TodosService {
             }
         });
     }
-
-
 
     // ------- FORM VALIDATE
     validateTitle(getTypeFormAndcurrentTodo?: () => any): AsyncValidatorFn {
@@ -69,6 +66,7 @@ export class TodosService {
                     })
                 );
             }
+            return null;
         };
     }
 

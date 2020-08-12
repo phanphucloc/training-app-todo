@@ -1,8 +1,6 @@
 import { guid } from '@datorama/akita';
 import { FormGroup } from '@angular/forms';
 
-
-
 // ----------------ACTION
 export enum ACTION {
   EDIT = 'EDIT',
@@ -16,9 +14,6 @@ export enum ACTIONCOMFIRM {
   AGREE = 'AGREE',
   DISAGREE = 'DISAGREE',
 }
-
-
-
 
 // ---------------- FILTER
 export class SearchObject{
@@ -44,9 +39,6 @@ export const initCompletedFilters: CompletedFilter[] = [
   { label: 'Completed', value: COMPLETED_FILTER.SHOW_COMPLETED },
   { label: 'Incompleted', value: COMPLETED_FILTER.INCOMPLETED }
 ];
-
-
-
 
 // ---------------- TODO
 export class Todo {

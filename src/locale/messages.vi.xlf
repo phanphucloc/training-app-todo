@@ -84,10 +84,10 @@
 			</trans-unit>
 			<trans-unit id="notification-disagree" datatype="html">
 				<source>
-					Agree
+					Disagree
 				</source>
 				<target>
-					Đồng ý
+					Không
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -100,10 +100,10 @@
 			</trans-unit>
 			<trans-unit id="notification-agree" datatype="html">
 				<source>
-					Disagree
+					Agree
 				</source>
 				<target>
-					Không
+					Đồng ý
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -250,6 +250,22 @@
 					</context>
 				</context-group>
 			</trans-unit>
+			<trans-unit id="block-formTodo-labelCompleted" datatype="html">
+				<source>
+					Completed
+				</source>
+				<target>
+					Hoàn thành
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						54
+					</context>
+				</context-group>
+			</trans-unit>
 			<trans-unit id="block-formTodo-cancel" datatype="html">
 				<source>
 					Cancel
@@ -353,6 +369,22 @@
 						29
 					</context>
 				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						39
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="form-todo-label-completed" datatype="html">
+				<source>
+					Completed
+				</source>
+				<target>
+					Hoàn thành
+				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
 						src/app/modules/todo/components/list-todo/list-todo.component.html

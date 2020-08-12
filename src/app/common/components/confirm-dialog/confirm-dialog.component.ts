@@ -8,7 +8,6 @@ import { ACTIONCOMFIRM } from 'src/app/state-management/todo.model';
   styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent implements OnInit {
-  public keyLanguageMessage: string;
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

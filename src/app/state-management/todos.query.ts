@@ -10,7 +10,6 @@ import { Todo, SearchObject, COMPLETED_FILTER } from './todo.model';
 export class TodosQuery extends QueryEntity<TodosState> {
     selectVisibilityFilter$ = this.select(state => state.ui.filter);
 
-
     selectVisibleTodos$ = this.selectVisibilityFilter$.pipe(
         switchMap((filter$: SearchObject) => {
             return this.selectAll().pipe(
@@ -18,7 +17,6 @@ export class TodosQuery extends QueryEntity<TodosState> {
             );
         })
     );
-
 
     getTodoById = (id$: string) => {
         return this.selectAll({
@@ -43,19 +41,15 @@ export class TodosQuery extends QueryEntity<TodosState> {
     }
 
     private getVisibleTodos(filter$: SearchObject, todos: Todo[]): Todo[] {
-        // ------ Search title
         if (filter$.title != null && filter$.title.trim() !== '') {
-            todos = todos.filter(t => t.title.toLowerCase().includes(filter$.title));
+            todos = todos.filter(t => t.title.toLowerCase().includes(filter$.title.toLowerCase()));
         }
-        // ------ Search content
         if (filter$.content != null && filter$.content.trim() !== '') {
-            todos = todos.filter(t => t.content.toLowerCase().includes(filter$.content));
+            todos = todos.filter(t => t.content.toLowerCase().includes(filter$.content.toLowerCase()));
         }
-        // ------ Search creator
         if (filter$.creator != null && filter$.creator.trim() !== '') {
-            todos = todos.filter(t => t.creator.toLowerCase().includes(filter$.creator));
+            todos = todos.filter(t => t.creator.toLowerCase().includes(filter$.creator.toLowerCase()));
         }
-        // ------ Search completed
         if (filter$.completed !== null) {
             switch (filter$.completed) {
                 case COMPLETED_FILTER.SHOW_COMPLETED:

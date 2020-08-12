@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
-import { Todo, ACTION, SearchObject, initCompletedFilters, ACTIONMODAL, ACTIONCOMFIRM } from '../../../../state-management/todo.model';
+import { Todo, ACTION, SearchObject, initCompletedFilters, ACTIONMODAL, ACTIONCOMFIRM, COMPLETED_FILTER } from '../../../../state-management/todo.model';
 import { TodosService } from '../../../../state-management/todos.service';
 import { TodosQuery } from '../../../../state-management/todos.query';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,16 +19,12 @@ export class ListTodoComponent implements OnInit {
   public displayedColumns: string[] = ['title', 'content', 'creator', 'completed', 'action'];
   public listTodo$: Observable<Todo[]>;
 
-  // Add  - Edit
   public todoForm: FormGroup;
   public currentAction: string = ACTION.ADD;
-  // --------
 
-  // Value search
   public searchForm: FormGroup;
   public searchObject: SearchObject;
   public completedFilters = initCompletedFilters;
-  // --------
 
   constructor(
     private todoService: TodosService,
@@ -39,63 +35,37 @@ export class ListTodoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    // Get data
     this.getData();
-    // -------
-
-    // Create form data( add / edit todo)
     this.createForm();
-    // -------
-
-    // event search
     this.changeValueSearch();
-    // -------
-
   }
-
-
-
-
 
   // ------- SETUP DATA
 
   getData(): void {
-    // Get data list todo
     this.listTodo$ = this.todosQuery.selectVisibleTodos$;
-    // ---------
   }
 
   createForm(): void {
-
-    // Init search form
     this.searchForm = new FormGroup({
-      title: new FormControl(),
-      content: new FormControl(),
-      creator: new FormControl(),
-      completed: new FormControl()
+      title: new FormControl(''),
+      content: new FormControl(''),
+      creator: new FormControl(''),
+      completed: new FormControl(COMPLETED_FILTER.INCOMPLETED)
     });
-    // ---------
-
-    // Init todo form
     this.todoForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(20)],
         [this.todoService.validateTitle(this.getInfoCurrent.bind(this))]),
-      content: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      content: new FormControl('', [Validators.required, Validators.maxLength(500)]),
       creator: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     });
-    // ---------
-
   }
-
-
-
-
 
   // ------- FEATUER: ADD - EDIT - DELETE
 
   addTodo(): void {
     this.currentAction = ACTION.ADD;
+    this.resetFormTodo(this.currentAction);
     this.openDialogTodo();
   }
 
@@ -143,6 +113,10 @@ export class ListTodoComponent implements OnInit {
     }
   }
 
+  updateCompletedStatus(value: boolean, todo: Todo): void{
+    this.todoService.updateTodoComplete({...todo, completed : value});
+  }
+
   resetFormTodo(typeAction: string): void {
     this.todoForm.reset();
     switch (typeAction) {
@@ -161,7 +135,6 @@ export class ListTodoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '550px',
     });
-    dialogRef.componentInstance.keyLanguageMessage = 'alertDelete';
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result === ACTIONCOMFIRM.AGREE) {
         this.todoService.delete(id);
@@ -169,19 +142,14 @@ export class ListTodoComponent implements OnInit {
     });
   }
 
-
-
-
-
-  // ------- FEATUER: FILTER
+  // ------- FEATURE: FILTER
 
   changeValueSearch(): void {
-    // Combine
     combineLatest([
       this.searchForm.controls.title.valueChanges.pipe(startWith('')),
       this.searchForm.controls.content.valueChanges.pipe(startWith('')),
       this.searchForm.controls.creator.valueChanges.pipe(startWith('')),
-      this.searchForm.controls.completed.valueChanges.pipe(startWith(false)),
+      this.searchForm.controls.completed.valueChanges.pipe(startWith(COMPLETED_FILTER.INCOMPLETED)),
     ])
       .pipe(
         debounceTime(500),
@@ -195,7 +163,6 @@ export class ListTodoComponent implements OnInit {
         searchData.completed = completed;
         this.todoService.updateFilter(searchData);
       });
-    // ---------
   }
 
   getInfoCurrent(): any {

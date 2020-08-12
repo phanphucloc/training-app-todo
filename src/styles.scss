@@ -1,14 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
 //List variables for scss
 @import "~src/app/shares/scss/variables";
 
-
-
-//--------Custom Header---------//
+//-------- Custom Header ---------//
 .header{
     background-color: $bluePurpleColor;
-    color: white;
+    color: $whileColor;
     font-size: 14px;
 }
 .navbar {
@@ -27,9 +24,6 @@
     .logo{
        width: 50px;
     }
-    .navbar-toggler-icon{
-        color: #f9f9f9;
-    }
     .icon-language{
         font-size: 30px;
         color: $whileColor;
@@ -44,7 +38,7 @@
 
 
 
-//--------Congfig Element Global---------//
+//-------- Element Global ---------//
 html, body { 
     height: 100%;
  }
@@ -75,15 +69,18 @@ a {
 .text-icons-middle{
     vertical-align: middle;
 }
+.line-text{
+    text-decoration: line-through;
+}
 
 
-//--------Block Golobal---------//
+//-------- Block Global ---------//
 .content-block-default,mat-card {
     margin-top: 30px;
     background-color: $whileColor;
     border-radius: 5px;
     padding: 15px;
-    box-shadow: 0 1px 7px 1px #ededed;
+    box-shadow: 0 1px 7px 1px $greyColor;
 
     .title {
         padding: 5px 0px;
@@ -108,7 +105,7 @@ a {
 
 
 
-//-------FORM-----------//
+//---------- FORM -----------//
 form{
     color: $balckGreyColor;
     &.pading{
@@ -139,28 +136,45 @@ form{
 
 
 
-//--------Table---------//
+//-------- Table ---------//
 table[mat-table]{
+    table-layout: fixed;
     width: 100%;
-    box-shadow: 0 1px 7px 1px #e2e2e2;
+    box-shadow: 0 1px 7px 1px $greyColor;
 
-    .item-action {
-        display: inline-block;
-        width: 25px;
-        height: 25px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: .2s transform, 0.5s color ;
+    td{
+        word-break: break-word;
+        padding: 10px 10px 10px 0px;
 
-        &:hover{
-            transform: scale(1.1);
-            color: #dc3545;
+        .line-limit{
+            display: -webkit-box;
+            max-height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-clamp: 3;
+            -o-line-clamp: 3;
+            -ms-line-clamp: 3;
+            -webkit-line-clamp: 3;
+            -moz-line-clamp: 3;
+            box-orient: vertical;
+            -o-box-orient: vertical;
+            -ms-box-orient: vertical;
+            -webkit-box-orient: vertical;
+            -moz-box-orient: vertical;
+        }
+        .item-action {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s transform, 0.5s color ;
         }
     }
 }
 
 
-//--------Animate Global---------//
+//-------- Animation Global- --------//
 @keyframes FadeIn {
     0% {
         opacity: 0;

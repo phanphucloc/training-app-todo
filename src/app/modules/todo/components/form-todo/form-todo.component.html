@@ -10,18 +10,19 @@
         </container-element>
         <span class="text-icons-middle">Todo</span>
     </h2>
+    
     <mat-form-field class="example-full-width">
         <mat-label i18n="@@block-formTodo-labelTitle">Title</mat-label>
         <input matInput cdkFocusInitial formControlName="title">
         <mat-error i18n="@@block-formTodo-messErrorRequiredTitle"
-            *ngIf="data.todoForm.get('title')?.errors?.required && data.todoForm.get('title')?.touched">
+            *ngIf="data.todoForm?.get('title')?.errors?.required && data.todoForm?.get('title')?.touched">
             Title is required
         </mat-error>
         <mat-error i18n="@@block-formTodo-messErrorExistTitle"
-            *ngIf="data.todoForm.get('title')?.hasError('titleExist') && data.todoForm.get('title')?.touched">
+            *ngIf="data.todoForm?.get('title')?.hasError('titleExist') && data.todoForm.get('title')?.touched">
             The title already exists
         </mat-error>
-        <mat-error *ngIf="data.todoForm.get('title')?.hasError('maxlength') && data.todoForm.get('title')?.touched">
+        <mat-error *ngIf="data.todoForm?.get('title')?.hasError('maxlength') && data.todoForm?.get('title')?.touched">
             <span i18n="@@block-formTodo-messErrorMaxlength">Max length is: </span>
             {{data.todoForm.get('title')?.errors.maxlength.requiredLength}}
         </mat-error>
@@ -30,10 +31,10 @@
         <mat-label i18n="@@block-formTodo-labelCreator">Creator</mat-label>
         <input matInput formControlName="creator">
         <mat-error i18n="@@block-formTodo-messErrorRequiredContent"
-            *ngIf="data.todoForm.get('creator')?.errors?.required && data.todoForm.get('creator')?.touched">
+            *ngIf="data.todoForm?.get('creator')?.errors?.required && data.todoForm?.get('creator')?.touched">
             Content is required
         </mat-error>
-        <mat-error *ngIf="data.todoForm.get('creator')?.hasError('maxlength') && data.todoForm.get('creator')?.touched">
+        <mat-error *ngIf="data.todoForm?.get('creator')?.hasError('maxlength') && data.todoForm?.get('creator')?.touched">
             <span i18n="@@block-formTodo-messErrorMaxlength">Max length is: </span>
             {{data.todoForm.get('creator')?.errors.maxlength.requiredLength}}
         </mat-error>
@@ -42,22 +43,24 @@
         <mat-label i18n="@@block-formTodo-labelContent">Content</mat-label>
         <textarea matInput formControlName="content"></textarea>
         <mat-error i18n="@@block-formTodo-messErrorRequiredContent"
-            *ngIf="data.todoForm.get('content')?.errors?.required && data.todoForm.get('content')?.touched">
+            *ngIf="data.todoForm?.get('content')?.errors?.required && data.todoForm?.get('content')?.touched">
             Content is required
         </mat-error>
-        <mat-error *ngIf="data.todoForm.get('content')?.hasError('maxlength') && data.todoForm.get('content')?.touched">
+        <mat-error *ngIf="data.todoForm?.get('content')?.hasError('maxlength') && data.todoForm?.get('content')?.touched">
             <span i18n="@@block-formTodo-messErrorMaxlength">Max length is: </span>
             {{data.todoForm.get('content')?.errors.maxlength.requiredLength}}
         </mat-error>
     </mat-form-field>
-    <mat-checkbox *ngIf="data.todoForm.get('completed')" formControlName="completed" class="example-margin">
-        {{ 'todoPage.block.formTodo.labelCompleted' | translate }}
+    <mat-checkbox *ngIf="data.todoForm?.get('completed')" formControlName="completed" class="example-margin">
+        <span i18n="@@block-formTodo-labelCompleted">
+            Completed
+        </span>
     </mat-checkbox>
     <mat-dialog-actions align="end">
         <button mat-button type="button" (click)="cancel()" i18n="@@block-formTodo-cancel">Cancel</button>
-        <button mat-button type="submit" color="primary" [disabled]="data.todoForm.invalid || data.todoForm.pending">
+        <button mat-button type="submit" color="primary" [disabled]="data.todoForm?.invalid || data.todoForm?.pending">
             <span class="material-icons">done</span>
-            <span class="text-icons-middle" i18n="@@block-formTodo-submit"> Submit </span>
+            <span class="text-icons-middle" i18n="@@block-formTodo-submit">  Submit  </span>
         </button>
     </mat-dialog-actions>
 </form>
