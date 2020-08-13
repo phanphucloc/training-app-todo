@@ -10,17 +10,16 @@ import {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterContentChecked {
   public languageCurrent;
   constructor(
-    private cdref: ChangeDetectorRef,
+    private cref: ChangeDetectorRef,
     @Inject(LOCALE_ID) public localeId: string
   ) {}
   ngOnInit(): void {}
   ngAfterContentChecked(): void {
-    this.cdref.detectChanges();
+    this.cref.detectChanges();
   }
   switchLanguage(event: any): void {
     window.location.href = '/' + event.value;

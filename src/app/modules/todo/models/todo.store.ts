@@ -2,7 +2,7 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
 import { Todo, SearchObject } from './todo.model';
 
-export interface TodosState extends EntityState<Todo, string> {
+export interface TodoState extends EntityState<Todo, string> {
   ui: {
     filter: SearchObject;
   };
@@ -15,8 +15,8 @@ const initialState = {
 @Injectable({
   providedIn: 'root',
 })
-@StoreConfig({ name: 'todos' })
-export class TodosStore extends EntityStore<TodosState> {
+@StoreConfig({ name: 'todo' })
+export class TodoStore extends EntityStore<TodoState> {
   constructor() {
     super(initialState);
   }

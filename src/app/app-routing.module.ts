@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'page/home',
+    redirectTo: 'todo/list',
     pathMatch: 'full',
   },
   {
@@ -15,16 +15,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/todo/todo.module').then((m) => m.TodoModule),
       },
-      {
-        path: 'page',
-        loadChildren: () =>
-          import('./modules/pages/pages.module').then((m) => m.PagesModule),
-      },
     ],
   },
   {
     path: '**',
-    redirectTo: 'page/home',
+    redirectTo: 'todo/list',
   },
 ];
 

@@ -2,9 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoRoutingModule } from './todo-routing.module';
-import { ListTodoComponent } from './components/list-todo/list-todo.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormTodoComponent } from './components/form-todo/form-todo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -15,9 +13,20 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormAddAndEditTodoComponent } from './components/form-add-and-edit-todo/form-add-and-edit-todo.component';
+import { DialogDeleteTodoComponent } from './components/dialog-delete-todo/dialog-delete-todo.component';
+import { FilterTodoComponent } from './components/filter-todo/filter-todo.component';
+import { ListTodoComponent } from './components/list-todo/list-todo.component';
+import { ListTodoPageComponent } from './pages/list-todo-page/list-todo.component';
 
 @NgModule({
-  declarations: [ListTodoComponent, FormTodoComponent],
+  declarations: [
+    ListTodoPageComponent,
+    FormAddAndEditTodoComponent,
+    DialogDeleteTodoComponent,
+    FilterTodoComponent,
+    ListTodoComponent,
+  ],
   imports: [
     MatSnackBarModule,
     FormsModule,

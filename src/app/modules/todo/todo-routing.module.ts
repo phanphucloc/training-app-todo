@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListTodoComponent } from './components/list-todo/list-todo.component';
-import { FormTodoComponent } from './components/form-todo/form-todo.component';
+import { ListTodoPageComponent } from './pages/list-todo-page/list-todo.component';
 
 const routes: Routes = [
   {
     path: 'list',
-    component: ListTodoComponent,
+    component: ListTodoPageComponent,
   },
   {
     path: '',

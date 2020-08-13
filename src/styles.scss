@@ -1,41 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-//List variables for scss
-@import "~src/app/shares/scss/variables";
-
-//-------- Custom Header ---------//
-.header {
-  background-color: $bluePurpleColor;
-  color: $whileColor;
-  font-size: 14px;
-}
-.navbar {
-  background-color: $bluePurpleColor;
-
-  .active {
-    font-weight: bold;
-  }
-  a {
-    color: $whileColor;
-
-    &.nav-link {
-      color: $whileColor;
-    }
-  }
-  .logo {
-    width: 50px;
-  }
-  .icon-language {
-    font-size: 30px;
-    color: $whileColor;
-    float: left;
-    margin: 5px 10px;
-  }
-  .form-control {
-    width: auto;
-  }
-}
-
-//-------- Element Global ---------//
 html,
 body {
   height: 100%;
@@ -49,17 +12,19 @@ a {
 }
 .body {
   padding: 30px 0px;
-  background-color: $greyColor;
+  background-color: #f7f7f7;
   min-height: calc(100vh - 76px);
 }
+.header {
+  background-color: #3064d8;
+  color: white;
+  font-size: 14px;
+}
 .red-color {
-  color: $dangerColor;
+  color: #dc3545;
 }
 .text-center {
   text-align: center;
-}
-.float-right {
-  float: right;
 }
 .space-between {
   justify-content: space-between;
@@ -73,68 +38,38 @@ a {
 .line-text {
   text-decoration: line-through;
 }
-
-//-------- Block Global ---------//
 .content-block-default,
 mat-card {
   margin-top: 30px;
-  background-color: $whileColor;
+  background-color: white;
   border-radius: 5px;
   padding: 15px;
-  box-shadow: 0 1px 7px 1px $greyColor;
+  box-shadow: 0 1px 7px 1px #f7f7f7;
 
   .title {
     padding: 5px 0px;
     font-size: 20px;
     font-weight: bold;
-    color: $dangerColor;
-  }
-
-  .body-block {
-    padding: 15px;
-
-    input.search,
-    select.search {
-      width: 320px;
-      max-width: 100%;
-      margin: 10px 0px;
-    }
+    color: #dc3545;
   }
 }
-
-//---------- FORM -----------//
 form {
-  color: $balckGreyColor;
-  &.pading {
+  color: #464646;
+  &.padding {
     padding: 0px 15px;
   }
 
   .example-full-width {
     width: 100%;
   }
-  .input-small {
-    width: 300px;
-    max-width: 100%;
-  }
   .input-big {
     width: 80%;
   }
-  .label {
-    font-size: 15px;
-  }
-  input[type="checkbox"],
-  input[type="radio"] {
-    display: block;
-    width: 35px !important;
-    height: 35px;
-  }
 }
-
-//-------- Table ---------//
 table[mat-table] {
   table-layout: fixed;
   width: 100%;
-  box-shadow: 0 1px 7px 1px $greyColor;
+  box-shadow: 0 1px 7px 1px #f7f7f7;
 
   td {
     word-break: break-word;
@@ -146,15 +81,9 @@ table[mat-table] {
       overflow: hidden;
       text-overflow: ellipsis;
       line-clamp: 3;
-      -o-line-clamp: 3;
-      -ms-line-clamp: 3;
       -webkit-line-clamp: 3;
-      -moz-line-clamp: 3;
       box-orient: vertical;
-      -o-box-orient: vertical;
-      -ms-box-orient: vertical;
       -webkit-box-orient: vertical;
-      -moz-box-orient: vertical;
     }
     .item-action {
       display: inline-block;
@@ -166,19 +95,6 @@ table[mat-table] {
     }
   }
 }
-
-//-------- Animation Global- --------//
-@keyframes FadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-//--------Responsive---------//
 .container {
   width: 100%;
   padding-right: 15px;

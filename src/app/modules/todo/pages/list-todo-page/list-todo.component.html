@@ -1,0 +1,21 @@
+<mat-card>
+  <app-filter-todo (changeValueFilter)="changeFilter($event)"></app-filter-todo>
+</mat-card>
+<mat-card>
+  <h2 class="title" matDialogTitle>
+    <span class="material-icons">table_chart</span>
+    <span class="text-icons-middle" i18n="@@block.table.title">List Todo</span>
+  </h2>
+  <p>
+    <button mat-button type="submit" (click)="addTodo()" color="primary">
+      <span class="material-icons">add</span>
+      <span class="text-icons-middle" i18n="@@button.add">Add</span>
+    </button>
+  </p>
+  <app-list-todo
+    [listTodo]="listTodo$ | async"
+    (changeCompletedStatusEvent)="updateCompletedStatus($event)"
+    (deleteTodoEvent)="deleteTodo($event)"
+    (updateTodoEvent)="updateTodo($event)"
+  ></app-list-todo>
+</mat-card>
