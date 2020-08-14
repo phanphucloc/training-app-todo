@@ -14,19 +14,16 @@ import { TodoService } from '../../services/todo.service';
   templateUrl: './filter-todo.component.html',
 })
 export class FilterTodoComponent implements OnInit {
-  @Output() changeValueFilter = new EventEmitter<SearchObject>();
+  @Output() changeFilterValue = new EventEmitter<SearchObject>();
 
   public searchForm: FormGroup;
   public searchObject: SearchObject;
   public completedFilters = initCompletedFilters;
 
-  constructor(
-    private todoService: TodoService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.createForm();
-
     this.changeValueSearch();
   }
 
@@ -55,8 +52,7 @@ export class FilterTodoComponent implements OnInit {
         searchData.content = content;
         searchData.creator = creator;
         searchData.completed = completed;
-        this.changeValueFilter.emit(searchData);
-        // this.todoService.updateFilter(searchData);
+        this.changeFilterValue.emit(searchData);
       });
   }
 }

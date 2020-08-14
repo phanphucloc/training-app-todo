@@ -18,6 +18,8 @@ import { DialogDeleteTodoComponent } from './components/dialog-delete-todo/dialo
 import { FilterTodoComponent } from './components/filter-todo/filter-todo.component';
 import { ListTodoComponent } from './components/list-todo/list-todo.component';
 import { ListTodoPageComponent } from './pages/list-todo-page/list-todo.component';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ListTodoPageComponent } from './pages/list-todo-page/list-todo.componen
     ListTodoComponent,
   ],
   imports: [
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,

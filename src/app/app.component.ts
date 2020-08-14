@@ -14,12 +14,12 @@ import {
 export class AppComponent implements OnInit, AfterContentChecked {
   public languageCurrent;
   constructor(
-    private cref: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef,
     @Inject(LOCALE_ID) public localeId: string
   ) {}
   ngOnInit(): void {}
   ngAfterContentChecked(): void {
-    this.cref.detectChanges();
+    this.cdr.detectChanges();
   }
   switchLanguage(event: any): void {
     window.location.href = '/' + event.value;

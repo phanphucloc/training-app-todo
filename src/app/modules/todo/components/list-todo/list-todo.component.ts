@@ -1,6 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Todo, ACTION, ResultFormTodo, RESULT_DIALOG } from '../../models/todo.model';
+import {
+  Todo,
+  ACTION,
+  ResultFormTodo,
+  ACTION_DIALOG,
+} from '../../models/todo.model';
 import { TodoQuery } from '../../models/todo.query';
 import { FormAddAndEditTodoComponent } from '../form-add-and-edit-todo/form-add-and-edit-todo.component';
 import { DialogDeleteTodoComponent } from '../dialog-delete-todo/dialog-delete-todo.component';
@@ -13,24 +18,22 @@ export class ListTodoComponent implements OnInit {
   @Input() listTodo: Todo[];
 
   @Output() changeCompletedStatusEvent = new EventEmitter<Todo>();
-  @Output() deleteTodoEvent = new EventEmitter<string>();
   @Output() updateTodoEvent = new EventEmitter<Todo>();
+  @Output() deleteTodoEvent = new EventEmitter<string>();
 
   public displayedColumns: string[] = [
     'title',
     'content',
     'creator',
+    'createdDate',
+    'deadline',
     'completed',
     'action',
   ];
 
-  constructor(
-    public dialog: MatDialog,
-    private todoQuery: TodoQuery,
-  ) { }
+  constructor(public dialog: MatDialog, private todoQuery: TodoQuery) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public updateCompletedStatus(value: boolean, todo: Todo): void {
     this.changeCompletedStatusEvent.emit({ ...todo, completed: value });
@@ -41,7 +44,7 @@ export class ListTodoComponent implements OnInit {
       width: '450px',
     });
     dialogDeleteRef.afterClosed().subscribe((result: string) => {
-      if (result === RESULT_DIALOG.AGREE) {
+      if (result === ACTION_DIALOG.AGREE) {
         this.deleteTodoEvent.emit(id);
       }
     });
@@ -54,6 +57,7 @@ export class ListTodoComponent implements OnInit {
       todoItem.title = res.title;
       todoItem.content = res.content;
       todoItem.creator = res.creator;
+      todoItem.deadLine = res.deadLine;
       todoItem.completed = res.completed;
       this.openDialogUpdateTodo(todoItem);
     });
@@ -66,7 +70,7 @@ export class ListTodoComponent implements OnInit {
     });
 
     dialogEditTodoRef.afterClosed().subscribe((result: ResultFormTodo) => {
-      if (result.resultDialog === RESULT_DIALOG.SUBMIT){
+      if (result.actionDialog === ACTION_DIALOG.SUBMIT) {
         this.updateTodoEvent.emit(result.todo);
       }
     });

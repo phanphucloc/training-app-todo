@@ -2,11 +2,12 @@ export enum ACTION {
   EDIT = 'EDIT',
   ADD = 'ADD',
 }
-export enum RESULT_DIALOG {
+
+export enum ACTION_DIALOG {
   AGREE = 'AGREE',
   DISAGREE = 'DISAGREE',
   SUBMIT = 'DISAGREE',
-  CANCEL = 'CANCEL'
+  CANCEL = 'CANCEL',
 }
 
 export enum COMPLETED_FILTER {
@@ -36,7 +37,7 @@ export class CompletedFilter {
 export class ResultFormTodo {
   todo: Todo;
   currentAction: string;
-  resultDialog: string;
+  actionDialog: string;
   constructor() {}
 }
 
@@ -51,6 +52,7 @@ export class Todo {
   content: string;
   creator: string;
   completed: boolean;
+  createdDate: Date;
+  deadLine: Date;
   constructor() {}
 }
-

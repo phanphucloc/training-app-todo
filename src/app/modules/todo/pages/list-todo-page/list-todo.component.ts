@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   Todo,
   ACTION,
   SearchObject,
   initCompletedFilters,
   ResultFormTodo,
+  ACTION_DIALOG,
 } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 import { TodoQuery } from '../../models/todo.query';
@@ -57,10 +58,9 @@ export class ListTodoPageComponent implements OnInit {
       width: '450px',
       data: { currentAction: ACTION.ADD, todo: null },
     });
-
     dialogRef.afterClosed().subscribe((result: ResultFormTodo) => {
       let alertText: string;
-      if (result.currentAction === ACTION.ADD) {
+      if (result.actionDialog === ACTION_DIALOG.SUBMIT) {
         this.todoService.add(result.todo);
         alertText = $localize`:@@alert-add-success:You have successfully added`;
         this.showAlert(alertText);
@@ -94,7 +94,7 @@ export class ListTodoPageComponent implements OnInit {
     });
   }
 
-  public changeFilter(filter: SearchObject): void {
+  public changeFilterValue(filter: SearchObject): void {
     this.todoService.updateFilter(filter);
   }
 

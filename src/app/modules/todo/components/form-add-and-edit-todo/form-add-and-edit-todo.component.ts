@@ -1,9 +1,15 @@
-import { Component, OnInit, Inject, AfterContentChecked, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  AfterContentChecked,
+  ChangeDetectorRef,
+} from '@angular/core';
 import {
   DataFormTodo,
   ACTION,
   Todo,
-  RESULT_DIALOG,
+  ACTION_DIALOG,
   ResultFormTodo,
 } from '../../models/todo.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -22,14 +28,15 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
   selector: 'app-form-add-and-edit-todo',
   templateUrl: './form-add-and-edit-todo.component.html',
 })
-export class FormAddAndEditTodoComponent implements OnInit, AfterContentChecked {
+export class FormAddAndEditTodoComponent
+  implements OnInit, AfterContentChecked {
   public todoForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<FormAddAndEditTodoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DataFormTodo,
     private todoQuery: TodoQuery,
-    private cref: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +51,7 @@ export class FormAddAndEditTodoComponent implements OnInit, AfterContentChecked 
   }
 
   ngAfterContentChecked(): void {
-    this.cref.detectChanges();
+    this.cdr.detectChanges();
   }
 
   public createFormAdd(): void {
@@ -62,6 +69,7 @@ export class FormAddAndEditTodoComponent implements OnInit, AfterContentChecked 
         Validators.required,
         Validators.maxLength(25),
       ]),
+      deadLine: new FormControl(null),
     });
   }
 
@@ -84,21 +92,15 @@ export class FormAddAndEditTodoComponent implements OnInit, AfterContentChecked 
         Validators.required,
         Validators.maxLength(25),
       ]),
-      completed: new FormControl(this.data.todo.completed),
+      deadLine: new FormControl(this.data.todo?.deadLine),
+      completed: new FormControl(this.data.todo?.completed),
     });
-  }
-
-  public getInfoCurrent(): any {
-    return {
-      currentAction: this.data.currentAction,
-      currentTodo: this.todoForm?.value,
-    };
   }
 
   public submit(): void {
     const result = new ResultFormTodo();
     result.currentAction = this.data.currentAction;
-    result.resultDialog = RESULT_DIALOG.SUBMIT;
+    result.actionDialog = ACTION_DIALOG.SUBMIT;
     result.todo = this.todoForm.value;
     this.dialogRef.close(result);
   }
@@ -106,9 +108,9 @@ export class FormAddAndEditTodoComponent implements OnInit, AfterContentChecked 
   public cancel(): void {
     const result = new ResultFormTodo();
     result.currentAction = this.data.currentAction;
-    result.resultDialog = RESULT_DIALOG.CANCEL;
+    result.actionDialog = ACTION_DIALOG.CANCEL;
     result.todo = null;
-    this.dialogRef.close(RESULT_DIALOG.CANCEL);
+    this.dialogRef.close(result);
   }
 
   private validateTitle(): AsyncValidatorFn {
@@ -134,6 +136,4 @@ export class FormAddAndEditTodoComponent implements OnInit, AfterContentChecked 
       return null;
     };
   }
-
-
 }
