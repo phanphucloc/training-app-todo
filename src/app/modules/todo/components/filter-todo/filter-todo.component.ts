@@ -7,7 +7,6 @@ import {
 } from '../../models/todo.model';
 import { combineLatest } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-filter-todo',

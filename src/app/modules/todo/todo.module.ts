@@ -17,7 +17,7 @@ import { FormAddAndEditTodoComponent } from './components/form-add-and-edit-todo
 import { DialogDeleteTodoComponent } from './components/dialog-delete-todo/dialog-delete-todo.component';
 import { FilterTodoComponent } from './components/filter-todo/filter-todo.component';
 import { ListTodoComponent } from './components/list-todo/list-todo.component';
-import { ListTodoPageComponent } from './pages/list-todo-page/list-todo.component';
+import { ListTodoPageComponent } from './pages/list-todo-page/list-todo-page.component';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 

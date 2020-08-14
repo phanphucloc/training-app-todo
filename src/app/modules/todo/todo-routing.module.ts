@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListTodoPageComponent } from './pages/list-todo-page/list-todo.component';
+import { ListTodoPageComponent } from './pages/list-todo-page/list-todo-page.component';
 
 const routes: Routes = [
   {
