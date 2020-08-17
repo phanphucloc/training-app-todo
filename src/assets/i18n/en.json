@@ -1,0 +1,62 @@
+{
+    "alertDelete": "Are you sure you want to delete?",
+    "agree": "Agree",
+    "disagree": "Disagree",
+    "notification": "Notification",
+    "language": "Language",
+    "english": "English",
+    "vienamese": "Vienamese",
+    "filter": "Filter",
+    "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "submit": "Submit",
+    "version": "version",
+    "owner": "Owner",
+    "lphan": "Loc Phan Phuc",
+    "name": "Name",
+    "telephone": "Phone",
+    "homePage": {
+        "title": "Todo app demo",
+        "description": {
+            "title": "Description",
+            "text": "This is a small web signal page built by framework angular version 10.0.1"
+        },
+        "features":{
+            "title" : "Features",
+            "internationalization": "Application can change language (default language is English)",
+            "CRUD": "Provide basic features add, delete, edit",
+            "filter": "Features filtering data using Observables & Rxjs",
+            "stateManagement": "Using akita to manage State management",
+            "reactiveForm": "Implement reactive form, create abstract form for 2 both of cases (creation, edition)"
+        }
+    },
+    "todoPage":{
+        "block" :{
+            "formTodo":{
+                "title": "Todo",
+                "labelTitle": "Title",
+                "placeTitle": "Title ...",
+                "messErrorRequiredTitle": "Title is required",
+                "messErrorExistTitle": "The title already exists",
+                "labelContent": "Content",
+                "placeContent": "Content ...",
+                "messErrorRequiredContent": "Content is required",
+                "labelCreator": "Creator",
+                "placeCreator": "Creator ...",
+                "messErrorRequiredCreator": "Creator is required",
+                "labelCompleted": "Completed",
+                "messErrorMaxlength": "Max length is: "
+            },
+            "table":{
+                "title": "List Todo",
+                "rowTitle": "Title",
+                "rowlContent": "Content",
+                "rowlCreator": "Creator",
+                "rowlCompleted": "Completed",
+                "tooltipEdit": "Edit",
+                "tooltipDelete": "Delete"
+            }
+        }
+    }
+}

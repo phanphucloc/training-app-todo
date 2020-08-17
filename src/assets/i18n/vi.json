@@ -1,0 +1,62 @@
+{
+    "alertDelete": "Bạn có thực sự muốn xoá?",
+    "agree": "Đồng ý",
+    "disagree": "Không",
+    "notification": "Thông báo",
+    "language": "Ngôn ngữ",
+    "english": "Tiếng Anh",
+    "vienamese": "Tiếng Việt",
+    "filter": "Lọc",
+    "cancel": "Đóng",
+    "add": "Thêm",
+    "edit": "Sửa",
+    "submit": "Gởi",
+    "version": "Phiên bản",
+    "owner": "Người tạo",
+    "lphan": "Phan Phúc Lộc",
+    "name": "Tên",
+    "telephone": "Số điện thoại",
+    "homePage": {
+        "title": "Todo app demo",
+        "description": {
+            "title": "Mô tả",
+            "text": "Đây là một trang web signal page đơn giản được xây dựng bởi framework angular phiên bản 10.0.1"
+        },
+        "features":{
+            "title": "Tính năng",
+            "internationalization": "Ứng dụng có thể thay đổi ngôn ngữ( ngôn ngữ mặc định là tiếng Anh)",
+            "CRUD": "Cung cấp các tính năng cơ bản như: Thêm, Xoá, Sửa, Đọc",
+            "filter": "Có tính năng lọc dữ liệu sử dụng Observables & Rxjs",
+            "stateManagement": "Sử dụng akita để quản lí State management",
+            "reactiveForm": "Sử dụng reactive form"
+        }
+    },
+    "todoPage":{
+        "block" :{
+            "formTodo":{
+                "title": "Todo",
+                "labelTitle": "Tiêu đề",
+                "placeTitle": "Tiêu đề ...",
+                "messErrorRequiredTitle": "Vui lòng nhập tiêu đề",
+                "messErrorExistTitle": "Tiêu đề đã tồn tại",
+                "labelContent": "Nội dung",
+                "placeContent": "Nội dung ...",
+                "messErrorRequiredContent": "Vui lòng nhập nội dung",
+                "labelCreator": "Người tạo",
+                "placeCreator": "Người tạo ...",
+                "messErrorRequiredCreator": "Vui lòng nhập người tạo",
+                "labelCompleted": "Hoàn thành",
+                "messErrorMaxlength": "Số kí tự tối đa là: "
+            },
+            "table":{
+                "title": "Danh sách Todo",
+                "rowTitle": "Tiêu đề",
+                "rowlContent": "Nội dung",
+                "rowlCreator": "Người tạo",
+                "rowlCompleted": "Hoàn thành",
+                "tooltipEdit": "Chỉnh sửa",
+                "tooltipDelete": "Xoá"
+            }
+        }
+    }
+}

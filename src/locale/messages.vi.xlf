@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en-US" datatype="plaintext" original="ng2.template">
+		<body>
+			<trans-unit id="language" datatype="html">
+				<source>
+					Language
+				</source>
+				<target>
+					Ngôn ngữ
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/app.component.html
+					</context>
+					<context context-type="linenumber">
+						10
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="english" datatype="html">
+				<source>
+					English
+				</source>
+				<target>
+					Tiếng Anh
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/app.component.html
+					</context>
+					<context context-type="linenumber">
+						14
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="vienamese" datatype="html">
+				<source>
+					Vienamese
+				</source>
+				<target>
+					Tiếng Việt
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/app.component.html
+					</context>
+					<context context-type="linenumber">
+						17
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="notification-title" datatype="html">
+				<source>
+					Notification
+				</source>
+				<target>
+					Thông báo
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/common/components/confirm-dialog/confirm-dialog.component.html
+					</context>
+					<context context-type="linenumber">
+						1
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="notification-alertDelete" datatype="html">
+				<source>
+					Are you sure you want to delete?
+				</source>
+				<target>
+					Bạn thực sự muốn xoá
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/common/components/confirm-dialog/confirm-dialog.component.html
+					</context>
+					<context context-type="linenumber">
+						4
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="notification-disagree" datatype="html">
+				<source>
+					Disagree
+				</source>
+				<target>
+					Không
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/common/components/confirm-dialog/confirm-dialog.component.html
+					</context>
+					<context context-type="linenumber">
+						6
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="notification-agree" datatype="html">
+				<source>
+					Agree
+				</source>
+				<target>
+					Đồng ý
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/common/components/confirm-dialog/confirm-dialog.component.html
+					</context>
+					<context context-type="linenumber">
+						11
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-labelTitle" datatype="html">
+				<source>
+					Title
+				</source>
+				<target>
+					Tiêu đề
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						14
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-messErrorRequiredTitle" datatype="html">
+				<source>
+					Title is required
+				</source>
+				<target>
+					Vui lòng nhập tiêu đề
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						17
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-messErrorExistTitle" datatype="html">
+				<source>
+					The title already exists
+				</source>
+				<target>
+					Tiêu đề đã tồn tại
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						21
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-messErrorMaxlength" datatype="html">
+				<source>
+					Max length is:
+				</source>
+				<target>
+					Số kí tự tối đa là:
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						25
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						37
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						49
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-labelCreator" datatype="html">
+				<source>
+					Creator
+				</source>
+				<target>
+					Người tạo
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						30
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-messErrorRequiredContent" datatype="html">
+				<source>
+					Content is required
+				</source>
+				<target>
+					Vui lòng nhập nội dung
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						33
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						45
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-labelContent" datatype="html">
+				<source>
+					Content
+				</source>
+				<target>
+					Nội dung
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						42
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-labelCompleted" datatype="html">
+				<source>
+					Completed
+				</source>
+				<target>
+					Hoàn thành
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						54
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-cancel" datatype="html">
+				<source>
+					Cancel
+				</source>
+				<target>
+					Huỷ
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						57
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formTodo-submit" datatype="html">
+				<source>
+					Submit
+				</source>
+				<target>
+					Gởi
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-todo/form-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						60
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="filter" datatype="html">
+				<source>
+					Filter
+				</source>
+				<target>
+					Lọc
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						4
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						25
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="form-todo-labelTitle" datatype="html">
+				<source>
+					Title
+				</source>
+				<target>
+					Tiêu đề
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						11
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="form-todo-label-creator" datatype="html">
+				<source>
+					Creator
+				</source>
+				<target>
+					Người tạo
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						19
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="form-todo-label-content" datatype="html">
+				<source>
+					Content
+				</source>
+				<target>
+					Nội dung
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						29
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						39
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="form-todo-label-completed" datatype="html">
+				<source>
+					Completed
+				</source>
+				<target>
+					Hoàn thành
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						39
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block.table.title" datatype="html">
+				<source>
+					List Todo
+				</source>
+				<target>
+					Danh sách Todo
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						57
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="button.add" datatype="html">
+				<source>
+					Add
+				</source>
+				<target>
+					Thêm
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						62
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-table-row-title" datatype="html">
+				<source>
+					Title
+				</source>
+				<target>
+					Tiêu đề
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						69
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-table-row-content" datatype="html">
+				<source>
+					Content
+				</source>
+				<target>
+					Nội dung
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						75
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-table-row-creator" datatype="html">
+				<source>
+					Creator
+				</source>
+				<target>
+					Người tạo
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						81
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-table-row-completed" datatype="html">
+				<source>
+					Completed
+				</source>
+				<target>
+					Hoàn thành
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/list-todo/list-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						87
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="description-title" datatype="html">
+				<source>
+					Description
+				</source>
+				<target>
+					Mô tả
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						12
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="description-text" datatype="html">
+				<source>
+					This is a small web signal page built by framework angular version 10.0.1
+				</source>
+				<target>
+					Đây là một trang web signal page đơn giản được xây dựng bởi framework angular phiên bản 10.0.1
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						15
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="Features" datatype="html">
+				<source>
+					Features
+				</source>
+				<target>
+					Tính năng
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						20
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="internationalization" datatype="html">
+				<source>
+					Application can change language (default language is English)
+				</source>
+				<target>
+					Ứng dụng có thể thay đổi ngôn ngữ( ngôn ngữ mặc định là tiếng Anh)
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						23
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="CRUD" datatype="html">
+				<source>
+					Provide basic features add, delete, edit
+				</source>
+				<target>
+					Cung cấp các tính năng cơ bản như: Thêm, Xoá, Sửa, Đọc
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						24
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="filter" datatype="html">
+				<source>
+					Features filtering data using Observables &amp; Rxjs
+				</source>
+				<target>
+					Có tính năng lọc dữ liệu sử dụng Observables & Rxjs
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						25
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="stateManagement" datatype="html">
+				<source>
+					Using akita to manage State management
+				</source>
+				<target>
+					Sử dụng akita để quản lí State management
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						26
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="reactiveForm" datatype="html">
+				<source>
+					Implement reactive form, create abstract form for 2 both of cases (creation, edition)
+				</source>
+				<target>
+					Sử dụng reactive form
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						27
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="version" datatype="html">
+				<source>
+					version
+				</source>
+				<target>
+					Phiên bản
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						35
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						36
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						37
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						38
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						39
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="owner" datatype="html">
+				<source>
+					Owner
+				</source>
+				<target>
+					Người tạo
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						44
+					</context>
+				</context-group>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						47
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="lphan" datatype="html">
+				<source>
+					Loc Phan Phuc
+				</source>
+				<target>
+					Phan Phúc Lộc
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						47
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="telephone" datatype="html">
+				<source>
+					Phone
+				</source>
+				<target>
+					Số điện thoại
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/pages/components/home/home.component.html
+					</context>
+					<context context-type="linenumber">
+						49
+					</context>
+				</context-group>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
