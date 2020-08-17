@@ -60,7 +60,6 @@ export class ListTodoPageComponent implements OnInit {
 
   public updateTodo(id: string): void {
     this.todoQuery.getTodoById(id).subscribe((res: Todo) => {
-      console.log(res);
       const todoItem = new Todo();
       todoItem.id = res.id;
       todoItem.title = res.title;

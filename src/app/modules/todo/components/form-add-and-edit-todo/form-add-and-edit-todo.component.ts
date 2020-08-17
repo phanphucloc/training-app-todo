@@ -125,7 +125,7 @@ export class FormAddAndEditTodoComponent
             if (res) {
               if (this.data.currentAction === ACTION.ADD) {
                 return { titleExist: true };
-              } else if (res.id !== this.todoForm.value?.id) {
+              } else if (res.id !== this.todoForm?.value?.id) {
                 return { titleExist: true };
               }
             } else {
