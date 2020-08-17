@@ -140,13 +140,8 @@ export class FormAddAndEditTodoComponent
 
   public limitDay(day: Date | null): boolean {
     const datepickerDay = day || new Date();
-    const datepickerDate = datepickerDay.getDate();
-    const datepickerMonth = datepickerDay.getMonth();
-    const currentDate = new Date().getDate();
-    const currentMonth = new Date().getMonth();
-    return (
-      (datepickerMonth === currentMonth && datepickerDate >= currentDate) ||
-      datepickerMonth > currentMonth
-    );
+    const datepickerTime = datepickerDay.getTime();
+    const currentTime = new Date().getTime();
+    return datepickerTime > currentTime;
   }
 }

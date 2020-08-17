@@ -73,6 +73,39 @@
       {{ todoForm.get("creator")?.errors.maxlength.requiredLength }}
     </mat-error>
   </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Deadline</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [matDatepickerFilter]="limitDay"
+      formControlName="deadLine"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error
+      *ngIf="
+        todoForm?.get('deadLine')?.hasError('matDatepickerParse') &&
+        todoForm?.get('deadLine')?.touched
+      "
+    >
+      <span i18n="@@block-formTodo-messErrorIncorrectTimeFormat">
+        Incorrect time format
+      </span>
+    </mat-error>
+    <mat-error
+      *ngIf="
+        todoForm?.get('deadLine')?.hasError('matDatepickerFilter') &&
+        todoForm?.get('deadLine')?.touched
+      "
+    >
+      <span i18n="@@block-formTodo-messErrorLimitTime">
+        You are not allowed to choose a time before today
+      </span>
+    </mat-error>
+  </mat-form-field>
+  
   <mat-form-field class="example-full-width">
     <mat-label>
       <span i18n="@@block-formTodo-labelContent">Content</span>
@@ -99,28 +132,7 @@
       {{ todoForm.get("content")?.errors.maxlength.requiredLength }}
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Deadline</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [matDatepickerFilter]="limitDay"
-      formControlName="deadLine"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
 
-    <mat-error
-      *ngIf="
-        todoForm?.get('deadLine')?.hasError('matDatepickerParse') &&
-        todoForm?.get('deadLine')?.touched
-      "
-    >
-      <span i18n="@@block-formTodo-messErrorIncorrectTimeFormat">
-        Incorrect time format
-      </span>
-    </mat-error>
-  </mat-form-field>
   <mat-checkbox
     *ngIf="todoForm?.get('completed')"
     formControlName="completed"

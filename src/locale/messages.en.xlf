@@ -290,6 +290,22 @@
 					</context>
 				</context-group>
 			</trans-unit>
+			<trans-unit id="block-formTodo-messErrorLimitTime" datatype="html">
+				<source>
+					You are not allowed to choose a time before today
+				</source>
+				<target>
+					You are not allowed to choose a time before today
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html
+					</context>
+					<context context-type="linenumber">
+						128
+					</context>
+				</context-group>
+			</trans-unit>
 			<trans-unit id="block-formTodo-labelCompleted" datatype="html">
 				<source>
 					Completed
