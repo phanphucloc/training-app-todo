@@ -1,53 +1,55 @@
 <h2 class="title" matDialogTitle>
-    <span class="material-icons">filter_alt</span>
-    <span class="text-icons-middle" i18n="@@filter"> Filter </span>
-  </h2>
-  <form class="padding" [formGroup]="searchForm">
-    <mat-grid-list cols="2" rowHeight="70px">
-      <mat-grid-tile>
-        <mat-form-field class="input-big">
-          <mat-label>
-            <span i18n="@@form-todo-labelTitle">Title</span>
-          </mat-label>
-          <input matInput formControlName="title" />
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field class="input-big">
-          <mat-label>
-            <span i18n="@@form-todo-label-creator">
-              Creator
-            </span>
-          </mat-label>
-          <input matInput formControlName="creator" />
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field class="input-big">
-          <mat-label>
-            <span i18n="@@form-todo-label-content">
-              Content
-            </span>
-          </mat-label>
-          <input matInput formControlName="content" />
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field class="input-big" appearance="fill">
-          <mat-label>
-            <span i18n="@@form-todo-label-completed">
-              Completed
-            </span>
-          </mat-label>
-          <mat-select formControlName="completed">
-            <mat-option
-              *ngFor="let itemFilter of completedFilters"
-              [value]="itemFilter.value"
-            >
-              {{ itemFilter.label }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </form>
+  <span class="material-icons">filter_alt</span>
+  <span class="text-icons-middle" i18n="@@filter"> Filter </span>
+</h2>
+<form class="padding" [formGroup]="searchForm">
+
+  <mat-grid-list cols="2" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-form-field class="input-big">
+        <mat-label>
+          <span i18n="@@form-todo-labelTitle">Title</span>
+        </mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field class="input-big">
+        <mat-label>
+          <span i18n="@@form-todo-label-creator">
+            Creator
+          </span>
+        </mat-label>
+        <input matInput formControlName="creator" />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field class="input-big">
+        <mat-label>
+          <span i18n="@@form-todo-label-content">
+            Content
+          </span>
+        </mat-label>
+        <input matInput formControlName="content" />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field class="input-big" appearance="fill">
+        <mat-label>
+          <span i18n="@@form-todo-label-completed">
+            Completed
+          </span>
+        </mat-label>
+        <mat-select formControlName="completed">
+          <mat-option *ngFor="let itemFilter of completedFilters" [value]="itemFilter.value">
+            {{ itemFilter.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    
+  </mat-grid-list>
+</form>

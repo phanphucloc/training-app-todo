@@ -10,12 +10,14 @@
     </container-element>
     <span class="text-icons-middle">Todo</span>
   </h2>
+
   <mat-form-field class="example-full-width">
     <mat-label>
       <span i18n="@@block-formTodo-labelTitle">Title</span>
       <span class="red-color">*</span>
     </mat-label>
     <input matInput cdkFocusInitial formControlName="title" />
+
     <mat-error
       i18n="@@block-formTodo-messErrorRequiredTitle"
       *ngIf="
@@ -44,12 +46,14 @@
       {{ todoForm.get("title")?.errors.maxlength.requiredLength }}
     </mat-error>
   </mat-form-field>
+
   <mat-form-field class="example-full-width">
     <mat-label>
       <span i18n="@@block-formTodo-labelCreator">Creator</span>
       <span class="red-color">*</span>
     </mat-label>
     <input matInput formControlName="creator" />
+
     <mat-error
       i18n="@@block-formTodo-messErrorRequiredContent"
       *ngIf="
@@ -75,6 +79,7 @@
       <span class="red-color">*</span>
     </mat-label>
     <textarea matInput formControlName="content"></textarea>
+
     <mat-error
       i18n="@@block-formTodo-messErrorRequiredContent"
       *ngIf="
@@ -96,9 +101,15 @@
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Deadline</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="deadLine" />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [matDatepickerFilter]="limitDay"
+      formControlName="deadLine"
+    />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+
     <mat-error
       *ngIf="
         todoForm?.get('deadLine')?.hasError('matDatepickerParse') &&

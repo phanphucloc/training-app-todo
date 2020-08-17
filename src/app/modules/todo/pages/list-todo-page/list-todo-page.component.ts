@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  Todo,
-  ACTION,
-  SearchObject,
-  initCompletedFilters,
-  ResultFormTodo,
-  ACTION_DIALOG,
-} from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 import { TodoQuery } from '../../models/todo.query';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { FormAddAndEditTodoComponent } from '../../components/form-add-and-edit-todo/form-add-and-edit-todo.component';
+import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { FormAddAndEditTodoComponent } from '../../components/form-add-and-edit-todo/form-add-and-edit-todo.component';
-import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
+import {
+  Todo,
+  ACTION,
+  SearchObject,
+  initCompletedFilters,
+  ResultTodoForm,
+  ACTION_DIALOG,
+} from '../../models/todo.model';
 
 @Component({
   selector: 'app-list-todo-page',
@@ -55,24 +55,12 @@ export class ListTodoPageComponent implements OnInit {
   }
 
   public addTodo(): void {
-    const dialogRef = this.dialog.open(FormAddAndEditTodoComponent, {
-      width: '450px',
-      data: {
-        currentAction: ACTION.ADD,
-        todo: null,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result: ResultFormTodo) => {
-      if (result.actionDialog === ACTION_DIALOG.SUBMIT) {
-        this.todoService.add(result.todo);
-        const alertText = $localize`:@@alert-add-success:You have successfully added`;
-        this.showAlert(alertText);
-      }
-    });
+    this.openDialogTodoForm(ACTION.ADD, null);
   }
 
   public updateTodo(id: string): void {
     this.todoQuery.getTodoById(id).subscribe((res: Todo) => {
+      console.log(res);
       const todoItem = new Todo();
       todoItem.id = res.id;
       todoItem.title = res.title;
@@ -80,23 +68,33 @@ export class ListTodoPageComponent implements OnInit {
       todoItem.creator = res.creator;
       todoItem.deadLine = res.deadLine;
       todoItem.completed = res.completed;
-      this.openDialogUpdateTodo(todoItem);
+      this.openDialogTodoForm(ACTION.EDIT, todoItem);
     });
   }
 
-  public openDialogUpdateTodo(todoItem?: Todo): void {
-    const dialogEditTodoRef = this.dialog.open(FormAddAndEditTodoComponent, {
+  public openDialogTodoForm(currentAction, todoItem?: Todo): void {
+    const dialogTodoFormRef = this.dialog.open(FormAddAndEditTodoComponent, {
       width: '450px',
       data: {
-        currentAction: ACTION.EDIT,
+        currentAction,
         todo: todoItem,
       },
     });
-    dialogEditTodoRef.afterClosed().subscribe((result: ResultFormTodo) => {
+    dialogTodoFormRef.afterClosed().subscribe((result: ResultTodoForm) => {
       if (result.actionDialog === ACTION_DIALOG.SUBMIT) {
-        this.todoService.updateTodo(result.todo);
-        const alertText = $localize`:@@alert-update-success:You have successfully updated`;
-        this.showAlert(alertText);
+        let alertText: string;
+        switch (result.currentAction) {
+          case ACTION.ADD:
+            this.todoService.add(result.todo);
+            alertText = $localize`:@@alert-add-success:You have successfully added`;
+            this.showAlert(alertText);
+            break;
+          case ACTION.EDIT:
+            this.todoService.updateTodo(result.todo);
+            alertText = $localize`:@@alert-update-success:You have successfully updated`;
+            this.showAlert(alertText);
+            break;
+        }
       }
     });
   }

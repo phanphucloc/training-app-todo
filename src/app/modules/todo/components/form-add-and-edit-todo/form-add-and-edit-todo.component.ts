@@ -1,3 +1,7 @@
+import { TodoQuery } from '../../models/todo.query';
+import { Observable } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   Component,
   OnInit,
@@ -6,13 +10,12 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import {
-  DataFormTodo,
+  DataTodoForm,
   ACTION,
   Todo,
   ACTION_DIALOG,
-  ResultFormTodo,
+  ResultTodoForm,
 } from '../../models/todo.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   FormGroup,
   FormControl,
@@ -20,9 +23,6 @@ import {
   AsyncValidatorFn,
   AbstractControl,
 } from '@angular/forms';
-import { TodoQuery } from '../../models/todo.query';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-add-and-edit-todo',
@@ -34,24 +34,28 @@ export class FormAddAndEditTodoComponent
 
   constructor(
     public dialogRef: MatDialogRef<FormAddAndEditTodoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DataFormTodo,
+    @Inject(MAT_DIALOG_DATA) public data: DataTodoForm,
     private todoQuery: TodoQuery,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    switch (this.data.currentAction) {
-      case ACTION.ADD:
-        this.createFormAdd();
-        break;
-      default:
-        this.createFormEdit();
-        break;
-    }
+    this.createForm();
   }
 
   ngAfterContentChecked(): void {
     this.cdr.detectChanges();
+  }
+
+  public createForm(): void {
+    switch (this.data.currentAction) {
+      case ACTION.ADD:
+        this.createFormAdd();
+        break;
+      case ACTION.EDIT:
+        this.createFormEdit();
+        break;
+    }
   }
 
   public createFormAdd(): void {
@@ -75,10 +79,7 @@ export class FormAddAndEditTodoComponent
 
   public createFormEdit(): void {
     this.todoForm = new FormGroup({
-      id: new FormControl(this.data.todo?.id, [
-        Validators.required,
-        Validators.maxLength(500),
-      ]),
+      id: new FormControl(this.data.todo?.id),
       title: new FormControl(
         this.data.todo?.title,
         [Validators.required, Validators.maxLength(40)],
@@ -98,7 +99,7 @@ export class FormAddAndEditTodoComponent
   }
 
   public submit(): void {
-    const result = new ResultFormTodo();
+    const result = new ResultTodoForm();
     result.currentAction = this.data.currentAction;
     result.actionDialog = ACTION_DIALOG.SUBMIT;
     result.todo = this.todoForm.value;
@@ -106,7 +107,7 @@ export class FormAddAndEditTodoComponent
   }
 
   public cancel(): void {
-    const result = new ResultFormTodo();
+    const result = new ResultTodoForm();
     result.currentAction = this.data.currentAction;
     result.actionDialog = ACTION_DIALOG.CANCEL;
     result.todo = null;
@@ -124,7 +125,7 @@ export class FormAddAndEditTodoComponent
             if (res) {
               if (this.data.currentAction === ACTION.ADD) {
                 return { titleExist: true };
-              } else if (res.id !== this.todoForm?.value?.id) {
+              } else if (res.id !== this.todoForm.value?.id) {
                 return { titleExist: true };
               }
             } else {
@@ -135,5 +136,17 @@ export class FormAddAndEditTodoComponent
       }
       return null;
     };
+  }
+
+  public limitDay(day: Date | null): boolean {
+    const datepickerDay = day || new Date();
+    const datepickerDate = datepickerDay.getDate();
+    const datepickerMonth = datepickerDay.getMonth();
+    const currentDate = new Date().getDate();
+    const currentMonth = new Date().getMonth();
+    return (
+      (datepickerMonth === currentMonth && datepickerDate >= currentDate) ||
+      datepickerMonth > currentMonth
+    );
   }
 }
