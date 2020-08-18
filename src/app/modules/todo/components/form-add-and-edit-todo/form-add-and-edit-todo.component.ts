@@ -95,7 +95,8 @@ export class FormAddAndEditTodoComponent implements OnInit {
   public limitDay(day: Date | null): boolean {
     const datepickerDay = day || new Date();
     const datepickerTime = datepickerDay.getTime();
-    const currentTime = new Date(new Date().toDateString()).getTime();
+    const currentDay = new Date().toDateString();
+    const currentTime = new Date(currentDay).getTime();
     return datepickerTime >= currentTime;
   }
 
