@@ -6,7 +6,6 @@ import {
   Component,
   OnInit,
   Inject,
-  AfterContentChecked,
   ChangeDetectorRef,
 } from '@angular/core';
 import {
@@ -28,8 +27,7 @@ import {
   selector: 'app-form-add-and-edit-todo',
   templateUrl: './form-add-and-edit-todo.component.html',
 })
-export class FormAddAndEditTodoComponent
-  implements OnInit, AfterContentChecked {
+export class FormAddAndEditTodoComponent implements OnInit {
   public todoForm: FormGroup;
 
   constructor(
@@ -41,10 +39,6 @@ export class FormAddAndEditTodoComponent
 
   ngOnInit(): void {
     this.createForm();
-  }
-
-  ngAfterContentChecked(): void {
-    this.cdr.detectChanges();
   }
 
   public createForm(): void {
@@ -96,6 +90,7 @@ export class FormAddAndEditTodoComponent
       deadLine: new FormControl(this.data.todo?.deadLine),
       completed: new FormControl(this.data.todo?.completed),
     });
+    this.cdr.detectChanges();
   }
 
   public submit(): void {
@@ -112,6 +107,13 @@ export class FormAddAndEditTodoComponent
     result.actionDialog = ACTION_DIALOG.CANCEL;
     result.todo = null;
     this.dialogRef.close(result);
+  }
+
+  public limitDay(day: Date | null): boolean {
+    const datepickerDay = day || new Date();
+    const datepickerTime = datepickerDay.getTime();
+    const currentTime = new Date(new Date().toDateString()).getTime();
+    return datepickerTime >= currentTime;
   }
 
   private validateTitle(): AsyncValidatorFn {
@@ -136,12 +138,5 @@ export class FormAddAndEditTodoComponent
       }
       return null;
     };
-  }
-
-  public limitDay(day: Date | null): boolean {
-    const datepickerDay = day || new Date();
-    const datepickerTime = datepickerDay.getTime();
-    const currentTime = new Date().getTime();
-    return datepickerTime > currentTime;
   }
 }
