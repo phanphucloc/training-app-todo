@@ -100,9 +100,7 @@ export class FormAddAndEditTodoComponent implements OnInit {
   }
 
   private validateTitle(): AsyncValidatorFn {
-    return (
-      control: AbstractControl
-    ): Observable<{ [key: string]: any } | null> => {
+    return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       if (control.value) {
         return this.todoQuery.getTodoByTitle(control.value).pipe(
           distinctUntilChanged(),
