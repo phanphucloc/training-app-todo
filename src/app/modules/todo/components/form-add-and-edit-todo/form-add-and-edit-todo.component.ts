@@ -2,26 +2,9 @@ import { TodoQuery } from '../../models/todo.query';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {
-  Component,
-  OnInit,
-  Inject,
-  ChangeDetectorRef,
-} from '@angular/core';
-import {
-  DataTodoForm,
-  ACTION,
-  Todo,
-  ACTION_DIALOG,
-  ResultTodoForm,
-} from '../../models/todo.model';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  AsyncValidatorFn,
-  AbstractControl,
-} from '@angular/forms';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
+import { DataTodoForm, ACTION, Todo, ACTION_DIALOG, ResultTodoForm} from '../../models/todo.model';
+import { FormGroup, FormControl, Validators, AsyncValidatorFn, AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-form-add-and-edit-todo',

@@ -6,19 +6,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FormAddAndEditTodoComponent } from '../../components/form-add-and-edit-todo/form-add-and-edit-todo.component';
 import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-import {
-  Todo,
-  ACTION,
-  SearchObject,
-  initCompletedFilters,
-  ResultTodoForm,
-  ACTION_DIALOG,
-} from '../../models/todo.model';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+import { Todo, ACTION, SearchObject, initCompletedFilters, ResultTodoForm, ACTION_DIALOG} from '../../models/todo.model';
 
 @Component({
   selector: 'app-list-todo-page',
