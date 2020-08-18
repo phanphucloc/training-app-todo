@@ -25,13 +25,8 @@
   </ng-container>
 
   <ng-container matColumnDef="createdDate">
-    <th
-      class="text-center"
-      style="width: 100px;"
-      mat-header-cell
-      *matHeaderCellDef
-      i18n="@@block-table-row-createdDate"
-    >
+    <th class="text-center" style="width: 100px;" mat-header-cell *matHeaderCellDef
+      i18n="@@block-table-row-createdDate">
       Created date
     </th>
     <td class="text-center no-padding" mat-cell *matCellDef="let element">
@@ -40,13 +35,7 @@
   </ng-container>
 
   <ng-container matColumnDef="deadline">
-    <th
-      class="text-center"
-      style="width: 100px;"
-      mat-header-cell
-      *matHeaderCellDef
-      i18n="@@block-table-row-deadline"
-    >
+    <th class="text-center" style="width: 100px;" mat-header-cell *matHeaderCellDef i18n="@@block-table-row-deadline">
       Deadline
     </th>
     <td class="text-center no-padding" mat-cell *matCellDef="let element">
@@ -55,20 +44,11 @@
   </ng-container>
 
   <ng-container matColumnDef="completed">
-    <th
-      class="text-center"
-      style="width: 70px;"
-      mat-header-cell
-      *matHeaderCellDef
-      i18n="@@block-table-row-completed"
-    >
+    <th class="text-center" style="width: 70px;" mat-header-cell *matHeaderCellDef i18n="@@block-table-row-completed">
       Completed
     </th>
     <td class="text-center no-padding" mat-cell *matCellDef="let element">
-      <mat-checkbox
-        [checked]="element.completed"
-        (change)="updateCompletedStatus($event.checked, element)"
-      >
+      <mat-checkbox [checked]="element.completed" (change)="updateCompletedStatus($event.checked, element)">
       </mat-checkbox>
     </td>
   </ng-container>
@@ -77,28 +57,14 @@
     <th style="width: 150px;" mat-header-cell *matHeaderCellDef></th>
     <td mat-cell class="text-center" *matCellDef="let element">
       <button mat-button (click)="updateTodo(element.id)" color="primary">
-        <mat-icon
-          mat-button
-          class="item-action"
-          i18n-block-table-tooltip-edit
-          title="Edit"
-          class="example-icon"
-          aria-hidden="false"
-          aria-label="Edit icon"
-        >
+        <mat-icon mat-button class="item-action" i18n-block-table-tooltip-edit title="Edit" class="example-icon"
+          aria-hidden="false" aria-label="Edit icon">
           edit
         </mat-icon>
       </button>
       <button mat-button (click)="deleteTodo(element.id)">
-        <mat-icon
-          class="item-action"
-          data-toggle="tooltip"
-          i18n-block-table-tooltip-delete
-          title="Delete"
-          class="example-icon"
-          aria-hidden="false"
-          aria-label="Delete icon"
-        >
+        <mat-icon class="item-action" data-toggle="tooltip" i18n-block-table-tooltip-delete title="Delete"
+          class="example-icon" aria-hidden="false" aria-label="Delete icon">
           delete
         </mat-icon>
       </button>
@@ -106,9 +72,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    *matRowDef="let row; columns: displayedColumns"
-    [ngClass]="{ 'line-text': row.completed }"
-  ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ 'line-text': row.completed }"></tr>
 </table>

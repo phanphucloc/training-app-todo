@@ -2,15 +2,10 @@
   Are you sure you want to delete?
 </div>
 <mat-dialog-actions align="end">
-  <button
-    mat-button
-    type="button"
-    (click)="cancel()"
-    i18n="@@notification-disagree"
-  >
+  <button mat-button type="button" (click)="cancel()" i18n="@@notification-disagree">
     Disagree
   </button>
-  <button mat-button type="button" (click)="agree()" color="primary">
+  <button mat-button type="button" color="primary" (click)="agree()">
     <span class="material-icons">
       done
     </span>

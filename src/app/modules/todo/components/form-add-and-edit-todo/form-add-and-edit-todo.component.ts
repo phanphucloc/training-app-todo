@@ -42,36 +42,42 @@ export class FormAddAndEditTodoComponent implements OnInit {
         [Validators.required, Validators.maxLength(40)],
         [this.validateTitle()]
       ),
-      content: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(500),
-      ]),
-      creator: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(25),
-      ]),
+      content: new FormControl(
+        '',
+        [Validators.required, Validators.maxLength(500)]
+      ),
+      creator: new FormControl(
+        '',
+        [Validators.required, Validators.maxLength(25)]
+      ),
       deadLine: new FormControl(null),
     });
   }
 
   public createFormEdit(): void {
     this.todoForm = new FormGroup({
-      id: new FormControl(this.data.todo?.id),
+      id: new FormControl(
+        this.data.todo?.id
+      ),
       title: new FormControl(
         this.data.todo?.title,
         [Validators.required, Validators.maxLength(40)],
         [this.validateTitle()]
       ),
-      content: new FormControl(this.data.todo?.content, [
-        Validators.required,
-        Validators.maxLength(500),
-      ]),
-      creator: new FormControl(this.data.todo?.creator, [
-        Validators.required,
-        Validators.maxLength(25),
-      ]),
-      deadLine: new FormControl(this.data.todo?.deadLine),
-      completed: new FormControl(this.data.todo?.completed),
+      content: new FormControl(
+        this.data.todo?.content,
+        [Validators.required, Validators.maxLength(500)]
+      ),
+      creator: new FormControl(
+        this.data.todo?.creator,
+        [Validators.required, Validators.maxLength(25)]
+      ),
+      deadLine: new FormControl(
+        this.data.todo?.deadLine
+      ),
+      completed: new FormControl(
+        this.data.todo?.completed
+      ),
     });
     this.cdr.detectChanges();
   }

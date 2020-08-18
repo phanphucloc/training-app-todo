@@ -17,33 +17,28 @@
       <span class="red-color">*</span>
     </mat-label>
     <input matInput cdkFocusInitial formControlName="title" />
-
-    <mat-error
-      i18n="@@block-formTodo-messErrorRequiredTitle"
-      *ngIf="
+    <mat-error i18n="@@block-formTodo-messErrorRequiredTitle" *ngIf="
         todoForm?.get('title')?.errors?.required &&
         todoForm?.get('title')?.touched
-      "
-    >
+      ">
       Title is required
     </mat-error>
-    <mat-error
-      i18n="@@block-formTodo-messErrorExistTitle"
-      *ngIf="
+    <mat-error i18n="@@block-formTodo-messErrorExistTitle" *ngIf="
         todoForm?.get('title')?.hasError('titleExist') &&
         todoForm.get('title')?.touched
-      "
-    >
+      ">
       The title already exists
     </mat-error>
-    <mat-error
-      *ngIf="
+    <mat-error *ngIf="
         todoForm?.get('title')?.hasError('maxlength') &&
         todoForm?.get('title')?.touched
-      "
-    >
-      <span i18n="@@block-formTodo-messErrorMaxlength">Max length is: </span>
-      {{ todoForm.get("title")?.errors.maxlength.requiredLength }}
+      ">
+      <span i18n="@@block-formTodo-messErrorMaxlength">
+        Max length is:
+      </span>
+      <span>
+        {{ todoForm.get("title")?.errors.maxlength.requiredLength }}
+      </span>
     </mat-error>
   </mat-form-field>
 
@@ -53,110 +48,79 @@
       <span class="red-color">*</span>
     </mat-label>
     <input matInput formControlName="creator" />
-
-    <mat-error
-      i18n="@@block-formTodo-messErrorRequiredContent"
-      *ngIf="
+    <mat-error i18n="@@block-formTodo-messErrorRequiredContent" *ngIf="
         todoForm?.get('creator')?.errors?.required &&
         todoForm?.get('creator')?.touched
-      "
-    >
+      ">
       Content is required
     </mat-error>
-    <mat-error
-      *ngIf="
+    <mat-error *ngIf="
         todoForm?.get('creator')?.hasError('maxlength') &&
         todoForm?.get('creator')?.touched
-      "
-    >
-      <span i18n="@@block-formTodo-messErrorMaxlength">Max length is: </span>
-      {{ todoForm.get("creator")?.errors.maxlength.requiredLength }}
+      ">
+      <span i18n="@@block-formTodo-messErrorMaxlength">
+        Max length is:
+      </span>
+      <span>
+        {{ todoForm.get("creator")?.errors.maxlength.requiredLength }}
+      </span>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Deadline</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [matDatepickerFilter]="limitDay"
-      formControlName="deadLine"
-    />
+    <input matInput formControlName="deadLine" [matDatepicker]="picker" [matDatepickerFilter]="limitDay" />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-    <mat-error
-      *ngIf="
+    <mat-error *ngIf="
         todoForm?.get('deadLine')?.hasError('matDatepickerParse') &&
         todoForm?.get('deadLine')?.touched
-      "
-    >
+      ">
       <span i18n="@@block-formTodo-messErrorIncorrectTimeFormat">
         Incorrect time format
       </span>
     </mat-error>
-    <mat-error
-      *ngIf="
+    <mat-error *ngIf="
         todoForm?.get('deadLine')?.hasError('matDatepickerFilter') &&
         todoForm?.get('deadLine')?.touched
-      "
-    >
+      ">
       <span i18n="@@block-formTodo-messErrorLimitTime">
         You are not allowed to choose a time before today
       </span>
     </mat-error>
   </mat-form-field>
-  
+
   <mat-form-field class="example-full-width">
     <mat-label>
       <span i18n="@@block-formTodo-labelContent">Content</span>
       <span class="red-color">*</span>
     </mat-label>
     <textarea matInput formControlName="content"></textarea>
-
-    <mat-error
-      i18n="@@block-formTodo-messErrorRequiredContent"
-      *ngIf="
+    <mat-error i18n="@@block-formTodo-messErrorRequiredContent" *ngIf="
         todoForm?.get('content')?.errors?.required &&
         todoForm?.get('content')?.touched
-      "
-    >
+      ">
       Content is required
     </mat-error>
-    <mat-error
-      *ngIf="
+    <mat-error *ngIf="
         todoForm?.get('content')?.hasError('maxlength') &&
         todoForm?.get('content')?.touched
-      "
-    >
+      ">
       <span i18n="@@block-formTodo-messErrorMaxlength">Max length is: </span>
       {{ todoForm.get("content")?.errors.maxlength.requiredLength }}
     </mat-error>
   </mat-form-field>
 
-  <mat-checkbox
-    *ngIf="todoForm?.get('completed')"
-    formControlName="completed"
-    class="example-margin"
-  >
+  <mat-checkbox *ngIf="todoForm?.get('completed')" formControlName="completed" class="example-margin">
     <span i18n="@@block-formTodo-labelCompleted">
       Completed
     </span>
   </mat-checkbox>
   <mat-dialog-actions align="end">
-    <button
-      mat-button
-      type="button"
-      (click)="cancel()"
-      i18n="@@block-formTodo-cancel"
-    >
+    <button mat-button type="button" (click)="cancel()" i18n="@@block-formTodo-cancel">
       Cancel
     </button>
-    <button
-      mat-button
-      type="submit"
-      color="primary"
-      [disabled]="todoForm?.invalid || todoForm?.pending"
-    >
+    <button mat-button type="submit" color="primary" [disabled]="todoForm?.invalid || todoForm?.pending">
       <span class="material-icons">done</span>
       <span class="text-icons-middle" i18n="@@block-formTodo-submit">
         Submit
