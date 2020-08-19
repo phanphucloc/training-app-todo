@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve --configuration=en",
+    "start:vi": "ng serve --configuration=vi",
+    "start:heroku": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
