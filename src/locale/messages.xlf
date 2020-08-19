@@ -9,118 +9,6 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="block-formTodo-labelTitle" datatype="html">
-        <source>Title</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-messErrorRequiredTitle" datatype="html">
-        <source>
-      Title is required
-    </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-messErrorExistTitle" datatype="html">
-        <source>
-      The title already exists
-    </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-messErrorMaxlength" datatype="html">
-        <source>Max length is: </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">72</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">98</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-labelCreator" datatype="html">
-        <source>Creator</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-messErrorRequiredContent" datatype="html">
-        <source>
-      Content is required
-    </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">63</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-labelContent" datatype="html">
-        <source>Content</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">78</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-messErrorIncorrectTimeFormat" datatype="html">
-        <source>
-        Incorrect time format
-      </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">118</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-messErrorLimitTime" datatype="html">
-        <source>
-        You are not allowed to choose a time before today
-      </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">128</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-labelCompleted" datatype="html">
-        <source>
-      Completed
-    </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">138</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-cancel" datatype="html">
-        <source>
-      Cancel
-    </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">148</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="block-formTodo-submit" datatype="html">
-        <source>
-        Submit
-      </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/todo/components/form-add-and-edit-todo/form-add-and-edit-todo.component.html</context>
-          <context context-type="linenumber">158</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="notification-alertDelete" datatype="html">
         <source>
   Are you sure you want to delete?
@@ -136,14 +24,188 @@
   </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/dialog-delete-todo/dialog-delete-todo.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="notification-agree" datatype="html">
         <source>Agree</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/dialog-delete-todo/dialog-delete-todo.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelTitle" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorRequiredTitle" datatype="html">
+        <source>
+        Title is required
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorExistTitle" datatype="html">
+        <source>
+        The title already exists
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorMaxlength" datatype="html">
+        <source>
+          Max length is:
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelCreator" datatype="html">
+        <source>Creator</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorRequiredContent" datatype="html">
+        <source>
+        Content is required
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorIncorrectTimeFormat" datatype="html">
+        <source>
+          Incorrect time format
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-messErrorLimitTime" datatype="html">
+        <source>
+          You are not allowed to choose a time before today
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelContent" datatype="html">
+        <source>Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-labelCompleted" datatype="html">
+        <source>
+        Completed
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-cancel" datatype="html">
+        <source>
+        Cancel
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="block-formTodo-submit" datatype="html">
+        <source>
+          Submit
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-edit-todo/form-edit-todo.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/todo/components/form-add-todo/form-add-todo.component.html</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block.table.title" datatype="html">
@@ -171,7 +233,7 @@
         <source>Title</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/filter-todo/filter-todo.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form-todo-label-creator" datatype="html">
@@ -180,7 +242,7 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/filter-todo/filter-todo.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form-todo-label-content" datatype="html">
@@ -189,7 +251,7 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/filter-todo/filter-todo.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form-todo-label-completed" datatype="html">
@@ -198,7 +260,7 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/filter-todo/filter-todo.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-title" datatype="html">
@@ -234,7 +296,7 @@
     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-deadline" datatype="html">
@@ -243,7 +305,7 @@
     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="block-table-row-completed" datatype="html">
@@ -252,7 +314,7 @@
     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/todo/components/list-todo/list-todo.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
     </body>

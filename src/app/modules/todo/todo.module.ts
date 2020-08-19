@@ -13,21 +13,27 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FormAddAndEditTodoComponent } from './components/form-add-and-edit-todo/form-add-and-edit-todo.component';
-import { DialogDeleteTodoComponent } from './components/dialog-delete-todo/dialog-delete-todo.component';
 import { FilterTodoComponent } from './components/filter-todo/filter-todo.component';
 import { ListTodoComponent } from './components/list-todo/list-todo.component';
 import { ListTodoPageComponent } from './pages/list-todo-page/list-todo-page.component';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FormEditTodoComponent } from './components/form-edit-todo/form-edit-todo.component';
+import { FormAddTodoComponent } from './components/form-add-todo/form-add-todo.component';
+import { DialogDeleteTodoComponent } from './components/dialog-delete-todo/dialog-delete-todo.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
     ListTodoPageComponent,
-    FormAddAndEditTodoComponent,
+    FormEditTodoComponent,
+    FormAddTodoComponent,
     DialogDeleteTodoComponent,
     FilterTodoComponent,
     ListTodoComponent,
+    FormEditTodoComponent,
   ],
   imports: [
     MatNativeDateModule,
@@ -47,6 +53,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTableModule,
     MatCardModule,
     MatIconModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

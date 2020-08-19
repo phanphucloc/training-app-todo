@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { combineLatest } from 'rxjs';
-import { startWith, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { combineLatest, ReplaySubject } from 'rxjs';
+import { startWith, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import {
   SearchObject,
   initCompletedFilters,
@@ -18,6 +18,8 @@ export class FilterTodoComponent implements OnInit {
   public searchForm: FormGroup;
   public searchObject: SearchObject;
   public completedFilters = initCompletedFilters;
+
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor() {}
 
@@ -44,7 +46,11 @@ export class FilterTodoComponent implements OnInit {
         startWith(COMPLETED_FILTER.SHOW_ALL)
       ),
     ])
-      .pipe(debounceTime(500), distinctUntilChanged())
+      .pipe(
+        takeUntil(this.destroyed$),
+        debounceTime(500),
+        distinctUntilChanged()
+      )
       .subscribe(([title, content, creator, completed]) => {
         const searchData = new SearchObject();
         searchData.title = title;

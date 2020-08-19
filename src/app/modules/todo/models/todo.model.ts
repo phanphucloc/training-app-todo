@@ -34,17 +34,6 @@ export class CompletedFilter {
   value: COMPLETED_FILTER;
 }
 
-export class ResultTodoForm {
-  todo: Todo;
-  currentAction: string;
-  actionDialog: string;
-  constructor() {}
-}
-
-export class DataTodoForm {
-  todo: Todo;
-  currentAction: string;
-}
 
 export class Todo {
   id: string;

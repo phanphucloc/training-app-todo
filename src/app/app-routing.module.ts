@@ -12,8 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: 'todo',
-        loadChildren: () =>
-          import('./modules/todo/todo.module').then((m) => m.TodoModule),
+        loadChildren: () => import('./modules/todo/todo.module').then((m) => m.TodoModule),
       },
     ],
   },

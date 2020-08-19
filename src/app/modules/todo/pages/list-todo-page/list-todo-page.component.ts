@@ -4,23 +4,18 @@ import { TodoService } from '../../services/todo.service';
 import { TodoQuery } from '../../models/todo.query';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { FormAddAndEditTodoComponent } from '../../components/form-add-and-edit-todo/form-add-and-edit-todo.component';
 import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
-import { Todo, ACTION, SearchObject, initCompletedFilters, ResultTodoForm, ACTION_DIALOG} from '../../models/todo.model';
+import { Todo, SearchObject, initCompletedFilters, ACTION_DIALOG} from '../../models/todo.model';
+import { take } from 'rxjs/operators';
+import { FormEditTodoComponent } from '../../components/form-edit-todo/form-edit-todo.component';
+import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component';
 
 @Component({
   selector: 'app-list-todo-page',
   templateUrl: './list-todo-page.component.html',
 })
 export class ListTodoPageComponent implements OnInit {
-  public displayedColumns: string[] = [
-    'title',
-    'content',
-    'creator',
-    'completed',
-    'action',
-  ];
   public listTodo$: Observable<Todo[]>;
   public todoForm: FormGroup;
   public searchForm: FormGroup;
@@ -44,47 +39,53 @@ export class ListTodoPageComponent implements OnInit {
   }
 
   public addTodo(): void {
-    this.openDialogTodoForm(ACTION.ADD, null);
+    this.openDialogAddTodoForm();
+  }
+
+  public openDialogAddTodoForm(): void {
+    const dialogTodoFormRef = this.dialog.open(FormAddTodoComponent, {
+      width: '450px',
+    });
+    dialogTodoFormRef.afterClosed()
+      .pipe(take(1))
+      .subscribe((todo: Todo) => {
+        if (todo){
+          this.todoService.add(todo);
+          const alertText = $localize`:@@alert-add-success:You have successfully added`;
+          this.showAlert(alertText);
+        }
+      });
   }
 
   public updateTodo(id: string): void {
-    this.todoQuery.getTodoById(id).subscribe((res: Todo) => {
-      const todoItem = new Todo();
-      todoItem.id = res.id;
-      todoItem.title = res.title;
-      todoItem.content = res.content;
-      todoItem.creator = res.creator;
-      todoItem.deadLine = res.deadLine;
-      todoItem.completed = res.completed;
-      this.openDialogTodoForm(ACTION.EDIT, todoItem);
-    });
+    this.todoQuery.getTodoById(id)
+      .pipe(take(1))
+      .subscribe((res: Todo) => {
+        const todoItem = new Todo();
+        todoItem.id = res.id;
+        todoItem.title = res.title;
+        todoItem.content = res.content;
+        todoItem.creator = res.creator;
+        todoItem.deadLine = res.deadLine;
+        todoItem.completed = res.completed;
+        this.openDialogEditTodoForm(todoItem);
+      });
   }
 
-  public openDialogTodoForm(currentAction, todoItem?: Todo): void {
-    const dialogTodoFormRef = this.dialog.open(FormAddAndEditTodoComponent, {
+  public openDialogEditTodoForm(todoItem?: Todo): void {
+    const dialogTodoFormRef = this.dialog.open(FormEditTodoComponent, {
       width: '450px',
-      data: {
-        currentAction,
-        todo: todoItem,
-      },
+      data: todoItem
     });
-    dialogTodoFormRef.afterClosed().subscribe((result: ResultTodoForm) => {
-      if (result.actionDialog === ACTION_DIALOG.SUBMIT) {
-        let alertText: string;
-        switch (result.currentAction) {
-          case ACTION.ADD:
-            this.todoService.add(result.todo);
-            alertText = $localize`:@@alert-add-success:You have successfully added`;
-            this.showAlert(alertText);
-            break;
-          case ACTION.EDIT:
-            this.todoService.updateTodo(result.todo);
-            alertText = $localize`:@@alert-update-success:You have successfully updated`;
-            this.showAlert(alertText);
-            break;
+    dialogTodoFormRef.afterClosed()
+      .pipe(take(1))
+      .subscribe((todo: Todo) => {
+        if (todo){
+          this.todoService.updateTodo(todo);
+          const alertText = $localize`:@@alert-update-success:You have successfully updated`;
+          this.showAlert(alertText);
         }
-      }
-    });
+      });
   }
 
   public updateCompletedStatus(todo: Todo): void {
@@ -97,13 +98,15 @@ export class ListTodoPageComponent implements OnInit {
     const dialogDeleteRef = this.dialog.open(DialogDeleteTodoComponent, {
       width: '450px',
     });
-    dialogDeleteRef.afterClosed().subscribe((result: string) => {
-      if (result === ACTION_DIALOG.AGREE) {
-        this.todoService.delete(id);
-        const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
-        this.showAlert(alertText);
-      }
-    });
+    dialogDeleteRef.afterClosed()
+      .pipe(take(1))
+      .subscribe((result: boolean) => {
+        if (result === true) {
+          this.todoService.delete(id);
+          const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
+          this.showAlert(alertText);
+        }
+      });
   }
 
   public showAlert(alertText: string): void {

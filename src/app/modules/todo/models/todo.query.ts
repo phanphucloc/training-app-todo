@@ -28,15 +28,11 @@ export class TodoQuery extends QueryEntity<TodoState> {
   }
 
   public getTodoById(todoId: string): Observable<Todo> {
-    return this.selectEntity(({ id }) => id === todoId).pipe(
-      take(1)
-    );
+    return this.selectEntity(({ id }) => id === todoId);
   }
 
   public getTodoByTitle(todoTitle: string): Observable<Todo> {
-    return this.selectEntity(({ title }) => title === todoTitle).pipe(
-      take(1)
-    );
+    return this.selectEntity(({ title }) => title === todoTitle);
   }
 
   private getVisibleTodo(filter: SearchObject, listTodo: Todo[]): Todo[] {

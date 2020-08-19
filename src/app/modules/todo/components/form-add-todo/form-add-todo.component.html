@@ -1,13 +1,6 @@
 <form [formGroup]="todoForm" (ngSubmit)="submit()">
   <h2 matDialogTitle>
-    <container-element [ngSwitch]="data.currentAction">
-      <some-element *ngSwitchCase="'ADD'">
-        <span class="material-icons">add</span>
-      </some-element>
-      <some-element *ngSwitchDefault>
-        <span class="material-icons">edit</span>
-      </some-element>
-    </container-element>
+    <span class="material-icons">add</span>
     <span class="text-icons-middle">Todo</span>
   </h2>
 
@@ -117,7 +110,7 @@
     </span>
   </mat-checkbox>
   <mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="cancel()" i18n="@@block-formTodo-cancel">
+    <button mat-button type="button" (click)="onDismiss()" i18n="@@block-formTodo-cancel">
       Cancel
     </button>
     <button mat-button type="submit" color="primary" [disabled]="todoForm?.invalid || todoForm?.pending">
