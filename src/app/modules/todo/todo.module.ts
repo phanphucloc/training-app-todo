@@ -21,9 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormEditTodoComponent } from './components/form-edit-todo/form-edit-todo.component';
 import { FormAddTodoComponent } from './components/form-add-todo/form-add-todo.component';
 import { DialogDeleteTodoComponent } from './components/dialog-delete-todo/dialog-delete-todo.component';
-import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MessagingService } from 'src/app/common/services/messaging.service';
 
 @NgModule({
   declarations: [
@@ -53,9 +51,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MatTableModule,
     MatCardModule,
     MatIconModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+  ]
 })
 export class TodoModule {}

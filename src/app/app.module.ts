@@ -15,10 +15,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MessagingService } from './common/services/messaging.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MatSnackBarModule,
     FormsModule,
     MatIconModule,
     MatCardModule,
@@ -34,8 +40,10 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule.enablePersistence(null)
   ],
-  providers: [],
+  providers: [MessagingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

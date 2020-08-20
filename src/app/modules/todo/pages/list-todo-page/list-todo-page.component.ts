@@ -10,12 +10,15 @@ import { Todo, SearchObject, initCompletedFilters, ACTION_DIALOG} from '../../mo
 import { take } from 'rxjs/operators';
 import { FormEditTodoComponent } from '../../components/form-edit-todo/form-edit-todo.component';
 import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component';
+import { MessagingService } from 'src/app/common/services/messaging.service';
+
 
 @Component({
   selector: 'app-list-todo-page',
   templateUrl: './list-todo-page.component.html',
 })
 export class ListTodoPageComponent implements OnInit {
+  public message;
   public listTodo$: Observable<Todo[]>;
   public todoForm: FormGroup;
   public searchForm: FormGroup;
@@ -29,13 +32,16 @@ export class ListTodoPageComponent implements OnInit {
     public dialog: MatDialog,
     private todoService: TodoService,
     private todoQuery: TodoQuery,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private messagingService: MessagingService
   ) {
     this.searchObject = new SearchObject();
   }
 
   ngOnInit(): void {
+    const userId = 'user001';
     this.listTodo$ = this.todoQuery.selectVisibleTodo();
+    this.todoService.getTodo();
   }
 
   public addTodo(): void {
