@@ -38,17 +38,17 @@ export class TodoQuery extends QueryEntity<TodoState> {
   private getVisibleTodo(filter: SearchObject, listTodo: Todo[]): Todo[] {
     if (filter?.title?.trim() !== '') {
       listTodo = listTodo.filter((todo) =>
-        todo.title.toLowerCase().includes(filter.title.toLowerCase())
+        todo.title.toLowerCase().includes(filter.title?.toLowerCase())
       );
     }
     if (filter?.content?.trim() !== '') {
       listTodo = listTodo.filter((todo) =>
-        todo.content.toLowerCase().includes(filter.content.toLowerCase())
+        todo.content.toLowerCase().includes(filter.content?.toLowerCase())
       );
     }
     if (filter?.creator?.trim() !== '') {
       listTodo = listTodo.filter((todo) =>
-        todo.creator.toLowerCase().includes(filter.creator.toLowerCase())
+        todo.creator.toLowerCase().includes(filter.creator?.toLowerCase())
       );
     }
     if (filter?.completed !== null) {

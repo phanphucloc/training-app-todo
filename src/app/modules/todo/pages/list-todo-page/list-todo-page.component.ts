@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs';
 import { TodoService } from '../../services/todo.service';
 import { TodoQuery } from '../../models/todo.query';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
-import { Todo, SearchObject, initCompletedFilters, ACTION_DIALOG} from '../../models/todo.model';
-import { take } from 'rxjs/operators';
+import { Todo, SearchObject, initCompletedFilters} from '../../models/todo.model';
+import { take, takeUntil } from 'rxjs/operators';
 import { FormEditTodoComponent } from '../../components/form-edit-todo/form-edit-todo.component';
 import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component';
 
@@ -15,7 +15,7 @@ import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-to
   selector: 'app-list-todo-page',
   templateUrl: './list-todo-page.component.html',
 })
-export class ListTodoPageComponent implements OnInit {
+export class ListTodoPageComponent implements OnInit, OnDestroy {
   public listTodo$: Observable<Todo[]>;
   public todoForm: FormGroup;
   public searchForm: FormGroup;
@@ -24,6 +24,7 @@ export class ListTodoPageComponent implements OnInit {
 
   private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  private destroy$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(
     public dialog: MatDialog,
@@ -36,6 +37,9 @@ export class ListTodoPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.listTodo$ = this.todoQuery.selectVisibleTodo();
+    this.todoService.getTodo().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe();
   }
 
   public addTodo(): void {
@@ -89,7 +93,7 @@ export class ListTodoPageComponent implements OnInit {
   }
 
   public updateCompletedStatus(todo: Todo): void {
-    this.todoService.updateTodoComplete(todo);
+    this.todoService.updateTodo(todo);
     const alertText = $localize`:@@alert-update-success:You have successfully updated`;
     this.showAlert(alertText);
   }
@@ -119,5 +123,9 @@ export class ListTodoPageComponent implements OnInit {
 
   public changeFilterValue(filter: SearchObject): void {
     this.todoService.updateFilter(filter);
+  }
+
+  ngOnDestroy(): void{
+    this.destroy$.next(true);
   }
 }

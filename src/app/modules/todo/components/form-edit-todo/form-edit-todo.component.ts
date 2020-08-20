@@ -3,8 +3,9 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, take } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, Inject, ChangeDetectorRef} from '@angular/core';
-import { ACTION, Todo, ACTION_DIALOG} from '../../models/todo.model';
+import { Todo} from '../../models/todo.model';
 import { FormGroup, FormControl, Validators, AsyncValidatorFn, AbstractControl} from '@angular/forms';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-form-edit-todo',
@@ -17,6 +18,7 @@ export class FormEditTodoComponent implements OnInit {
     public dialogRef: MatDialogRef<FormEditTodoComponent>,
     @Inject(MAT_DIALOG_DATA) public todo: Todo,
     private todoQuery: TodoQuery,
+    private todoService: TodoService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -73,10 +75,11 @@ export class FormEditTodoComponent implements OnInit {
   private validateTitle(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       if (control.value) {
-        return this.todoQuery.getTodoByTitle(control.value).pipe(
+        return this.todoService.getTodoByTitle(control.value).pipe(
           take(1),
           distinctUntilChanged(),
           map((res: Todo) => {
+            console.log(res);
             if (res && res.id !== this.todoForm?.value?.id) {
               return { titleExist: true };
             } else {

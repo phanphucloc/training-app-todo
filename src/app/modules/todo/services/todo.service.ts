@@ -1,11 +1,42 @@
 import { Injectable } from '@angular/core';
 import { TodoStore } from '../models/todo.store';
 import { Todo, SearchObject } from '../models/todo.model';
-import { guid } from '@datorama/akita';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
-  constructor(private todoStore: TodoStore) {}
+  constructor(
+    private todoStore: TodoStore,
+    private firestore: AngularFirestore
+  ) {}
+
+  public getTodo(): Observable<Todo[]> {
+    return this.firestore
+      .collection('Todo')
+      .snapshotChanges()
+      .pipe(
+        map((result) => {
+          const listTodo: Todo[] = this.formatListTodo(result);
+          this.todoStore.set(listTodo);
+          return listTodo;
+        })
+      );
+  }
+
+  public getTodoByTitle(todoTitle: string): Observable<any> {
+    return this.firestore
+      .collection('Todo', (ref) => ref.where('title', '==', todoTitle))
+      .snapshotChanges()
+      .pipe(
+        map((result) => {
+          const listTodo: Todo[] = this.formatListTodo(result);
+          const itemTodo = listTodo.shift();
+          return itemTodo;
+        })
+      );
+  }
 
   public add(newTodo: Todo): void {
     const todo: Todo = this.createTodo(
@@ -14,19 +45,17 @@ export class TodoService {
       newTodo.creator,
       newTodo.deadLine
     );
-    this.todoStore.add(todo);
+    this.firestore.collection('Todo').add(todo);
   }
 
   public updateTodo(todo: Todo): void {
-    this.todoStore.update(todo.id, todo);
-  }
-
-  public updateTodoComplete({ id, completed }: Todo): void {
-    this.todoStore.update(id, { completed });
+    const todoId = todo.id;
+    delete todo.id;
+    this.firestore.collection('Todo').doc(todoId).update(todo);
   }
 
   public delete(id: string): void {
-    this.todoStore.remove(id);
+    this.firestore.collection('Todo').doc(id).delete();
   }
 
   public updateFilter(filter: SearchObject): void {
@@ -37,15 +66,48 @@ export class TodoService {
     });
   }
 
-  private createTodo(title: string, content: string, creator: string, deadLine: Date): Todo {
+  private createTodo(
+    title: string,
+    content: string,
+    creator: string,
+    deadLine: Date
+  ): Todo {
     return {
-      id: guid(),
       title,
       content,
       creator,
       completed: false,
       createdDate: new Date(),
-      deadLine : new Date(deadLine)
+      deadLine: new Date(deadLine),
     } as Todo;
+  }
+
+  private formatListTodo(listTodoRaw: any[]): Todo[] {
+    const listTodo: Todo[] = listTodoRaw.map((item) => {
+      const rawItem: any = item.payload.doc.data();
+      const itemTodo: Todo = this.formatItemTodo(item.payload.doc.id, rawItem);
+      return itemTodo;
+    });
+    return listTodo;
+  }
+
+  private formatItemTodo(idTodo: string, todoRaw: any): Todo {
+    const itemTodo: Todo = new Todo();
+    itemTodo.id = idTodo;
+    itemTodo.title = todoRaw.title;
+    itemTodo.creator = todoRaw.creator;
+    itemTodo.content = todoRaw.content;
+    itemTodo.completed = todoRaw.completed;
+    if (todoRaw?.createdDate && todoRaw?.createdDate.seconds) {
+      itemTodo.createdDate = new Date(
+        Number(todoRaw.createdDate.seconds || 0) * 1000
+      );
+    }
+    if (todoRaw?.deadLine && todoRaw?.deadLine.seconds) {
+      itemTodo.deadLine = new Date(
+        Number(todoRaw.deadLine.seconds || 0) * 1000
+      );
+    }
+    return itemTodo;
   }
 }

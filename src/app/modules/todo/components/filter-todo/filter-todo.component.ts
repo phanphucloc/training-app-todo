@@ -2,11 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { combineLatest, ReplaySubject } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import {
-  SearchObject,
-  initCompletedFilters,
-  COMPLETED_FILTER,
-} from '../../models/todo.model';
+import {SearchObject, initCompletedFilters, COMPLETED_FILTER} from '../../models/todo.model';
 
 @Component({
   selector: 'app-filter-todo',
