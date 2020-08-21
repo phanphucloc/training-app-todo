@@ -106,6 +106,21 @@ table[mat-table] {
 	}
 }
 
+.spinner{
+	&.center{
+		margin: auto;
+	}
+	&.small{
+		width: 40px !important; 
+		height: 40px !important; 
+
+		svg{
+			width: 40px !important; 
+			height: 40px !important; 
+		}
+	}
+}
+
 .mat-form-field-appearance-fill {
 	.mat-form-field-flex {
 		padding: 0px !important;

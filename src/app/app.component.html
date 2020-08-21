@@ -5,6 +5,7 @@
         ><img src="../assets/img/icon-angular.png" style="width: 50px;"
       /></a>
       <a mat-button [routerLink]="['todo/list']">Todo</a>
+      <a mat-button *ngIf="this.authService.isLoggedIn" (click)="logout()">Logout</a>
     </mat-toolbar-row>
     <mat-form-field class="input-big" appearance="fill">
       <mat-label>

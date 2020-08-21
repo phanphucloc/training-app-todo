@@ -17,6 +17,7 @@ import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-to
 })
 export class ListTodoPageComponent implements OnInit, OnDestroy {
   public listTodo$: Observable<Todo[]>;
+  public loading$: Observable<boolean>;
   public todoForm: FormGroup;
   public searchForm: FormGroup;
   public searchObject: SearchObject;
@@ -36,10 +37,13 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loading$ = this.todoQuery.selectLoading();
     this.listTodo$ = this.todoQuery.selectVisibleTodo();
-    this.todoService.getTodo().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe();
+    this.todoService.getTodo()
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
   }
 
   public addTodo(): void {
@@ -47,9 +51,13 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
   }
 
   public openDialogAddTodoForm(): void {
-    const dialogTodoFormRef = this.dialog.open(FormAddTodoComponent, {
-      width: '450px',
-    });
+    const dialogTodoFormRef = this.dialog.open(
+      FormAddTodoComponent,
+      {
+        width: '450px',
+      }
+    );
+
     dialogTodoFormRef.afterClosed()
       .pipe(take(1))
       .subscribe((todo: Todo) => {
@@ -65,22 +73,19 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
     this.todoQuery.getTodoById(id)
       .pipe(take(1))
       .subscribe((res: Todo) => {
-        const todoItem = new Todo();
-        todoItem.id = res.id;
-        todoItem.title = res.title;
-        todoItem.content = res.content;
-        todoItem.creator = res.creator;
-        todoItem.deadLine = res.deadLine;
-        todoItem.completed = res.completed;
-        this.openDialogEditTodoForm(todoItem);
+        this.openDialogEditTodoForm(res);
       });
   }
 
   public openDialogEditTodoForm(todoItem?: Todo): void {
-    const dialogTodoFormRef = this.dialog.open(FormEditTodoComponent, {
-      width: '450px',
-      data: todoItem
-    });
+    const dialogTodoFormRef = this.dialog.open(
+      FormEditTodoComponent,
+      {
+        width: '450px',
+        data: todoItem
+      }
+    );
+
     dialogTodoFormRef.afterClosed()
       .pipe(take(1))
       .subscribe((todo: Todo) => {
@@ -99,9 +104,13 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
   }
 
   public deleteTodo(id: string): void {
-    const dialogDeleteRef = this.dialog.open(DialogDeleteTodoComponent, {
-      width: '450px',
-    });
+    const dialogDeleteRef = this.dialog.open(
+      DialogDeleteTodoComponent,
+      {
+        width: '450px',
+      }
+    );
+
     dialogDeleteRef.afterClosed()
       .pipe(take(1))
       .subscribe((result: boolean) => {
