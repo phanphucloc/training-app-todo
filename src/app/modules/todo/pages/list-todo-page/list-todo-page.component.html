@@ -12,10 +12,17 @@
       <span class="text-icons-middle" i18n="@@button.add">Add</span>
     </button>
   </p>
-  <app-list-todo
-    [listTodo]="listTodo$ | async"
-    (changeCompletedStatusEvent)="updateCompletedStatus($event)"
-    (deleteTodoEvent)="deleteTodo($event)"
-    (updateTodoEvent)="updateTodo($event)"
-  ></app-list-todo>
+  <ng-container *ngIf="(loading$ | async); else listTodoTpl">
+    <mat-spinner class="spinner center small"></mat-spinner>
+  </ng-container>
+  <ng-template #listTodoTpl>
+    <app-list-todo 
+      [listTodo]="listTodo$ | async"
+      (changeCompletedStatusEvent)="updateCompletedStatus($event)"
+      (deleteTodoEvent)="deleteTodo($event)"
+      (updateTodoEvent)="updateTodo($event)"
+    >
+    </app-list-todo>
+  </ng-template>
+
 </mat-card>

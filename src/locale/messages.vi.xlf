@@ -794,6 +794,118 @@
 					</context>
 				</context-group>
 			</trans-unit>
+			<trans-unit id="block-formLogin-title" datatype="html">
+				<source>
+					Login
+				</source>
+				<target>
+					Đăng nhập
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						5
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-error-emailRequired" datatype="html">
+				<source>
+					Email is required
+				</source>
+				<target>
+					Vui lòng nhập email
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						19
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-error-emailMaxLength" datatype="html">
+				<source>
+					Max length is:
+				</source>
+				<target>
+					Độ dài tối đa là:
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						26
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-error-emailFormat" datatype="html">
+				<source>
+					Email format is incorrect
+				</source>
+				<target>
+					Email không đúng định dạng
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						37
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-error-passwordMaxlength" datatype="html">
+				<source>
+					Max length is:
+				</source>
+				<target>
+					Độ dài tối đa là:
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						59
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-error-emailPassword" datatype="html">
+				<source>
+					Email and password do not exist
+				</source>
+				<target>
+					Email hoặc mật khẩu không đúng
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						69
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-submit" datatype="html">
+				<source>
+					Login
+				</source>
+				<target>
+					Login
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						82
+					</context>
+				</context-group>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

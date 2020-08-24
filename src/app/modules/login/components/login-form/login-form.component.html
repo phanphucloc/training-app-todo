@@ -1,0 +1,89 @@
+<form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <mat-card-header>
+    <mat-card-title class="title">
+      <span class="material-icons">person</span>
+      <span class="text-icons-middle" i18n="@@block-formLogin-title">Login</span>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="list-input">
+    <mat-form-field class="example-full-width item-input">
+      <mat-label>
+        <span>Email</span>
+      </mat-label>
+      <input matInput cdkFocusInitial formControlName="email" />
+      <mat-error  i18n="@@block-formLogin-error-emailRequired"
+            *ngIf="
+          loginForm?.get('email')?.errors?.required &&
+          loginForm?.get('email')?.touched
+        ">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="
+          loginForm?.get('email')?.hasError('maxlength') &&
+          loginForm?.get('email')?.touched
+        ">
+        <span i18n="@@block-formLogin-error-emailMaxLength">
+          Max length is:
+        </span>
+        <span>
+          {{ loginForm.get("email")?.errors.maxlength.requiredLength }}
+        </span>
+      </mat-error>
+      <mat-error *ngIf="
+          !loginForm?.get('email')?.hasError('maxlength') &&
+          loginForm?.get('email')?.hasError('emailIncorrect') &&
+          loginForm?.get('email')?.touched
+        ">
+        <span i18n="@@block-formLogin-error-emailFormat">
+          Email format is incorrect
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width item-input">
+      <mat-label>
+        <span>Password</span>
+      </mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="
+          loginForm?.get('password')?.errors?.required &&
+          loginForm?.get('password')?.touched
+        ">
+        <span i18n="@@block-formLogin-error-passwordRequired"></span>
+        password is required
+      </mat-error>
+      <mat-error *ngIf="
+          loginForm?.get('password')?.hasError('maxlength') &&
+          loginForm?.get('password')?.touched
+        ">
+        <span i18n="@@block-formLogin-error-passwordMaxlength">
+          Max length is:
+        </span>
+        <span>
+          {{ todoForm.get("password")?.errors.maxlength.requiredLength }}
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error *ngIf="loginForm?.hasError('incorrect')">
+      <span i18n="@@block-formLogin-error-emailPassword">
+        Email and password do not exist
+      </span>
+    </mat-error>
+  </mat-card-content>
+  <mat-card-actions class="list-actions" align="center">
+    <button mat-raised-button type="submit" color="primary" [disabled]="
+        loginForm?.invalid || loginForm?.pending || loading 
+      ">
+      <ng-container *ngIf="loading ; else textTpl">
+        <mat-spinner class="spinner center small"></mat-spinner>
+      </ng-container>
+      <ng-template #textTpl>
+        <span  i18n="@@block-formLogin-button-submit" class="text-icons-middle" >
+          Login
+        </span>
+      </ng-template>
+    </button>
+  </mat-card-actions>
+</form>
