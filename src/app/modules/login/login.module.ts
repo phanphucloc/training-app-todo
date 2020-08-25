@@ -20,7 +20,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
-
+import { ForgotFormComponent } from './components/forgot-password-form /forgot-password-form.component';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page /forgot-password-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email
     RegisterPageComponent,
     RegisterFormComponent,
     VerifyEmailPageComponent,
+    ForgotFormComponent,
+    ForgotPasswordPageComponent,
   ],
   imports: [
     MatProgressSpinnerModule,
