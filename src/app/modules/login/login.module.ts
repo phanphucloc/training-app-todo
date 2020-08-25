@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,18 +11,28 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoginRoutingModule } from './login-routing.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-
-
-
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
+import { ForgotFormComponent } from './components/forgot-password-form/forgot-password-form.component';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 
 @NgModule({
-  declarations: [LoginPageComponent,LoginFormComponent],
+  declarations: [
+    LoginPageComponent,
+    LoginFormComponent,
+    RegisterPageComponent,
+    RegisterFormComponent,
+    VerifyEmailPageComponent,
+    ForgotFormComponent,
+    ForgotPasswordPageComponent,
+  ],
   imports: [
     MatProgressSpinnerModule,
     MatNativeDateModule,
@@ -41,7 +51,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     MatCardModule,
     MatIconModule,
     CommonModule,
-    LoginRoutingModule
-  ]
+    LoginRoutingModule,
+  ],
 })
-export class LoginModule { }
+export class LoginModule {}

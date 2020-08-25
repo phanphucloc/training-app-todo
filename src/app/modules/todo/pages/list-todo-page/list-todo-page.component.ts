@@ -10,10 +10,12 @@ import { Todo, SearchObject, initCompletedFilters} from '../../models/todo.model
 import { take, takeUntil } from 'rxjs/operators';
 import { FormEditTodoComponent } from '../../components/form-edit-todo/form-edit-todo.component';
 import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 @Component({
   selector: 'app-list-todo-page',
   templateUrl: './list-todo-page.component.html',
+  styleUrls: ['./list-todo-page.component.scss']
 })
 export class ListTodoPageComponent implements OnInit, OnDestroy {
   public listTodo$: Observable<Todo[]>;
@@ -31,7 +33,8 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private todoService: TodoService,
     private todoQuery: TodoQuery,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public authService: AuthService,
   ) {
     this.searchObject = new SearchObject();
   }
@@ -43,28 +46,36 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$)
       )
-      .subscribe();
+      .subscribe((res) => res, (err) => {
+        console.log(err);
+        this.showAlert(err);
+        this.authService.logout();
+      });
   }
 
   public addTodo(): void {
+    console.log(this.authService.user);
     this.openDialogAddTodoForm();
   }
 
   public openDialogAddTodoForm(): void {
     const dialogTodoFormRef = this.dialog.open(
       FormAddTodoComponent,
-      {
-        width: '450px',
-      }
     );
 
     dialogTodoFormRef.afterClosed()
       .pipe(take(1))
       .subscribe((todo: Todo) => {
         if (todo){
-          this.todoService.add(todo);
-          const alertText = $localize`:@@alert-add-success:You have successfully added`;
-          this.showAlert(alertText);
+          this.todoService.add(todo)
+            .then(res => {
+              const alertText = $localize`:@@alert-add-success:You have successfully added`;
+              this.showAlert(alertText);
+            })
+            .catch(err => {
+              this.showAlert(err.message);
+              this.authService.logout();
+            });
         }
       });
   }
@@ -81,7 +92,6 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
     const dialogTodoFormRef = this.dialog.open(
       FormEditTodoComponent,
       {
-        width: '450px',
         data: todoItem
       }
     );
@@ -90,34 +100,50 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((todo: Todo) => {
         if (todo){
-          this.todoService.updateTodo(todo);
-          const alertText = $localize`:@@alert-update-success:You have successfully updated`;
-          this.showAlert(alertText);
+          this.todoService.updateTodo(todo)
+            .then(res => {
+              const alertText = $localize`:@@alert-update-success:You have successfully updated`;
+              this.showAlert(alertText);
+            })
+            .catch(err => {
+              this.showAlert(err.message);
+              this.authService.logout();
+            });
         }
       });
   }
 
   public updateCompletedStatus(todo: Todo): void {
-    this.todoService.updateTodo(todo);
-    const alertText = $localize`:@@alert-update-success:You have successfully updated`;
-    this.showAlert(alertText);
+    this.todoService.updateTodo(todo)
+      .then(res => {
+        const alertText = $localize`:@@alert-update-success:You have successfully updated`;
+        this.showAlert(alertText);
+      })
+      .catch(err => {
+        console.log(todo);
+        this.showAlert(err.message);
+        this.authService.logout();
+      });
   }
 
   public deleteTodo(id: string): void {
     const dialogDeleteRef = this.dialog.open(
       DialogDeleteTodoComponent,
-      {
-        width: '450px',
-      }
     );
 
     dialogDeleteRef.afterClosed()
       .pipe(take(1))
       .subscribe((result: boolean) => {
         if (result === true) {
-          this.todoService.delete(id);
-          const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
-          this.showAlert(alertText);
+          this.todoService.delete(id)
+            .then(res => {
+              const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
+              this.showAlert(alertText);
+            })
+            .catch(err => {
+              this.showAlert(err.message);
+              this.authService.logout();
+            });
         }
       });
   }

@@ -2,22 +2,29 @@ import { Injectable } from '@angular/core';
 import { TodoStore } from '../models/todo.store';
 import { Todo, SearchObject } from '../models/todo.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/common/services/auth.service';
+import { StatusRequest } from 'src/app/common/models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
   constructor(
     private todoStore: TodoStore,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private authService: AuthService
   ) {}
 
   public getTodo(): Observable<Todo[]> {
     return this.firestore
-      .collection('Todo')
+      .collection('Todo', (ref) => ref.where('idUser', '==', this.authService.userFromLocalStorage.uid))
       .snapshotChanges()
       .pipe(
-        map((result) => {
+        switchMap((result) => {
+          return this.authService.checkAuthAPI(result);
+        }),
+        map((result: any[]) => {
+          console.log(result);
           const listTodo: Todo[] = this.formatListTodo(result);
           this.todoStore.set(listTodo);
           return listTodo;
@@ -30,7 +37,10 @@ export class TodoService {
       .collection('Todo', (ref) => ref.where('title', '==', todoTitle))
       .snapshotChanges()
       .pipe(
-        map((result) => {
+        switchMap((result) => {
+          return this.authService.checkAuthAPI(result);
+        }),
+        map((result: any[]) => {
           const listTodo: Todo[] = this.formatListTodo(result);
           const itemTodo = listTodo.shift();
           return itemTodo;
@@ -38,24 +48,36 @@ export class TodoService {
       );
   }
 
-  public add(newTodo: Todo): void {
-    const todo: Todo = this.createTodo(
-      newTodo.title,
-      newTodo.content,
-      newTodo.creator,
-      newTodo.deadLine
-    );
-    this.firestore.collection('Todo').add(todo);
+  public async add(newTodo: Todo): Promise<StatusRequest> {
+    const checkResult = this.authService.checkExpirationToken();
+    if (checkResult.status) {
+      const todo: Todo = this.createTodo(
+        newTodo.title,
+        newTodo.content,
+        newTodo.creator,
+        newTodo.deadLine
+      );
+      await this.firestore.collection('Todo').add(todo);
+    }
+    return checkResult;
   }
 
-  public updateTodo(todo: Todo): void {
-    const todoId = todo.id;
-    delete todo.id;
-    this.firestore.collection('Todo').doc(todoId).update(todo);
+  public async updateTodo(todo: Todo): Promise<StatusRequest> {
+    const checkResult = this.authService.checkExpirationToken();
+    if (checkResult.status) {
+      const todoId = todo.id;
+      delete todo.id;
+      await this.firestore.collection('Todo').doc(todoId).update(todo);
+    }
+    return checkResult;
   }
 
-  public delete(id: string): void {
-    this.firestore.collection('Todo').doc(id).delete();
+  public async delete(id: string): Promise<StatusRequest> {
+    const checkResult = this.authService.checkExpirationToken();
+    if (checkResult.status){
+      await this.firestore.collection('Todo').doc(id).delete();
+    }
+    return checkResult;
   }
 
   public updateFilter(filter: SearchObject): void {
@@ -75,6 +97,7 @@ export class TodoService {
     return {
       title,
       content,
+      idUser : this.authService.userFromLocalStorage.uid,
       creator,
       completed: false,
       createdDate: new Date(),

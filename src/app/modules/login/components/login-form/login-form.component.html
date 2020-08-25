@@ -71,7 +71,16 @@
         Email and password do not exist
       </span>
     </mat-error>
+
+    <p>
+      <a class="text-redirect" [routerLink]="['/auth/register']" i18n="@@block-formLogin-text-register">Register</a>
+    </p>
+    <p>
+      <a class="text-redirect" [routerLink]="['/auth/forgot-password']" i18n="@@block-formLogin-text-forgot-password">Forgot Password</a>
+    </p>
+
   </mat-card-content>
+  
   <mat-card-actions class="list-actions" align="center">
     <button mat-raised-button type="submit" color="primary" [disabled]="
         loginForm?.invalid || loginForm?.pending || loading 
@@ -82,6 +91,17 @@
       <ng-template #textTpl>
         <span  i18n="@@block-formLogin-button-submit" class="text-icons-middle" >
           Login
+        </span>
+      </ng-template>
+    </button>
+    <br>
+    <button mat-raised-button type="button" (click)="loginGoogle()" color="warn" [disabled]="loadingGoogle">
+      <ng-container *ngIf="loadingGoogle ; else textGoogleTpl">
+        <mat-spinner class="spinner center small"></mat-spinner>
+      </ng-container>
+      <ng-template #textGoogleTpl>
+        <span class="text-icons-middle">
+          Gmail
         </span>
       </ng-template>
     </button>

@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, SimpleChanges, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UserLogin } from '../../models/auth.model';
-import { FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { ValidateService } from 'src/app/common/services/validate-form.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,13 +11,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginFormComponent implements OnInit{
   @Output() loginEvent = new EventEmitter<UserLogin>();
+  @Output() loginGoogleEvent = new EventEmitter<string>();
 
   @Input() errorForm: BehaviorSubject<boolean>;
   @Input() loading: BehaviorSubject<boolean>;
+  @Input() loadingGoogle: BehaviorSubject<boolean>;
 
   public loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private validateService: ValidateService) { }
 
   ngOnInit(): void {
     this.createLogin();
@@ -32,7 +35,7 @@ export class LoginFormComponent implements OnInit{
       email: new FormControl('', [
         Validators.required,
         Validators.maxLength(50),
-        this.EmailValidator
+        this.validateService.emailValidator
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -48,11 +51,7 @@ export class LoginFormComponent implements OnInit{
     this.loginEvent.emit(userLogin);
   }
 
-  private EmailValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(String(control.value).toLowerCase()) && control.value.trim() !== '' ) {
-      return { emailIncorrect: true };
-    }
-    return null;
+  public loginGoogle(): void{
+     this.loginGoogleEvent.emit('submit');
   }
 }
