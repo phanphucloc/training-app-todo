@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UserLogin } from '../../models/auth.model';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { ValidateService } from 'src/app/common/services/validate-form.service';
+import { ValidateService } from 'src/app/common/services/validate-form.service' ;
 
 @Component({
   selector: 'app-login-form',
