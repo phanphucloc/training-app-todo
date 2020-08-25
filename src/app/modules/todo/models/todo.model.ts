@@ -39,6 +39,7 @@ export class Todo {
   id: string;
   title: string;
   content: string;
+  idUser: string;
   creator: string;
   completed: boolean;
   createdDate: Date;

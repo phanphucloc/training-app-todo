@@ -17,7 +17,7 @@ export class TodoService {
 
   public getTodo(): Observable<Todo[]> {
     return this.firestore
-      .collection('Todo')
+      .collection('Todo' , (ref) => ref.where('idUser', '==', this.authService.userFromLocalStorage.uid))
       .snapshotChanges()
       .pipe(
         switchMap((result) => {
@@ -96,6 +96,7 @@ export class TodoService {
   ): Todo {
     return {
       title,
+      idUser : this.authService.userFromLocalStorage.uid,
       content,
       creator,
       completed: false,
@@ -116,6 +117,7 @@ export class TodoService {
   private formatItemTodo(idTodo: string, todoRaw: any): Todo {
     const itemTodo: Todo = new Todo();
     itemTodo.id = idTodo;
+    itemTodo.idUser = todoRaw.idUser;
     itemTodo.title = todoRaw.title;
     itemTodo.creator = todoRaw.creator;
     itemTodo.content = todoRaw.content;
