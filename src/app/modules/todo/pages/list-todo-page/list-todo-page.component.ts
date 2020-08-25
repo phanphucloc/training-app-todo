@@ -47,7 +47,6 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((res) => res, (err) => {
-        console.log(err);
         this.showAlert(err);
         this.authService.logout();
       });
