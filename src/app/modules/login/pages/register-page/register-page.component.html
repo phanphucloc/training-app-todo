@@ -1,0 +1,9 @@
+<mat-card class="register-form" >
+    <app-register-form  
+      [errorForm]="errorForm$"
+      [loading]="loading$ | async"
+      (registerEvent)="submit($event)"
+    >
+    </app-register-form>
+  </mat-card>
+  

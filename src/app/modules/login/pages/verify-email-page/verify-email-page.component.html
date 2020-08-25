@@ -1,0 +1,39 @@
+<mat-card class="verify-form">
+  <mat-card-header class="text-center">
+    <mat-card-title class="title text-center">
+      <span i18n="@@block-formLogin-title-verify-email">Thank You For Registering</span>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="authService.user as user" class="list-input">
+    <p class="text-center">
+      <span i18n="@@block-formLogin-text-send-email">
+        We have sent a confirmation email to
+      </span>
+       <strong>{{ user.email }}</strong>.
+    </p>
+    <p class="text-center" i18n="@@block-formLogin-text-send-please-check-email">
+      Please check your email and click on the link to verify your email
+      address.
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions class="list-actions" align="center">
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="loading$ | async"
+      (click)="sendVerificationMail()"
+    >
+      <ng-container *ngIf="loading$ | async; else textTpl">
+        <mat-spinner class="spinner center small"></mat-spinner>
+      </ng-container>
+      <ng-template #textTpl>
+        <span class="text-icons-middle" i18n="@@block-formLogin-button-Resend-email">
+          Resend Verification Email
+        </span>
+      </ng-template>
+    </button>
+  </mat-card-actions>
+</mat-card>
