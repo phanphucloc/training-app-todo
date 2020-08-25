@@ -48,14 +48,6 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  public signUp(email, password): Promise<auth.UserCredential> {
-    return this.afAuth.createUserWithEmailAndPassword(email, password);
-  }
-
-  public sendVerificationMail(): Promise<void> {
-    return this.user.sendEmailVerification();
-  }
-
   public loginGoogle(): Promise<auth.UserCredential>{
     return this.authLogin(new auth.GoogleAuthProvider());
   }
@@ -77,9 +69,6 @@ export class AuthService {
     });
   }
 
-  public forgotPassword(passwordResetEmail): Promise<void> {
-    return this.afAuth.sendPasswordResetEmail(passwordResetEmail);
-  }
 
   public async logout(): Promise<any> {
     await this.afAuth.signOut();
