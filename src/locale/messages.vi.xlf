@@ -58,8 +58,7 @@
 					</context>
 				</context-group>
 			</trans-unit>
-			</trans-unit>
-				<trans-unit id="token-has-expired" datatype="html">
+			<trans-unit id="token-has-expired" datatype="html">
 				<source>
 					Your token has expired, please login again to continue
 				</source>
@@ -981,7 +980,7 @@
 			</trans-unit>
 			<trans-unit id="block-formLogin-error-emailPassword" datatype="html">
 				<source>
-					Email and password do not exist
+					Username or password is incorrect
 				</source>
 				<target>
 					Email hoặc mật khẩu không đúng

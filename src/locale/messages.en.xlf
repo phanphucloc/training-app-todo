@@ -980,10 +980,10 @@
 			</trans-unit>
 			<trans-unit id="block-formLogin-error-emailPassword" datatype="html">
 				<source>
-					Email and password do not exist
+					Username or password is incorrect
 				</source>
 				<target>
-					Email and password do not exist
+					Username or password is incorrect
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
