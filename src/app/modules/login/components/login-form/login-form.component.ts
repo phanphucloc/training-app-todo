@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { ValidateService } from 'src/app/common/services/validate-form.service';
 import { AuthService } from 'src/app/common/services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -40,6 +41,9 @@ export class LoginFormComponent implements OnInit{
     this.loading$.next(true);
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
+      .pipe(
+        first()
+      )
       .subscribe((result) => {
         this.loading$.next(false);
       }, (res) => {
@@ -52,6 +56,9 @@ export class LoginFormComponent implements OnInit{
     this.loadingGoogle$.next(true);
     this.authService
       .loginGoogle()
+      .pipe(
+        first()
+      )
       .subscribe((result) => {
         this.loadingGoogle$.next(false);
       }, (err) => {

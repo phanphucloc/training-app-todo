@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, from, interval, ReplaySubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TodoService } from '../../services/todo.service';
 import { TodoQuery } from '../../models/todo.query';
 import { FormGroup } from '@angular/forms';
@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import { Todo, SearchObject, initCompletedFilters} from '../../models/todo.model';
-import { take, first, takeUntil } from 'rxjs/operators';
+import { first, takeUntil } from 'rxjs/operators';
 import { FormEditTodoComponent } from '../../components/form-edit-todo/form-edit-todo.component';
 import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component';
 import { AuthService } from 'src/app/common/services/auth.service';

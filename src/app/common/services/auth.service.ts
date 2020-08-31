@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
-import { throwError, of, Observable, from } from 'rxjs';
-import { StatusRequest, UserModel } from 'src/app/common/models/auth.model';
+import { Observable, from } from 'rxjs';
+import { UserModel } from 'src/app/common/models/auth.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { take, first, tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
