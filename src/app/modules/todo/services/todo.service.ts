@@ -21,7 +21,7 @@ export class TodoService {
       )
       .snapshotChanges()
       .pipe(
-        map((result: any[]) => {
+        map((result: DocumentChangeAction<unknown>[]) => {
           const listTodo = this.formatListTodo(result);
           this.todoStore.set(listTodo);
           return listTodo;
