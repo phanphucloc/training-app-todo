@@ -1,14 +1,15 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { combineLatest, ReplaySubject } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import {SearchObject, initCompletedFilters, COMPLETED_FILTER} from '../../models/todo.model';
+import { SearchObject, initCompletedFilters, COMPLETED_FILTER} from '../../models/todo.model';
+import { BaseDestroyableDirective } from 'src/app/common/abstract/base-destroyable';
 
 @Component({
   selector: 'app-filter-todo',
   templateUrl: './filter-todo.component.html',
 })
-export class FilterTodoComponent implements OnInit {
+export class FilterTodoComponent extends BaseDestroyableDirective implements OnInit{
   @Output() changeFilterValue = new EventEmitter<SearchObject>();
 
   public searchForm: FormGroup;
@@ -17,9 +18,11 @@ export class FilterTodoComponent implements OnInit {
 
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createForm();
     this.changeValueSearch();
   }

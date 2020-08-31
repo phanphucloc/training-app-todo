@@ -3,6 +3,7 @@ import { UserLogin } from '../../models/auth.model';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { ValidateService } from 'src/app/common/services/validate-form.service';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,27 +11,18 @@ import { ValidateService } from 'src/app/common/services/validate-form.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit{
-  @Output() loginEvent = new EventEmitter<UserLogin>();
-  @Output() loginGoogleEvent = new EventEmitter<string>();
-
-  @Input() errorForm: BehaviorSubject<boolean>;
-  @Input() loading: BehaviorSubject<boolean>;
-  @Input() loadingGoogle: BehaviorSubject<boolean>;
-
   public loginForm: FormGroup;
+  public loading$ = new BehaviorSubject<boolean>(false);
+  public loadingGoogle$ = new BehaviorSubject<boolean>(false);
+  public messageError: string;
 
-  constructor(private validateService: ValidateService) { }
+  constructor(private validateService: ValidateService, private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.createLogin();
-    this.errorForm.subscribe((result) => {
-      if (result){
-        this.loginForm.setErrors({ incorrect: true });
-      }
-    });
+  public ngOnInit(): void {
+    this.createLoginForm();
   }
 
-  public createLogin(): void {
+  public createLoginForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -44,14 +36,26 @@ export class LoginFormComponent implements OnInit{
     });
   }
 
-  public submit(): void {
-    const userLogin: UserLogin = new UserLogin();
-    userLogin.email = this.loginForm.value.email;
-    userLogin.password = this.loginForm.value.password;
-    this.loginEvent.emit(userLogin);
+  public submitLogin(): void {
+    this.loading$.next(true);
+    this.authService
+      .login(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe((result) => {
+        this.loading$.next(false);
+      }, (res) => {
+        this.loginForm.setErrors({ incorrect: true, message : res.message });
+        this.loading$.next(false);
+      });
   }
 
-  public loginGoogle(): void{
-     this.loginGoogleEvent.emit('submit');
+  public submitLoginGoogle(): void{
+    this.loadingGoogle$.next(true);
+    this.authService
+      .loginGoogle()
+      .subscribe((result) => {
+        this.loadingGoogle$.next(false);
+      }, (err) => {
+        this.loadingGoogle$.next(false);
+      });
   }
 }

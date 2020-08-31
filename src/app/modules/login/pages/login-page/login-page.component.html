@@ -1,10 +1,4 @@
 <mat-card class="login-form" >
-  <app-login-form  
-    [errorForm]="errorForm$"
-    [loading]="loading$ | async"
-    [loadingGoogle]="loadingGoogle$ | async"
-    (loginEvent)="submit($event)"
-    (loginGoogleEvent)="loginGoogle()"
-  >
+  <app-login-form >
   </app-login-form>
 </mat-card>

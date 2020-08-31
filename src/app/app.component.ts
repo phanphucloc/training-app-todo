@@ -25,6 +25,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
   }
 
   public logout(): void{
-    this.authService.logout();
+    this.authService.logout().subscribe();
   }
 }

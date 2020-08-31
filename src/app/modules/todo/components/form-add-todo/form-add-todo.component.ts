@@ -1,6 +1,6 @@
 import { TodoQuery } from '../../models/todo.query';
 import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, take } from 'rxjs/operators';
+import { distinctUntilChanged, map, first } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit} from '@angular/core';
 import { Todo} from '../../models/todo.model';
@@ -18,7 +18,7 @@ export class FormAddTodoComponent implements OnInit {
     private todoQuery: TodoQuery,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createFormAdd();
   }
 
@@ -63,7 +63,7 @@ export class FormAddTodoComponent implements OnInit {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       if (control.value) {
         return this.todoQuery.getTodoByTitle(control.value).pipe(
-          take(1),
+          first(),
           distinctUntilChanged(),
           map((res: Todo) => {
             if (res) {

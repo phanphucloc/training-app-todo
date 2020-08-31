@@ -3,105 +3,85 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
-import { throwError, of } from 'rxjs';
-import { StatusRequest } from 'src/app/common/models/auth.model';
-import {
-  AngularFirestore,
-} from '@angular/fire/firestore';
+import { throwError, of, Observable, from } from 'rxjs';
+import { StatusRequest, UserModel } from 'src/app/common/models/auth.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { take, first, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public user: User;
-  public userFromLocalStorage: any;
+  public user: UserModel;
 
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
     private fireStore: AngularFirestore
   ) {
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.afAuth.authState.subscribe((user: User) => {
-      console.log(user);
-      if (user) {
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
-      } else {
-        localStorage.setItem('user', null);
-      }
+      this.handleLoginLogout(user);
     });
   }
 
-  get isLoggedIn(): boolean {
-    this.userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
-    return this.userFromLocalStorage !== null;
+  public get isLoggedIn(): boolean {
+    return JSON.parse(localStorage.getItem('user'));
   }
 
-  public setUserStorage(user: User): void {
-    if (user) {
-      this.user = user;
-      localStorage.setItem('user', JSON.stringify(this.user));
-    } else {
-      localStorage.setItem('user', null);
-    }
+  public login(email: string, password: string): Observable<auth.UserCredential> {
+    return from(this.afAuth.signInWithEmailAndPassword(email, password));
   }
 
-  public login(email: string, password: string): Promise<auth.UserCredential> {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+  public loginGoogle(): Observable<auth.UserCredential> {
+    return from(this.authLogin(new auth.GoogleAuthProvider())).pipe(
+      tap((result: auth.UserCredential) => {
+        this.setUserData(result.user);
+      })
+    );
   }
 
-  public loginGoogle(): Promise<auth.UserCredential>{
-    return this.authLogin(new auth.GoogleAuthProvider());
+  public setUserData(user: User): Observable<void> {
+    const userRef = this.fireStore.doc(`users/${this.user.uid}`);
+    const userData = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      emailVerified: user.emailVerified,
+    };
+    return from(
+      userRef.set(userData, {
+        merge: true,
+      })
+    );
   }
 
-  public authLogin(provider): Promise<auth.UserCredential> {
+  public logout(): Observable<void> {
+    return from(this.afAuth.signOut());
+  }
+
+  private authLogin(provider): Promise<auth.UserCredential> {
     return this.afAuth.signInWithPopup(provider);
   }
 
-  public setUserData(): Promise<void>{
-    const userRef = this.fireStore.doc(`users/${this.user.uid}`);
-    const userData = {
-      uid: this.user.uid,
-      email: this.user.email,
-      displayName: this.user.displayName,
-      emailVerified: this.user.emailVerified,
-    };
-    return userRef.set(userData, {
-      merge: true,
-    });
-  }
-
-
-  public async logout(): Promise<any> {
-    await this.afAuth.signOut();
-    localStorage.removeItem('user');
-    this.router.navigate(['auth/login']);
-  }
-
-  public checkAuthAPI(result: any): any {
-    const checkResult = this.checkExpirationToken();
-    if (!checkResult.status) {
-      return throwError(checkResult.message);
+  private handleLoginLogout(user: User): void {
+    if (user) {
+      this.user = new UserModel();
+      this.user.uid = user.uid;
+      this.user.displayName = user.displayName;
+      this.user.email = user.email;
+      this.user.emailVerified = user.emailVerified;
+      from(user.getIdTokenResult())
+        .pipe(
+          first()
+        )
+        .subscribe((tokenResult: auth.IdTokenResult) => {
+          this.user.expirationTime = tokenResult.expirationTime;
+          this.user.accessToken = tokenResult.token;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          this.router.navigate(['/todo/list']);
+        });
+    } else {
+      localStorage.setItem('user', null);
+      this.router.navigate(['auth/login']);
     }
-    return of(result);
-  }
-
-  public checkExpirationToken(): StatusRequest {
-    const infoUser = JSON.parse(localStorage.getItem('user'));
-    const expirationTime = infoUser?.stsTokenManager?.expirationTime;
-
-    if (
-      !this.isLoggedIn ||
-      !expirationTime ||
-      new Date().getTime() > expirationTime
-    ) {
-      return {
-        status: false,
-        message: $localize`:@@token-has-expired:token-has-expired`,
-      };
-    }
-
-    return {
-      status: true,
-      message: null,
-    };
   }
 }
