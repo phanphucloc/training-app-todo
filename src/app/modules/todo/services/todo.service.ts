@@ -18,6 +18,7 @@ export class TodoService {
     return this.fireStore
       .collection('Todo', (ref) =>
         ref.where('idUser', '==', this.authService.user.uid)
+           .orderBy('createdDate', 'asc')
       )
       .snapshotChanges()
       .pipe(
@@ -47,7 +48,8 @@ export class TodoService {
       newTodo.title,
       newTodo.content,
       newTodo.creator,
-      newTodo.deadLine
+      newTodo.deadLine,
+      this.authService.user.uid
     );
     return from(this.fireStore.collection('Todo').add(todo));
   }

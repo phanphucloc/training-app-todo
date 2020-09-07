@@ -60,6 +60,9 @@ export class ListTodoPageComponent extends BaseDestroyableDirective implements O
   public openDialogAddTodoForm(): void {
     const dialogTodoFormRef = this.dialog.open(
       FormAddTodoComponent,
+      {
+        panelClass: 'modal-todo'
+      }
     );
 
     dialogTodoFormRef.afterClosed()
@@ -88,7 +91,8 @@ export class ListTodoPageComponent extends BaseDestroyableDirective implements O
     const dialogTodoFormRef = this.dialog.open(
       FormEditTodoComponent,
       {
-        data: todoItem
+        data: todoItem,
+        panelClass: 'modal-todo'
       }
     );
 
@@ -119,6 +123,9 @@ export class ListTodoPageComponent extends BaseDestroyableDirective implements O
   public deleteTodo(id: string): void {
     const dialogDeleteRef = this.dialog.open(
       DialogDeleteTodoComponent,
+      {
+        panelClass: 'dialog-delete'
+      }
     );
 
     dialogDeleteRef.afterClosed()

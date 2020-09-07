@@ -51,12 +51,13 @@ export function createTodo(
   title: string,
   content: string,
   creator: string,
-  deadLine: Date
+  deadLine: Date,
+  uid: string
 ): Todo {
   return {
     title,
     content,
-    idUser : this.authService.user.uid,
+    idUser : uid,
     creator,
     completed: false,
     createdDate: new Date(),

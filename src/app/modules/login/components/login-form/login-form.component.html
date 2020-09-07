@@ -11,15 +11,15 @@
       <mat-label>
         <span>Email</span>
       </mat-label>
-      <input matInput cdkFocusInitial formControlName="email" />
-      <mat-error  i18n="@@block-formLogin-error-emailRequired"
+      <input matInput name="email" cdkFocusInitial formControlName="email" />
+      <mat-error class="error-email" i18n="@@block-formLogin-error-emailRequired"
             *ngIf="
           loginForm?.get('email')?.errors?.required &&
           loginForm?.get('email')?.touched
         ">
         Email is required
       </mat-error>
-      <mat-error *ngIf="
+      <mat-error class="error-email" *ngIf="
           loginForm?.get('email')?.hasError('maxlength') &&
           loginForm?.get('email')?.touched
         ">
@@ -30,7 +30,7 @@
           {{ loginForm.get("email")?.errors.maxlength.requiredLength }}
         </span>
       </mat-error>
-      <mat-error *ngIf="
+      <mat-error class="error-email" *ngIf="
           !loginForm?.get('email')?.hasError('maxlength') &&
           loginForm?.get('email')?.hasError('emailIncorrect') &&
           loginForm?.get('email')?.touched
@@ -45,15 +45,15 @@
       <mat-label>
         <span>Password</span>
       </mat-label>
-      <input matInput type="password" formControlName="password" />
-      <mat-error *ngIf="
+      <input matInput name="password" type="password" formControlName="password" />
+      <mat-error class="error-password" *ngIf="
           loginForm?.get('password')?.errors?.required &&
           loginForm?.get('password')?.touched
         ">
         <span i18n="@@block-formLogin-error-passwordRequired"></span>
         password is required
       </mat-error>
-      <mat-error *ngIf="
+      <mat-error class="error-password" *ngIf="
           loginForm?.get('password')?.hasError('maxlength') &&
           loginForm?.get('password')?.touched
         ">
@@ -67,7 +67,7 @@
     </mat-form-field>
 
     <mat-error *ngIf="loginForm?.hasError('incorrect')">
-      <p>
+      <p class="error-request">
         {{loginForm.errors.message}}
       </p>
     </mat-error>

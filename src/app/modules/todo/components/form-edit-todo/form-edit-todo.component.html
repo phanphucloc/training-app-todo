@@ -10,19 +10,19 @@
         <span class="red-color">*</span>
       </mat-label>
       <input matInput cdkFocusInitial formControlName="title" />
-      <mat-error i18n="@@block-formTodo-messErrorRequiredTitle" *ngIf="
+      <mat-error class="error-title-todo" i18n="@@block-formTodo-messErrorRequiredTitle" *ngIf="
           todoForm?.get('title')?.errors?.required &&
           todoForm?.get('title')?.touched
         ">
         Title is required
       </mat-error>
-      <mat-error i18n="@@block-formTodo-messErrorExistTitle" *ngIf="
+      <mat-error class="error-title-todo" i18n="@@block-formTodo-messErrorExistTitle" *ngIf="
           todoForm?.get('title')?.hasError('titleExist') &&
           todoForm.get('title')?.touched
         ">
         The title already exists
       </mat-error>
-      <mat-error *ngIf="
+      <mat-error class="error-title-todo" *ngIf="
           todoForm?.get('title')?.hasError('maxlength') &&
           todoForm?.get('title')?.touched
         ">
@@ -41,13 +41,13 @@
         <span class="red-color">*</span>
       </mat-label>
       <input matInput formControlName="creator" />
-      <mat-error i18n="@@block-formTodo-messErrorRequiredContent" *ngIf="
+      <mat-error class="error-creator-todo" i18n="@@block-formTodo-messErrorRequiredCreator" *ngIf="
           todoForm?.get('creator')?.errors?.required &&
           todoForm?.get('creator')?.touched
         ">
-        Content is required
+        Creator is required
       </mat-error>
-      <mat-error *ngIf="
+      <mat-error class="error-creator-todo"  *ngIf="
           todoForm?.get('creator')?.hasError('maxlength') &&
           todoForm?.get('creator')?.touched
         ">
@@ -89,13 +89,13 @@
         <span class="red-color">*</span>
       </mat-label>
       <textarea matInput formControlName="content"></textarea>
-      <mat-error i18n="@@block-formTodo-messErrorRequiredContent" *ngIf="
+      <mat-error class="error-content-todo" i18n="@@block-formTodo-messErrorRequiredContent" *ngIf="
           todoForm?.get('content')?.errors?.required &&
           todoForm?.get('content')?.touched
         ">
         Content is required
       </mat-error>
-      <mat-error *ngIf="
+      <mat-error class="error-content-todo"  *ngIf="
           todoForm?.get('content')?.hasError('maxlength') &&
           todoForm?.get('content')?.touched
         ">

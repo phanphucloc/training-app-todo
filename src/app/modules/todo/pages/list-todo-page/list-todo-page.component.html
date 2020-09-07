@@ -4,16 +4,16 @@
 <mat-card>
   <h2 class="title" matDialogTitle>
     <span class="material-icons">table_chart</span>
-    <span class="text-icons-middle" i18n="@@block.table.title">List Todo</span>
+    <span class="text-icons-middle title-page" i18n="@@block.table.title">List Todo</span>
   </h2>
   <p>
-    <button mat-button type="submit" (click)="addTodo()" color="primary">
+    <button mat-button type="submit" class="btn-add-todo" (click)="addTodo()" color="primary">
       <span class="material-icons">add</span>
       <span class="text-icons-middle" i18n="@@button.add">Add</span>
     </button>
   </p>
   <ng-container *ngIf="(loading$ | async); else listTodoTpl">
-    <mat-spinner class="spinner center small"></mat-spinner>
+    <mat-spinner class="spinner center small loading-todo"></mat-spinner>
   </ng-container>
   <ng-template #listTodoTpl>
     <app-list-todo 
