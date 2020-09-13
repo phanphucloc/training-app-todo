@@ -1,7 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, SimpleChanges, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UserLogin } from '../../models/auth.model';
-import { FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { ValidateService } from 'src/app/common/services/validate-form.service';
+import { AuthService } from 'src/app/common/services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -9,30 +12,23 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit{
-  @Output() loginEvent = new EventEmitter<UserLogin>();
-
-  @Input() errorForm: BehaviorSubject<boolean>;
-  @Input() loading: BehaviorSubject<boolean>;
-
   public loginForm: FormGroup;
+  public loading$ = new BehaviorSubject<boolean>(false);
+  public loadingGoogle$ = new BehaviorSubject<boolean>(false);
+  public messageError: string;
 
-  constructor() { }
+  constructor(private validateService: ValidateService, private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.createLogin();
-    this.errorForm.subscribe((result) => {
-      if (result){
-        this.loginForm.setErrors({ incorrect: true });
-      }
-    });
+  public ngOnInit(): void {
+    this.createLoginForm();
   }
 
-  public createLogin(): void {
+  public createLoginForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
         Validators.maxLength(50),
-        this.EmailValidator
+        this.validateService.emailValidator
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -41,18 +37,32 @@ export class LoginFormComponent implements OnInit{
     });
   }
 
-  public submit(): void {
-    const userLogin: UserLogin = new UserLogin();
-    userLogin.email = this.loginForm.value.email;
-    userLogin.password = this.loginForm.value.password;
-    this.loginEvent.emit(userLogin);
+  public submitLogin(): void {
+    this.loading$.next(true);
+    this.authService
+      .login(this.loginForm.value.email, this.loginForm.value.password)
+      .pipe(
+        first()
+      )
+      .subscribe((result) => {
+        this.loading$.next(false);
+      }, (res) => {
+        this.loginForm.setErrors({ incorrect: true, message : res.message });
+        this.loading$.next(false);
+      });
   }
 
-  private EmailValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(String(control.value).toLowerCase()) && control.value.trim() !== '' ) {
-      return { emailIncorrect: true };
-    }
-    return null;
+  public submitLoginGoogle(): void{
+    this.loadingGoogle$.next(true);
+    this.authService
+      .loginGoogle()
+      .pipe(
+        first()
+      )
+      .subscribe((result) => {
+        this.loadingGoogle$.next(false);
+      }, (err) => {
+        this.loadingGoogle$.next(false);
+      });
   }
 }

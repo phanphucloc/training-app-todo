@@ -25,10 +25,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
   }
 
   public logout(): void{
-    this.authService.logout()
-    .then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['auth/login']);
-    });
+    this.authService.logout().subscribe();
   }
 }

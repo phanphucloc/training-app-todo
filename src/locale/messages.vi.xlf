@@ -10,6 +10,22 @@
 					Bạn đã xoá thành công
 				</target>
 			</trans-unit>
+			<trans-unit id="alert-send-successfully" datatype="html">
+				<source>
+					Send successfully. Please check in your email to verify your email
+				</source>
+				<target>
+					Gởi thành công! vui lòng kiểm tra email của bạn
+				</target>
+			</trans-unit>
+			<trans-unit id="alert-send-failed" datatype="html">
+				<source>
+					Send failed. Please try again
+				</source>
+				<target>
+					Gởi thất lại! vui lòng thử lại
+				</target>
+			</trans-unit>
 			<trans-unit id="alert-add-success" datatype="html">
 				<source>
 					You have successfully added
@@ -41,6 +57,15 @@
 						10
 					</context>
 				</context-group>
+			</trans-unit>
+			</trans-unit>
+				<trans-unit id="token-has-expired" datatype="html">
+				<source>
+					Your token has expired, please login again to continue
+				</source>
+				<target>
+					Token của bạn đã hết hạn, vui lòng đăng nhập lại để tiếp tục
+				</target>
 			</trans-unit>
 			<trans-unit id="english" datatype="html">
 				<source>
@@ -794,6 +819,86 @@
 					</context>
 				</context-group>
 			</trans-unit>
+			<trans-unit id="block-formLogin-text-register" datatype="html">
+				<source>
+					Register
+				</source>
+				<target>
+					Đăng kí
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						76
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-forgot-password" datatype="html">
+				<source>
+					Forgot Password
+				</source>
+				<target>
+					Quên mật khẩu
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						79
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-title-register" datatype="html">
+				<source>
+					Register
+				</source>
+				<target>
+					Đăng kí
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/register-form/register-form.component.html
+					</context>
+					<context context-type="linenumber">
+						5
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-go-to-login" datatype="html">
+				<source>
+					Go back to Login
+				</source>
+				<target>
+					Quay lại trang đăng nhập
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/register-form/register-form.component.html
+					</context>
+					<context context-type="linenumber">
+						78
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-register" datatype="html">
+				<source>
+					Register
+				</source>
+				<target>
+					Đăng kí
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/register-form/register-form.component.html
+					</context>
+					<context context-type="linenumber">
+						91
+					</context>
+				</context-group>
+			</trans-unit>
 			<trans-unit id="block-formLogin-title" datatype="html">
 				<source>
 					Login
@@ -903,6 +1008,103 @@
 					</context>
 					<context context-type="linenumber">
 						82
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-title-verify-email" datatype="html">
+				<source>
+					Thank You For Registering
+				</source>
+				<target>
+					Cảm ơn bạn đã đăng kí
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						4
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-send-email" datatype="html">
+				<source>
+					We have sent a confirmation email to
+				</source>
+				<target>
+					Chúng tôi đã gởi một email xác nhận tới
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						9
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-send-please-check-email" datatype="html">
+				<source>
+					Please check your email and click on the link to verify your email
+					address.
+				</source>
+				<target>
+					Vui lòng check trong hộp thư của bạn để xác thực.
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						13
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-Resend-email" datatype="html">
+				<source>
+					Resend Verification Email
+				</source>
+				<target>
+					Gởi lại
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						31
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-reset-password" datatype="html">
+				<source>
+					Reset Password
+				</source>
+				<target>
+					Thay Đổi Mật Khẩu
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/forgot-password-form/forgot-password-form.component.html
+					</context>
+					<context context-type="linenumber">
+						5
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-reset-password" datatype="html">
+				<source>
+					Reset Password
+				</source>
+				<target>
+					Thay đổi
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/forgot-password-form/forgot-password-form.component.html
+					</context>
+					<context context-type="linenumber">
+						66
 					</context>
 				</context-group>
 			</trans-unit>

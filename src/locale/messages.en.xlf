@@ -10,6 +10,22 @@
 					You have successfully deleted
 				</target>
 			</trans-unit>
+			<trans-unit id="alert-send-successfully" datatype="html">
+				<source>
+					Send successfully. Please check in your email to verify your email
+				</source>
+				<target>
+					Send successfully. Please check in your email to verify your email
+				</target>
+			</trans-unit>
+			<trans-unit id="alert-send-failed" datatype="html">
+				<source>
+					Send failed. Please try again
+				</source>
+				<target>
+					Send failed. Please try again
+				</target>
+			</trans-unit>
 			<trans-unit id="alert-add-success" datatype="html">
 				<source>
 					You have successfully added
@@ -24,6 +40,14 @@
 				</source>
 				<target>
 					You have successfully updated
+				</target>
+			</trans-unit>
+			<trans-unit id="token-has-expired" datatype="html">
+				<source>
+					Your token has expired, please login again to continue
+				</source>
+				<target>
+					Your token has expired, please login again to continue
 				</target>
 			</trans-unit>
 			<trans-unit id="language" datatype="html">
@@ -794,6 +818,86 @@
 					</context>
 				</context-group>
 			</trans-unit>
+			<trans-unit id="block-formLogin-text-register" datatype="html">
+				<source>
+					Register
+				</source>
+				<target>
+					Register
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						76
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-forgot-password" datatype="html">
+				<source>
+					Forgot Password
+				</source>
+				<target>
+					Forgot Password
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/login-form/login-form.component.html
+					</context>
+					<context context-type="linenumber">
+						79
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-title-register" datatype="html">
+				<source>
+					Register
+				</source>
+				<target>
+					Register
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/register-form/register-form.component.html
+					</context>
+					<context context-type="linenumber">
+						5
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-go-to-login" datatype="html">
+				<source>
+					Go back to Login
+				</source>
+				<target>
+					Go back to Login
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/register-form/register-form.component.html
+					</context>
+					<context context-type="linenumber">
+						78
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-register" datatype="html">
+				<source>
+					Register
+				</source>
+				<target>
+					Register
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/register-form/register-form.component.html
+					</context>
+					<context context-type="linenumber">
+						91
+					</context>
+				</context-group>
+			</trans-unit>
 			<trans-unit id="block-formLogin-title" datatype="html">
 				<source>
 					Login
@@ -903,6 +1007,104 @@
 					</context>
 					<context context-type="linenumber">
 						82
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-title-verify-email" datatype="html">
+				<source>
+					Thank You For Registering
+				</source>
+				<target>
+					Thank You For Registering
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						4
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-send-email" datatype="html">
+				<source>
+					We have sent a confirmation email to
+				</source>
+				<target>
+					We have sent a confirmation email to
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						9
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-text-send-please-check-email" datatype="html">
+				<source>
+					Please check your email and click on the link to verify your email
+					address.
+				</source>
+				<target>
+					Please check your email and click on the link to verify your email
+					address.
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						13
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-Resend-email" datatype="html">
+				<source>
+					Resend Verification Email
+				</source>
+				<target>
+					Resend Verification Email
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/pages/verify-email-page/verify-email-page.component.html
+					</context>
+					<context context-type="linenumber">
+						31
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-reset-password" datatype="html">
+				<source>
+					Reset Password
+				</source>
+				<target>
+					Reset Password
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/forgot-password-form/forgot-password-form.component.html
+					</context>
+					<context context-type="linenumber">
+						5
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="block-formLogin-button-reset-password" datatype="html">
+				<source>
+					Reset Password
+				</source>
+				<target>
+					Reset Password
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/modules/login/components/forgot-password-form/forgot-password-form.component.html
+					</context>
+					<context context-type="linenumber">
+						66
 					</context>
 				</context-group>
 			</trans-unit>
