@@ -1,6 +1,6 @@
 import { TodoQuery } from '../../models/todo.query';
 import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, take } from 'rxjs/operators';
+import { distinctUntilChanged, map, first } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, Inject, ChangeDetectorRef} from '@angular/core';
 import { Todo} from '../../models/todo.model';
@@ -22,7 +22,7 @@ export class FormEditTodoComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createFormEdit();
   }
 
@@ -76,10 +76,9 @@ export class FormEditTodoComponent implements OnInit {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       if (control.value) {
         return this.todoService.getTodoByTitle(control.value).pipe(
-          take(1),
+          first(),
           distinctUntilChanged(),
           map((res: Todo) => {
-            console.log(res);
             if (res && res.id !== this.todoForm?.value?.id) {
               return { titleExist: true };
             } else {

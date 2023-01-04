@@ -25,7 +25,7 @@ export class ListTodoComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
   public updateCompletedStatus(value: boolean, todo: Todo): void {
     this.changeCompletedStatusEvent.emit({

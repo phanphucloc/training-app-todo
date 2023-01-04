@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TodoService } from '../../services/todo.service';
 import { TodoQuery } from '../../models/todo.query';
 import { FormGroup } from '@angular/forms';
@@ -7,15 +7,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteTodoComponent } from '../../components/dialog-delete-todo/dialog-delete-todo.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import { Todo, SearchObject, initCompletedFilters} from '../../models/todo.model';
-import { take, takeUntil } from 'rxjs/operators';
+import { first, takeUntil } from 'rxjs/operators';
 import { FormEditTodoComponent } from '../../components/form-edit-todo/form-edit-todo.component';
 import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component';
+import { AuthService } from 'src/app/common/services/auth.service';
+import { LOCALIZE } from 'src/app/common/localize/localize.const';
+import { BaseDestroyableDirective } from 'src/app/common/abstract/base-destroyable';
 
 @Component({
   selector: 'app-list-todo-page',
   templateUrl: './list-todo-page.component.html',
+  styleUrls: ['./list-todo-page.component.scss']
 })
-export class ListTodoPageComponent implements OnInit, OnDestroy {
+export class ListTodoPageComponent extends BaseDestroyableDirective implements OnInit {
   public listTodo$: Observable<Todo[]>;
   public loading$: Observable<boolean>;
   public todoForm: FormGroup;
@@ -25,25 +29,28 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
 
   private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  private destroy$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(
     public dialog: MatDialog,
+    public authService: AuthService,
     private todoService: TodoService,
     private todoQuery: TodoQuery,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
+    super();
     this.searchObject = new SearchObject();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loading$ = this.todoQuery.selectLoading();
     this.listTodo$ = this.todoQuery.selectVisibleTodo();
     this.todoService.getTodo()
       .pipe(
-        takeUntil(this.destroy$)
+        takeUntil(this.destroy$),
       )
-      .subscribe();
+      .subscribe((res) => res, (err) => {
+        this.showAlert(err);
+      });
   }
 
   public addTodo(): void {
@@ -53,25 +60,25 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
   public openDialogAddTodoForm(): void {
     const dialogTodoFormRef = this.dialog.open(
       FormAddTodoComponent,
-      {
-        width: '450px',
-      }
     );
 
     dialogTodoFormRef.afterClosed()
-      .pipe(take(1))
+      .pipe(first())
       .subscribe((todo: Todo) => {
         if (todo){
-          this.todoService.add(todo);
-          const alertText = $localize`:@@alert-add-success:You have successfully added`;
-          this.showAlert(alertText);
+          this.todoService.add(todo)
+            .subscribe(res => {
+              this.showAlert(LOCALIZE.ALERT_ADD_SUCCESS);
+            }, err => {
+              this.showAlert(err.message);
+            });
         }
       });
   }
 
   public updateTodo(id: string): void {
     this.todoQuery.getTodoById(id)
-      .pipe(take(1))
+      .pipe(first())
       .subscribe((res: Todo) => {
         this.openDialogEditTodoForm(res);
       });
@@ -81,43 +88,49 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
     const dialogTodoFormRef = this.dialog.open(
       FormEditTodoComponent,
       {
-        width: '450px',
         data: todoItem
       }
     );
 
     dialogTodoFormRef.afterClosed()
-      .pipe(take(1))
+      .pipe(first())
       .subscribe((todo: Todo) => {
         if (todo){
-          this.todoService.updateTodo(todo);
-          const alertText = $localize`:@@alert-update-success:You have successfully updated`;
-          this.showAlert(alertText);
+          this.todoService.updateTodo(todo)
+            .subscribe(() => {
+              this.showAlert(LOCALIZE.ALERT_UPDATE_SUCCESS);
+            }, err => {
+              this.showAlert(err.message);
+            });
         }
       });
   }
 
   public updateCompletedStatus(todo: Todo): void {
-    this.todoService.updateTodo(todo);
-    const alertText = $localize`:@@alert-update-success:You have successfully updated`;
-    this.showAlert(alertText);
+    this.todoService.updateTodo(todo)
+      .pipe(first())
+      .subscribe(() => {
+        this.showAlert(LOCALIZE.ALERT_UPDATE_SUCCESS);
+      }, err => {
+        this.showAlert(err.message);
+      });
   }
 
   public deleteTodo(id: string): void {
     const dialogDeleteRef = this.dialog.open(
       DialogDeleteTodoComponent,
-      {
-        width: '450px',
-      }
     );
 
     dialogDeleteRef.afterClosed()
-      .pipe(take(1))
+      .pipe(first())
       .subscribe((result: boolean) => {
         if (result === true) {
-          this.todoService.delete(id);
-          const alertText = $localize`:@@alert-delete-success:You have successfully deleted`;
-          this.showAlert(alertText);
+          this.todoService.delete(id)
+            .subscribe(() => {
+              this.showAlert(LOCALIZE.ALERT_DELETE_DELETE);
+            }, err => {
+              this.showAlert(err.message);
+            });
         }
       });
   }
@@ -132,9 +145,5 @@ export class ListTodoPageComponent implements OnInit, OnDestroy {
 
   public changeFilterValue(filter: SearchObject): void {
     this.todoService.updateFilter(filter);
-  }
-
-  ngOnDestroy(): void{
-    this.destroy$.next(true);
   }
 }

@@ -1,6 +1,6 @@
 
 .title{
-    color: #3064d8;
+    color: #3f50b6;
 }
 .list-input{
     max-width: 90%;
@@ -10,6 +10,20 @@
         margin: 5px 0px;
     }
 }
+.text-redirect{
+    color: #3f4fb7;
+    font-weight: bold;
+    font-size: 13px;
+}
 .list-actions{
     margin-bottom: 0px;
+
+    button{
+        margin-bottom: 10px;
+        width: 150px;
+        &.blue-background{
+            background-color: #1298f6;
+            color: white;
+        }
+    }
 }

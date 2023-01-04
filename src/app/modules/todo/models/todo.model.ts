@@ -39,9 +39,27 @@ export class Todo {
   id: string;
   title: string;
   content: string;
+  idUser: string;
   creator: string;
   completed: boolean;
   createdDate: Date;
   deadLine: Date;
   constructor() {}
+}
+
+export function createTodo(
+  title: string,
+  content: string,
+  creator: string,
+  deadLine: Date
+): Todo {
+  return {
+    title,
+    content,
+    idUser : this.authService.user.uid,
+    creator,
+    completed: false,
+    createdDate: new Date(),
+    deadLine: new Date(deadLine),
+  } as Todo;
 }

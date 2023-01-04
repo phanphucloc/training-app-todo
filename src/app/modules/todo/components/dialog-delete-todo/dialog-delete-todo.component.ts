@@ -11,13 +11,13 @@ export class DialogDeleteTodoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
-  onConfirm(): void {
+  public onConfirm(): void {
     this.dialogRef.close(true);
   }
 
-  onDismiss(): void {
+  public onDismiss(): void {
     this.dialogRef.close(false);
   }
 }

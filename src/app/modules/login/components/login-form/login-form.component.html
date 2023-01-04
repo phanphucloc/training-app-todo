@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="submit()">
+<form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
   <mat-card-header>
     <mat-card-title class="title">
       <span class="material-icons">person</span>
@@ -61,27 +61,40 @@
           Max length is:
         </span>
         <span>
-          {{ todoForm.get("password")?.errors.maxlength.requiredLength }}
+          {{ loginForm.get("password")?.errors.maxlength.requiredLength }}
         </span>
       </mat-error>
     </mat-form-field>
 
     <mat-error *ngIf="loginForm?.hasError('incorrect')">
-      <span i18n="@@block-formLogin-error-emailPassword">
-        Email and password do not exist
-      </span>
+      <p>
+        {{loginForm.errors.message}}
+      </p>
     </mat-error>
+
   </mat-card-content>
+  
   <mat-card-actions class="list-actions" align="center">
     <button mat-raised-button type="submit" color="primary" [disabled]="
-        loginForm?.invalid || loginForm?.pending || loading 
+        loginForm?.invalid || loginForm?.pending || (loading$ | async )
       ">
-      <ng-container *ngIf="loading ; else textTpl">
+      <ng-container *ngIf="(loading$) | async ; else textTpl">
         <mat-spinner class="spinner center small"></mat-spinner>
       </ng-container>
       <ng-template #textTpl>
         <span  i18n="@@block-formLogin-button-submit" class="text-icons-middle" >
           Login
+        </span>
+      </ng-template>
+    </button>
+    <br>
+    <button mat-raised-button type="button" (click)="submitLoginGoogle()" color="warn" [disabled]="(loadingGoogle$ | async)">
+      <ng-container *ngIf="(loadingGoogle$) | async ; else textGoogleTpl">
+        <mat-spinner class="spinner center small"></mat-spinner>
+      </ng-container>
+      <ng-template #textGoogleTpl>
+        <span class="text-icons-middle">
+          Gmail
         </span>
       </ng-template>
     </button>
